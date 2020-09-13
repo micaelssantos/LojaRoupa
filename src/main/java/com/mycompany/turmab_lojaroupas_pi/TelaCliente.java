@@ -463,8 +463,15 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void botaoCadastrarNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarNovoActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Cliente Cadastrado com sucesso!");
-        limparCampos();
+        boolean validarCampo = validarFormulario();
+        if (validarCampo == false) {
+            validarFormulario();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Cliente Cadastrado com sucesso!", "Caixa de Tezto",
+                    JOptionPane.WARNING_MESSAGE);
+            limparCampos();
+        }
     }//GEN-LAST:event_botaoCadastrarNovoActionPerformed
     private boolean limparCampos() {
         txtEmail.setText("");
