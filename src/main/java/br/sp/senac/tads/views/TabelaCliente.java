@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.turmab_lojaroupas_pi;
+package br.sp.senac.tads.views;
 
 /**
  *

@@ -1,10 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mycompany</groupId>
-    <artifactId>TurmaB_LojaRoupas_PI</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>br.sp.senac.tads.pi</groupId>
+    <artifactId>LojaRoupa</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    
+     <developers>
+        <developer>
+            <id>dlazzaro</id>
+            <name>Dalila di Lazzaro</name>
+            <email>dilazzaro06@gmail.com</email>
+        </developer>
+        <developer>
+            <id>joliveira</id>
+            <name>Jeferson Oliveira</name>
+            <email>jdinformaticabk@gmail.com</email>
+        </developer>
+        <developer>
+            <id>jcosta</id>
+            <name>João Pedro Santos Costa</name>
+            <email>joaopedro.cs12@hotmail.com</email>
+        </developer>
+        <developer>
+            <id>rsilva</id>
+            <name>Renê Alves da Silva</name>
+            <email>rene.alves123@gmail.com</email>
+        </developer>
+        <developer>
+            <id>msantos</id>
+            <name>Micael Santos</name>
+            <email>micael.sousa.fenex@gmail.com</email>
+        </developer>
+        <developer>
+            <id>vamorim</id>
+            <name>Vinicius Amorim</name>
+            <email>viniciusamorim1995@gmail.com</email>
+        </developer>
+    </developers>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
