@@ -126,16 +126,16 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addComponent(jNome)
                 .addGap(18, 18, 18)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(248, 248, 248))
+                .addGap(57, 57, 57))
         );
         painelCPFNomeNascLayout.setVerticalGroup(
             painelCPFNomeNascLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCPFNomeNascLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addGap(14, 14, 14)
                 .addGroup(painelCPFNomeNascLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(painelCPFNomeNascLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFormatCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCPF))
@@ -318,6 +318,11 @@ public class TelaCliente extends javax.swing.JFrame {
         botaoCadastrarNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Actions-contact-new-icon.png"))); // NOI18N
         botaoCadastrarNovo.setText("Novo cliente");
         botaoCadastrarNovo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        botaoCadastrarNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarNovoActionPerformed(evt);
+            }
+        });
 
         botaoLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/broom-icon.png"))); // NOI18N
         botaoLimpar.setText("Limpar");
@@ -372,9 +377,9 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addComponent(painelRadioEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(painel_CadastroLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(painel_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(painelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(painelCPFNomeNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(painel_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(painelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(painelCPFNomeNasc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_CadastroLayout.createSequentialGroup()
                 .addGap(0, 21, Short.MAX_VALUE)
@@ -455,6 +460,19 @@ public class TelaCliente extends javax.swing.JFrame {
         limparCampos();
 
     }//GEN-LAST:event_botaoLimparActionPerformed
+
+    private void botaoCadastrarNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarNovoActionPerformed
+        // TODO add your handling code here:
+        boolean validarCampo = validarFormulario();
+        if (validarCampo == false) {
+            validarFormulario();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Cliente Cadastrado com sucesso!", "Caixa de Tezto",
+                    JOptionPane.WARNING_MESSAGE);
+            limparCampos();
+        }
+    }//GEN-LAST:event_botaoCadastrarNovoActionPerformed
     private boolean limparCampos() {
         txtEmail.setText("");
         txtEndereco.setText("");
