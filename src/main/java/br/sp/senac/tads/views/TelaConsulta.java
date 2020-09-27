@@ -110,7 +110,7 @@ public class TelaConsulta extends javax.swing.JFrame {
         buttonGroup1.add(radioCPF);
         radioCPF.setText("CPF");
 
-        labelPesquisa.setText("Pesquisar: ");
+        labelPesquisa.setText("Pesquisar por: ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

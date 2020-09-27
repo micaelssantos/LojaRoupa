@@ -263,7 +263,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelPesquisa">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Pesquisar: "/>
+            <Property name="text" type="java.lang.String" value="Pesquisar por: "/>
           </Properties>
         </Component>
       </SubComponents>
