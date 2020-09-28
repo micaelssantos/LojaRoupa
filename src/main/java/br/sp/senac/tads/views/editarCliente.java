@@ -270,7 +270,7 @@ public class editarCliente extends javax.swing.JFrame {
         labelEndereco.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         labelEndereco.setText("Logradouro:");
 
-        labelNumero.setText("nº");
+        labelNumero.setText("Nº");
 
         labelCEP.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         labelCEP.setText("CEP:");

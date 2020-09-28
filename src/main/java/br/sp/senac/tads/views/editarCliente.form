@@ -510,7 +510,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="labelNumero">
               <Properties>
-                <Property name="text" type="java.lang.String" value="n&#xba;"/>
+                <Property name="text" type="java.lang.String" value="N&#xba;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNuemro">
