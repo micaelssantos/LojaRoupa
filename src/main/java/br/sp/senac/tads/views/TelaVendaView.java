@@ -5,6 +5,8 @@
  */
 package br.sp.senac.tads.views;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joaop
@@ -58,6 +60,11 @@ public class TelaVendaView extends javax.swing.JFrame {
 
         btnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Ok-icon-verde.png"))); // NOI18N
         btnConfirmar.setText("Confirmar Cliente");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -92,6 +99,11 @@ public class TelaVendaView extends javax.swing.JFrame {
         btnInserir.setText("Inserir");
         btnInserir.setVerifyInputWhenFocusTarget(false);
         btnInserir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
+            }
+        });
 
         lblNomeCliente2.setText("Quantidade:");
 
@@ -101,6 +113,11 @@ public class TelaVendaView extends javax.swing.JFrame {
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setVerifyInputWhenFocusTarget(false);
         btnPesquisar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnLimpar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/broom-icon.png"))); // NOI18N
         btnLimpar1.setText("Limpar");
@@ -128,13 +145,10 @@ public class TelaVendaView extends javax.swing.JFrame {
                         .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnPesquisar)
-                        .addGap(118, 118, 118)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLimpar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(146, Short.MAX_VALUE)
-                    .addComponent(btnLimpar1)
-                    .addGap(111, 111, 111)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,13 +171,9 @@ public class TelaVendaView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPesquisar)
-                    .addComponent(btnInserir))
+                    .addComponent(btnInserir)
+                    .addComponent(btnLimpar1))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(107, Short.MAX_VALUE)
-                    .addComponent(btnLimpar1)
-                    .addGap(16, 16, 16)))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Itens"));
@@ -205,11 +215,21 @@ public class TelaVendaView extends javax.swing.JFrame {
         btnConcluir.setText("Concluir");
         btnConcluir.setVerifyInputWhenFocusTarget(false);
         btnConcluir.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnConcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConcluirActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/stop-icon.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setVerifyInputWhenFocusTarget(false);
         btnCancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,6 +276,81 @@ public class TelaVendaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // TODO add your handling code here:
+        
+        ValidarCliente();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
+        ValidarProduto();
+        ValidarCliente();           
+    }//GEN-LAST:event_btnConcluirActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        ValidarProduto();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        ValidarProduto();
+    }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {
+
+//Se o nome digitado for menor que 50
+    if (txtCliente.getText().length() < 50) {
+        //verifica se foi digitado número
+        if (txtCliente.getText().matches("^[0-9].*")) {
+            evt.consume();
+            //caso tenha sido número, retorna que não é permitido número no campo
+            JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            txtCliente.setText("");
+        }
+    } else {
+        //caso seja maior, estoura o limite de caracteres
+        evt.consume();
+        JOptionPane.showMessageDialog(this, "Limite de caractere em 50", "Erro", JOptionPane.ERROR_MESSAGE);
+        txtCliente.setText("");
+    }
+
+}
+     private boolean ValidarCliente()
+    {
+       
+        if (this.txtCliente.getText().equalsIgnoreCase("")) 
+        {
+            JOptionPane.showMessageDialog(this, "Campo Nome do Cliente é obrigatório.");
+            return false;
+        }
+        
+        return true;
+    }
+    private boolean ValidarProduto()
+    {
+       if (this.txtProduto.getText().equalsIgnoreCase("")) 
+       {
+        JOptionPane.showMessageDialog(this, "Campo Produto é obrigatório.");
+         return false;
+        }
+        
+        if (this.txtQtd.getText().equalsIgnoreCase("")) 
+        {
+            JOptionPane.showMessageDialog(this, "A quantidade deve ser informada.");
+            return false;
+        }
+        if (this.txtQtdEstoque.getText().equalsIgnoreCase("")) 
+        {
+            JOptionPane.showMessageDialog(this, "A quantidade em estoque deve ser informada.");
+            return false;
+        }
+        
+        return true;
+}
     /**
      * @param args the command line arguments
      */
