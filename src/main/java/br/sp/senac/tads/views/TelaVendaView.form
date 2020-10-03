@@ -129,6 +129,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Confirmar Cliente"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -164,16 +167,11 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnPesquisar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnLimpar1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnInserir" min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="146" max="32767" attributes="0"/>
-                      <Component id="btnLimpar1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -205,15 +203,9 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnInserir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLimpar1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="107" max="32767" attributes="0"/>
-                      <Component id="btnLimpar1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -235,6 +227,9 @@
             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
             <Property name="verticalAlignment" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInserirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNomeCliente2">
           <Properties>
@@ -259,6 +254,9 @@
             <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
             <Property name="verticalAlignment" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLimpar1">
           <Properties>
@@ -343,6 +341,9 @@
         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
         <Property name="verticalAlignment" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConcluirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
@@ -353,6 +354,9 @@
         <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
         <Property name="verticalAlignment" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
