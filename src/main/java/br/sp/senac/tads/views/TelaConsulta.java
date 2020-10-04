@@ -5,6 +5,7 @@
  */
 package br.sp.senac.tads.views;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +20,7 @@ public class TelaConsulta extends javax.swing.JFrame {
     public TelaConsulta() {
         initComponents();
         this.setLocationRelativeTo(null);
+        desabilitado();
     }
 
     /**
@@ -31,26 +33,25 @@ public class TelaConsulta extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        pnlConsultaCliente = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblCPF = new javax.swing.JLabel();
         txtCPF = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JTable = new javax.swing.JTable();
+        tblConsulta = new javax.swing.JTable();
         txtNome = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
-        labelnome = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
-        radioNome = new javax.swing.JRadioButton();
-        radioCPF = new javax.swing.JRadioButton();
-        labelPesquisa = new javax.swing.JLabel();
+        rdoNome = new javax.swing.JRadioButton();
+        rdoCPF = new javax.swing.JRadioButton();
+        lblPesquisa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Arial", 1, 15))); // NOI18N
+        pnlConsultaCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultar Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Arial", 1, 15))); // NOI18N
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/edit-validated-icon (1).png"))); // NOI18N
         btnEditar.setText("Editar");
@@ -61,15 +62,20 @@ public class TelaConsulta extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("CPF:");
+        lblCPF.setText("CPF:");
 
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFActionPerformed(evt);
+            }
+        });
 
-        JTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -77,7 +83,18 @@ public class TelaConsulta extends javax.swing.JFrame {
                 "Nome", "CPF", "Sexo"
             }
         ));
-        jScrollPane1.setViewportView(JTable);
+        jScrollPane1.setViewportView(tblConsulta);
+
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomeKeyTyped(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/stop-icon.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -88,11 +105,16 @@ public class TelaConsulta extends javax.swing.JFrame {
             }
         });
 
-        labelnome.setText("Nome:");
+        lblNome.setText("Nome:");
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Start-Menu-Search-icon.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Actions-edit-delete-icon.png"))); // NOI18N
         btnExcluir.setText("Excluir");
@@ -112,40 +134,53 @@ public class TelaConsulta extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(radioNome);
-        radioNome.setText("Nome");
+        buttonGroup1.add(rdoNome);
+        rdoNome.setText("Nome");
+        rdoNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoNomeMouseClicked(evt);
+            }
+        });
 
-        buttonGroup1.add(radioCPF);
-        radioCPF.setText("CPF");
+        buttonGroup1.add(rdoCPF);
+        rdoCPF.setText("CPF");
+        rdoCPF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoCPFMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                rdoCPFMousePressed(evt);
+            }
+        });
 
-        labelPesquisa.setText("Pesquisar por: ");
+        lblPesquisa.setText("Pesquisar por: ");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlConsultaClienteLayout = new javax.swing.GroupLayout(pnlConsultaCliente);
+        pnlConsultaCliente.setLayout(pnlConsultaClienteLayout);
+        pnlConsultaClienteLayout.setHorizontalGroup(
+            pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
+                .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
+                        .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelnome, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelPesquisa, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCPF, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPesquisa, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(radioNome)
+                                .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
+                                        .addComponent(rdoNome)
                                         .addGap(18, 18, 18)
-                                        .addComponent(radioCPF))
+                                        .addComponent(rdoCPF))
                                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
                                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,29 +194,29 @@ public class TelaConsulta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnEditar, btnExcluir, btnLimpar, btnPesquisar});
+        pnlConsultaClienteLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnEditar, btnExcluir, btnLimpar, btnPesquisar});
 
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(radioNome)
-                        .addComponent(radioCPF))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelPesquisa)
+        pnlConsultaClienteLayout.setVerticalGroup(
+            pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
+                .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdoNome)
+                        .addComponent(rdoCPF))
+                    .addGroup(pnlConsultaClienteLayout.createSequentialGroup()
+                        .addComponent(lblPesquisa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelnome)
+                        .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNome)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCPF)
                     .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlConsultaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar)
                     .addComponent(btnCancelar)
                     .addComponent(btnPesquisar)
@@ -190,30 +225,23 @@ public class TelaConsulta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCPF, txtNome});
+        pnlConsultaClienteLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCPF, txtNome});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(564, 564, 564)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(pnlConsultaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap())
+                .addComponent(pnlConsultaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -222,9 +250,9 @@ public class TelaConsulta extends javax.swing.JFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
         //resgata o indice da linha selecionada
-        int indiceLinha=JTable.getSelectedRow();
-        
-        DefaultTableModel modelo=(DefaultTableModel)JTable.getModel();
+        int indiceLinha = tblConsulta.getSelectedRow();
+
+        DefaultTableModel modelo = (DefaultTableModel) tblConsulta.getModel();
         //passo o indice da linha a ser removida
         modelo.removeRow(indiceLinha);
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -232,25 +260,125 @@ public class TelaConsulta extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
         limparCampos();
-        
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         //função para sair do quadro
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        editarCliente editar=new editarCliente();
+
+        editarCliente editar = new editarCliente();
         editar.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
- //função limpar para limpar campos
-    private boolean limparCampos() {
+
+    private void rdoNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNomeMouseClicked
+        // TODO add your handling code here:
+        //verificar se o botao nome ta selecionado para liberar campos
+        if (rdoNome.isSelected()) {
+            habilitado();
+        }
+    }//GEN-LAST:event_rdoNomeMouseClicked
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtCPFActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        // TODO add your handling code here:        
+        boolean valida = validarFormulario();
+        if (valida == false) {
+            validarFormulario();
+        }
+
+
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void rdoCPFMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoCPFMousePressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_rdoCPFMousePressed
+
+    private void rdoCPFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoCPFMouseClicked
+        // TODO add your handling code here:
+        if (rdoCPF.isSelected()) {
+            habilitado();
+        }
+    }//GEN-LAST:event_rdoCPFMouseClicked
+
+    private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
+        // TODO add your handling code here:
+        if (txtNome.getText().length()<30) {
+            if (txtNome.getText().matches("^[0-9].*")) {
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Permitido somente letras no campo \"Nome\"!");
+            }
+        }else{
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres.");
+        }
+    }//GEN-LAST:event_txtNomeKeyTyped
+    private boolean desabilitado() {
+        txtCPF.setEnabled(false);
+        txtNome.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        btnPesquisar.setEnabled(false);
+        btnLimpar.setEnabled(false);
+        tblConsulta.setEnabled(false);
+        return false;
+    }
+
+    private boolean habilitado() {
+        if (rdoNome.isSelected()) {
+            txtCPF.setEnabled(false);
+            txtNome.setEnabled(true);
+            btnEditar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+            btnPesquisar.setEnabled(true);
+            btnLimpar.setEnabled(true);
+            tblConsulta.setEnabled(true);
+            return true;
+        } else if (rdoCPF.isSelected()) {
+            txtNome.setEnabled(false);
+            txtCPF.setEnabled(true);
+            btnEditar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+            btnPesquisar.setEnabled(true);
+            btnLimpar.setEnabled(true);
+            tblConsulta.setEnabled(true);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validarFormulario() {
+
+        if (rdoNome.isSelected() && txtNome.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo \"Nome\" está vazio!");
+            return false;
+        }
+        if (rdoCPF.isSelected() && this.txtCPF.getText().equals("   .   .   -  ")) {
+            JOptionPane.showMessageDialog(this, "O campo \"CPF\" está vazio");
+            return false;
+        }
+        return true;
+    }
+//função limpar para limpar campos
+
+    private void limparCampos() {
         txtNome.setText("");
         txtCPF.setText("");
-        return true;
     }
 
     /**
@@ -289,21 +417,20 @@ public class TelaConsulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable JTable;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelPesquisa;
-    private javax.swing.JLabel labelnome;
-    private javax.swing.JRadioButton radioCPF;
-    private javax.swing.JRadioButton radioNome;
+    private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPesquisa;
+    private javax.swing.JPanel pnlConsultaCliente;
+    private javax.swing.JRadioButton rdoCPF;
+    private javax.swing.JRadioButton rdoNome;
+    private javax.swing.JTable tblConsulta;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
