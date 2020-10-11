@@ -55,6 +55,8 @@ public class TelaCliente extends javax.swing.JFrame {
         rdoFeminino = new javax.swing.JRadioButton();
         rdoMasculino = new javax.swing.JRadioButton();
         rdoOutro2 = new javax.swing.JRadioButton();
+        lblID = new javax.swing.JLabel();
+        lblIDNumero = new javax.swing.JLabel();
         pnlEndereco = new javax.swing.JPanel();
         lblLogradouro = new javax.swing.JLabel();
         txtLogradouro = new javax.swing.JTextField();
@@ -116,7 +118,7 @@ public class TelaCliente extends javax.swing.JFrame {
         });
 
         lblNascimento.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        lblNascimento.setText("Data de Nascimento:");
+        lblNascimento.setText("Data de Nascimento:*");
 
         try {
             txtFormatadDtNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -125,7 +127,7 @@ public class TelaCliente extends javax.swing.JFrame {
         }
 
         lblEstCiviu.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        lblEstCiviu.setText("Estado civíl:");
+        lblEstCiviu.setText("Estado civíl:*");
 
         rdoGrupoEstCivil.add(rdoCasado);
         rdoCasado.setText("Casado(a)");
@@ -140,7 +142,7 @@ public class TelaCliente extends javax.swing.JFrame {
         rdoOutro.setText("Outro");
 
         lblSexo.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        lblSexo.setText("Sexo:");
+        lblSexo.setText("Sexo:*");
 
         rdoGrupoSexo.add(rdoFeminino);
         rdoFeminino.setText("Feminino");
@@ -155,6 +157,8 @@ public class TelaCliente extends javax.swing.JFrame {
 
         rdoGrupoSexo.add(rdoOutro2);
         rdoOutro2.setText("Outro");
+
+        lblID.setText("ID:");
 
         javax.swing.GroupLayout pnlDadosPessoaisLayout = new javax.swing.GroupLayout(pnlDadosPessoais);
         pnlDadosPessoais.setLayout(pnlDadosPessoaisLayout);
@@ -188,21 +192,29 @@ public class TelaCliente extends javax.swing.JFrame {
                                         .addComponent(rdoMasculino)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(rdoOutro2))))
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblID)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblIDNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlDadosPessoaisLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblNascimento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFormatadDtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         pnlDadosPessoaisLayout.setVerticalGroup(
             pnlDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDadosPessoaisLayout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
-                .addGroup(pnlDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNome)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblID))
+                    .addComponent(lblIDNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCPF)
@@ -281,7 +293,7 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtFormatadCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlEnderecoLayout.setVerticalGroup(
             pnlEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +316,7 @@ public class TelaCliente extends javax.swing.JFrame {
         pnlContato.setToolTipText("painel radio e rmail");
 
         lblEmail.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        lblEmail.setText("E-mail:");
+        lblEmail.setText("E-mail:*");
 
         lblTelefone.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         lblTelefone.setText("Telefone Fixo:");
@@ -337,13 +349,13 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addGroup(pnlContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFormatedCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(181, 181, 181))
+                .addGap(166, 166, 166))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContatoLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(lblTelefone)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFormatedTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(334, Short.MAX_VALUE))
         );
         pnlContatoLayout.setVerticalGroup(
             pnlContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +371,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addGroup(pnlContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pnlContatoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmail, txtFormatedCelular, txtFormatedTelefone});
@@ -415,14 +427,14 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addComponent(btnNovoCli)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastrar)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpar)
-                .addGap(12, 12, 12)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlBotoesLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCadastrar, btnCancelar, btnLimpar, btnNovoCli});
+        pnlBotoesLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCadastrar, btnNovoCli});
 
         pnlBotoesLayout.setVerticalGroup(
             pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,7 +445,7 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addComponent(btnCancelar)
                     .addComponent(btnLimpar)
                     .addComponent(btnNovoCli))
-                .addGap(26, 26, 26))
+                .addGap(11, 11, 11))
         );
 
         pnlBotoesLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCadastrar, btnCancelar, btnLimpar, btnNovoCli});
@@ -445,19 +457,22 @@ public class TelaCliente extends javax.swing.JFrame {
             .addGroup(pnlCadastroLayout.createSequentialGroup()
                 .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCadastroLayout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(lblImgUser))
-                    .addGroup(pnlCadastroLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(pnlContato, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCadastroLayout.createSequentialGroup()
+                    .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlCadastroLayout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(pnlContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(pnlDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pnlEndereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(pnlEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(pnlDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(8, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCadastroLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblImgUser)
+                .addGap(276, 276, 276))
         );
         pnlCadastroLayout.setVerticalGroup(
             pnlCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,7 +485,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addComponent(pnlEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -481,7 +496,7 @@ public class TelaCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -495,54 +510,46 @@ public class TelaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
         //essa opção, é feita para sair da aplicação.
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
-        //aqui eu faço um if else, para caso o usuario tete dar ok mas com os campos vazios
-        boolean validarCampo = campoObrigatorio();
-//        JFormattedTextField.AbstractFormatter cpf = txtFormatCPF.getFormatter();
-//        if (txtNome.getText().trim().equals("") || txtFormatCPF.getFormatter().equals("")) {
-//            String nome = txtNome.getText();
-//            //JFormattedTextField.AbstractFormatter cpf=txtFormatCPF.getFormatter();    
-//            JOptionPane.showMessageDialog(this, "O campo 'nome' " + nome + " ou o CPF está vazio" + cpf);
-//        } else {
-        if (validarCampo == false) {
-            campoObrigatorio();
-        } else {
-            JOptionPane.showMessageDialog(this, //componente pai
+
+        //Valida se os campos obrigatórios estão preenchidos
+        if (campoObrigatorio() == true) {
+            JOptionPane.showMessageDialog(this, 
                     "Cliente cadastrado com sucesso!", "Caixa de Texto", JOptionPane.WARNING_MESSAGE);
             limparCampos();
+            desativar();
+            this.btnNovoCli.setEnabled(true);
+        } else{
+        
         }
-        //  }
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void rdoMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoMasculinoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_rdoMasculinoActionPerformed
 
     private void txtFormatCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFormatCPFActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_txtFormatCPFActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        // TODO add your handling code here:
         //códigos para limpar campos
         limparCampos();
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnNovoCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoCliActionPerformed
-        // TODO add your handling code here:
+        //códigos para habilitar campos
+        this.btnNovoCli.setEnabled(false);
         habilitar();
     }//GEN-LAST:event_btnNovoCliActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:        
 
     }//GEN-LAST:event_txtNomeActionPerformed
 
@@ -613,7 +620,7 @@ public class TelaCliente extends javax.swing.JFrame {
         txtEmail.setText("");
     }
 
-    private boolean desativar() {
+    private void desativar() {
         txtEmail.setEnabled(false);
         txtFormatCPF.setEnabled(false);
         txtFormatadCEP.setEnabled(false);
@@ -632,10 +639,9 @@ public class TelaCliente extends javax.swing.JFrame {
         rdoViuvo.setEnabled(false);
         btnCadastrar.setEnabled(false);
         btnLimpar.setEnabled(false);
-        return false;
     }
 
-    private boolean habilitar() {
+    private void habilitar() {
         txtEmail.setEnabled(true);
         txtFormatCPF.setEnabled(true);
         txtFormatadCEP.setEnabled(true);
@@ -654,7 +660,6 @@ public class TelaCliente extends javax.swing.JFrame {
         rdoViuvo.setEnabled(true);
         btnCadastrar.setEnabled(true);
         btnLimpar.setEnabled(true);
-        return true;
     }
 
     /**
@@ -698,10 +703,28 @@ public class TelaCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campo \"Nome\" é obrigatório!");
             return false;
         }
+        
         if (this.txtFormatCPF.getText().equals("   .   .   -  ")) {
             JOptionPane.showMessageDialog(this, "Campo \"CPF\" é obrigatório!");
             return false;
         }
+        if (this.txtFormatadDtNasc.getText().equals("  /  /   ")) {
+            JOptionPane.showMessageDialog(this, "Campo \"Data de Nascimento\" é obrigatório!" );
+            return false;
+        }
+        if (this.rdoGrupoEstCivil.getSelection().equals("")) {
+            JOptionPane.showMessageDialog(this, "Campo \"Estado Civil\" é obrigatório!" );
+            return false;
+        }
+        if (this.rdoGrupoSexo.getSelection().equals("")) {
+            JOptionPane.showMessageDialog(this, "Campo \"Sexo\" é obrigatório!" );
+            return false;
+        }
+        if (this.txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Campo \"e-mail\" é obrigatório!" );
+            return false;
+        }
+        
         return true;
 
     }
@@ -715,6 +738,8 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblCelular;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEstCiviu;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblIDNumero;
     private javax.swing.JLabel lblImgUser;
     private javax.swing.JLabel lblLogradouro;
     private javax.swing.JLabel lblNascimento;

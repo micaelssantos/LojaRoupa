@@ -32,7 +32,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="pnlCadastro" min="-2" pref="643" max="-2" attributes="0"/>
+              <Component id="pnlCadastro" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -65,25 +65,29 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
-                          <Component id="lblImgUser" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="pnlBotoes" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="pnlContato" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="pnlContato" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="pnlDadosPessoais" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="pnlEndereco" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="pnlEndereco" max="32767" attributes="0"/>
+                                  <Component id="pnlDadosPessoais" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="lblImgUser" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="276" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,7 +102,7 @@
                   <Component id="pnlEndereco" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pnlContato" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="pnlBotoes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
@@ -160,7 +164,13 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="txtNome" min="-2" pref="330" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtNome" min="-2" pref="295" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lblIDNumero" min="-2" pref="46" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -170,7 +180,7 @@
                               <Component id="txtFormatadDtNasc" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="59" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -178,9 +188,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="9" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNome" linkSize="7" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNome" linkSize="7" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblIDNumero" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -250,7 +264,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Data de Nascimento:"/>
+                <Property name="text" type="java.lang.String" value="Data de Nascimento:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtFormatadDtNasc">
@@ -265,7 +279,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Estado civ&#xed;l:"/>
+                <Property name="text" type="java.lang.String" value="Estado civ&#xed;l:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rdoCasado">
@@ -305,7 +319,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Sexo:"/>
+                <Property name="text" type="java.lang.String" value="Sexo:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rdoFeminino">
@@ -334,6 +348,13 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Outro"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblID">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ID:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblIDNumero">
             </Component>
           </SubComponents>
         </Container>
@@ -367,7 +388,7 @@
                           </Group>
                           <Component id="txtFormatadCEP" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -459,14 +480,14 @@
                           <Component id="txtEmail" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="txtFormatedCelular" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="lblTelefone" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtFormatedTelefone" min="-2" pref="106" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="334" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -487,7 +508,7 @@
                           <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtEmail" linkSize="9" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -498,7 +519,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="E-mail:"/>
+                <Property name="text" type="java.lang.String" value="E-mail:*"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtEmail">
@@ -548,10 +569,10 @@
                       <Component id="btnNovoCli" linkSize="6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCadastrar" linkSize="6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnLimpar" linkSize="6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" linkSize="6" min="-2" pref="109" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnLimpar" min="-2" pref="145" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" pref="145" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -566,7 +587,7 @@
                           <Component id="btnLimpar" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnNovoCli" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
