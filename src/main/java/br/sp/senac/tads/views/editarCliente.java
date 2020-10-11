@@ -50,6 +50,8 @@ public class editarCliente extends javax.swing.JFrame {
         rdoMasculino = new javax.swing.JRadioButton();
         rdoOutro2 = new javax.swing.JRadioButton();
         rdoViuvo = new javax.swing.JRadioButton();
+        lblID = new javax.swing.JLabel();
+        lblIDEditar = new javax.swing.JLabel();
         lblImg = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         lblContato = new javax.swing.JPanel();
@@ -68,13 +70,18 @@ public class editarCliente extends javax.swing.JFrame {
         txtFormatedCEP = new javax.swing.JFormattedTextField();
         btnLimpar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblEditar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Arial", 1, 15))); // NOI18N
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Ok-icon-verde.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         lblDadosPessoais.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados pessoais"));
 
@@ -132,6 +139,8 @@ public class editarCliente extends javax.swing.JFrame {
         radioGrupoCivil.add(rdoViuvo);
         rdoViuvo.setText("Viuvo(a)");
 
+        lblID.setText("ID:");
+
         javax.swing.GroupLayout lblDadosPessoaisLayout = new javax.swing.GroupLayout(lblDadosPessoais);
         lblDadosPessoais.setLayout(lblDadosPessoaisLayout);
         lblDadosPessoaisLayout.setHorizontalGroup(
@@ -165,7 +174,12 @@ public class editarCliente extends javax.swing.JFrame {
                                 .addComponent(rdoOutro))))
                     .addComponent(txtFormatedNasmciemtno, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFormatedCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(lblDadosPessoaisLayout.createSequentialGroup()
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblIDEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         lblDadosPessoaisLayout.setVerticalGroup(
@@ -174,7 +188,9 @@ public class editarCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(lblDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblID)
+                    .addComponent(lblIDEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(lblDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCPF)
@@ -240,7 +256,7 @@ public class editarCliente extends javax.swing.JFrame {
         lblContatoLayout.setHorizontalGroup(
             lblContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lblContatoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(lblContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCelular, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTelefone, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -460,6 +476,16 @@ public class editarCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNuemroKeyTyped
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+        if (campoObrigatorio()==true) {
+            JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
+            limparCampos();
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
     private void limparCampos() {
         txtEmail.setText("");
         txtEnredeco.setText("");
@@ -472,6 +498,29 @@ public class editarCliente extends javax.swing.JFrame {
         radioGrupoSexo.clearSelection();
         txtFormatedTelefone.setText("");
         txtFormatedCelular.setText("");
+    }
+    
+    public boolean campoObrigatorio(){
+        
+        if (this.txtNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo \"Nome\" não pode ficar em branco!");
+            return false;
+        }
+        if (this.txtFormatedCPF.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo \"CPF\" não pode ficar em branco!");
+            return false;
+        }
+        if (this.txtFormatedNasmciemtno.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo \"Data de Nascimento\" não pode ficar em branco!");
+            return false;
+        }
+        if (this.txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "O campo \"e-mail\" não pode ficar em branco!");
+            return false;
+        }
+        
+        return true;
+        
     }
 
     /**
@@ -521,6 +570,8 @@ public class editarCliente extends javax.swing.JFrame {
     private javax.swing.JPanel lblDadosPessoais;
     private javax.swing.JPanel lblEditar;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblIDEditar;
     private javax.swing.JLabel lblImg;
     private javax.swing.JLabel lblLogradouro;
     private javax.swing.JLabel lblNasciemtno;

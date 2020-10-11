@@ -8,7 +8,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -120,6 +120,9 @@
             <Property name="text" type="java.lang.String" value="Salvar"/>
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="lblDadosPessoais">
           <Properties>
@@ -169,7 +172,13 @@
                           </Group>
                           <Component id="txtFormatedNasmciemtno" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="txtFormatedCPF" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
-                          <Component id="txtNome" alignment="0" min="-2" pref="270" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtNome" min="-2" pref="270" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblIDEditar" min="-2" pref="58" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -182,6 +191,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNome" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIDEditar" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -329,6 +340,13 @@
                 <Property name="text" type="java.lang.String" value="Viuvo(a)"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="lblID">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ID:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblIDEditar">
+            </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="lblImg">
@@ -363,7 +381,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblCelular" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTelefone" alignment="1" min="-2" max="-2" attributes="0"/>
