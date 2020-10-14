@@ -9,12 +9,12 @@ package br.sp.senac.tads.views;
  *
  * @author renea
  */
-public class RelatorioSintetico extends javax.swing.JFrame {
+public class RelatorioSinteticoView extends javax.swing.JFrame {
 
     /**
      * Creates new form RelatorioSintetico
      */
-    public RelatorioSintetico() {
+    public RelatorioSinteticoView() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -150,7 +150,7 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValorTotalPeriodoActionPerformed
 
     private void btnDetalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalharActionPerformed
-        new RelatorioAnalitico().setVisible(true);
+        new RelatorioAnaliticoView().setVisible(true);
     }//GEN-LAST:event_btnDetalharActionPerformed
 
     /**
@@ -170,20 +170,21 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioSintetico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioSinteticoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioSintetico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioSinteticoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioSintetico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioSinteticoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioSintetico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioSinteticoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatorioSintetico().setVisible(true);
+                new RelatorioSinteticoView().setVisible(true);
             }
         });
     }
