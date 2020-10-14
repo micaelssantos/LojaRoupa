@@ -15,8 +15,10 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
     /**
      * Creates new form RelatorioAnalitico
      */
+    
     public RelatorioAnalitico() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -34,34 +36,16 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
         lblRelatorioAnalitico = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Relatório Analítico");
 
         tblRelatorioAnalitico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tblRelatorioAnalitico.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblRelatorioAnalitico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "id_Produto", "Data", "Produto", "Quantidade", "Valor Unitário", "Valor Total"
+                "ID Produto", "Data", "Produto", "Quantidade", "Valor Unitário", "Valor Total"
             }
         ));
         jScrollPane2.setViewportView(tblRelatorioAnalitico);
@@ -69,6 +53,11 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Voltar.png"))); // NOI18N
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         lblRelatorioAnalitico.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblRelatorioAnalitico.setText("Relatório Analítico");
@@ -106,6 +95,10 @@ public class RelatorioAnalitico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments

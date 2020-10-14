@@ -16,6 +16,7 @@ public class RelatorioSintetico extends javax.swing.JFrame {
      */
     public RelatorioSintetico() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -33,9 +34,10 @@ public class RelatorioSintetico extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         btnDetalhar = new javax.swing.JButton();
         lblValorTotalPeriodo = new javax.swing.JLabel();
-        txtValorTotalPeríodo = new javax.swing.JTextField();
+        txtValorTotalPeriodo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Relatório Sintético");
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -43,33 +45,14 @@ public class RelatorioSintetico extends javax.swing.JFrame {
         tblRelatorioSintetico.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tblRelatorioSintetico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "ID_Comanda", "Nome Cliente", "Valor Toral", "Data Venda"
+                "ID Comanda", "Nome Cliente", "Valor Toral", "Data Venda"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -94,13 +77,18 @@ public class RelatorioSintetico extends javax.swing.JFrame {
         btnDetalhar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnDetalhar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Detalhar.png"))); // NOI18N
         btnDetalhar.setText("Detalhar");
+        btnDetalhar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalharActionPerformed(evt);
+            }
+        });
 
         lblValorTotalPeriodo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblValorTotalPeriodo.setText("Valor Total do Período");
 
-        txtValorTotalPeríodo.addActionListener(new java.awt.event.ActionListener() {
+        txtValorTotalPeriodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorTotalPeríodoActionPerformed(evt);
+                txtValorTotalPeriodoActionPerformed(evt);
             }
         });
 
@@ -116,23 +104,20 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblValorTotalPeriodo)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtValorTotalPeríodo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnDetalhar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnDetalhar)
-                                .addGap(36, 36, 36)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16)))))
+                                .addComponent(lblValorTotalPeriodo)
+                                .addGap(49, 49, 49)
+                                .addComponent(txtValorTotalPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(178, 178, 178)
                 .addComponent(lblRelatorioSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnDetalhar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -143,26 +128,30 @@ public class RelatorioSintetico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblValorTotalPeriodo)
-                    .addComponent(txtValorTotalPeríodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtValorTotalPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(btnDetalhar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDetalhar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCancelar, btnDetalhar, txtValorTotalPeríodo});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCancelar, btnDetalhar, txtValorTotalPeriodo});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtValorTotalPeríodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalPeríodoActionPerformed
+    private void txtValorTotalPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorTotalPeriodoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorTotalPeríodoActionPerformed
+    }//GEN-LAST:event_txtValorTotalPeriodoActionPerformed
+
+    private void btnDetalharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalharActionPerformed
+        new RelatorioAnalitico().setVisible(true);
+    }//GEN-LAST:event_btnDetalharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +195,6 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     private javax.swing.JLabel lblRelatorioSintetico;
     private javax.swing.JLabel lblValorTotalPeriodo;
     private javax.swing.JTable tblRelatorioSintetico;
-    private javax.swing.JTextField txtValorTotalPeríodo;
+    private javax.swing.JTextField txtValorTotalPeriodo;
     // End of variables declaration//GEN-END:variables
 }
