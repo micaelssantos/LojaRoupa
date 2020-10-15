@@ -5,6 +5,7 @@
  */
 package br.sp.senac.tads.views;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -39,10 +40,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txt_usuario = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        txt_senha = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -127,15 +128,15 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setText("Senha");
         pnl_fundo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
 
-        txt_usuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        txt_usuario.setBorder(null);
-        pnl_fundo.add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 240, -1));
+        txtUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        txtUsuario.setBorder(null);
+        pnl_fundo.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 240, -1));
         pnl_fundo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 240, 10));
         pnl_fundo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 240, 10));
 
-        txt_senha.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        txt_senha.setBorder(null);
-        pnl_fundo.add(txt_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 240, -1));
+        txtSenha.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        txtSenha.setBorder(null);
+        pnl_fundo.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 240, -1));
 
         getContentPane().add(pnl_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 290));
 
@@ -158,10 +159,19 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_sairMouseClicked
 
     private void btn_acessarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_acessarMouseClicked
-        //VOLTAR PARA O MENU PRINCIPAL
-        TelaMenu menu = new TelaMenu();
-        menu.show();
-        this.dispose();
+        if (validaCamposVazios()) {
+            
+            limpaCampos();
+            
+            //ACESSA O MENU PRINCIPAL
+            TelaMenu menu = new TelaMenu();
+            menu.show();
+            this.dispose();
+                        
+        }
+
+
+        
     }//GEN-LAST:event_btn_acessarMouseClicked
 
     private void btn_acessarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_acessarMouseEntered
@@ -195,6 +205,33 @@ public class TelaLogin extends javax.swing.JFrame {
         
     }
     
+    private boolean validaCamposVazios() {
+        
+        boolean status = true;
+        
+        if (this.txtUsuario.getText().equals("") || this.txtSenha.getText().equals("")) {
+            
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+            
+            status = false;
+            
+        } else {
+            
+            status = true;
+
+        }
+        
+        return status;
+        
+    }
+    
+    private void limpaCampos() {
+        
+        txtUsuario.setText("");
+        txtSenha.setText("");
+        
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -225,6 +262,30 @@ public class TelaLogin extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -247,7 +308,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_usuario;
     private javax.swing.JPanel pnl_barraLateral;
     private javax.swing.JPanel pnl_fundo;
-    private javax.swing.JPasswordField txt_senha;
-    private javax.swing.JTextField txt_usuario;
+    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -103,6 +103,9 @@ public class TelaMenu extends javax.swing.JFrame {
         btn_vendas.setBackground(new java.awt.Color(0, 85, 166));
         btn_vendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_vendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_vendasMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_vendasMouseEntered(evt);
             }
@@ -126,6 +129,9 @@ public class TelaMenu extends javax.swing.JFrame {
         btn_produtos.setBackground(new java.awt.Color(0, 85, 166));
         btn_produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_produtos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_produtosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_produtosMouseEntered(evt);
             }
@@ -149,6 +155,9 @@ public class TelaMenu extends javax.swing.JFrame {
         btn_clientes.setBackground(new java.awt.Color(0, 85, 166));
         btn_clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_clientesMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_clientesMouseEntered(evt);
             }
@@ -172,6 +181,9 @@ public class TelaMenu extends javax.swing.JFrame {
         btn_relatorios.setBackground(new java.awt.Color(0, 85, 166));
         btn_relatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_relatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_relatoriosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_relatoriosMouseEntered(evt);
             }
@@ -281,6 +293,38 @@ public class TelaMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_logoutMouseClicked
 
+    private void btn_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_produtosMouseClicked
+        //ACESSA A TELA DE PRODUTOS
+        TelaProdutos produtos = new TelaProdutos();
+        produtos.show();
+        this.dispose();
+
+    }//GEN-LAST:event_btn_produtosMouseClicked
+
+    private void btn_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clientesMouseClicked
+        //ACESSA A TELA DE CLIENTES
+        TelaClientes clientes = new TelaClientes();
+        clientes.show();
+        this.dispose();
+
+    }//GEN-LAST:event_btn_clientesMouseClicked
+
+    private void btn_vendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_vendasMouseClicked
+        //ACESSA A TELA DE VENDAS
+        TelaVendas venda = new TelaVendas();
+        venda.show();
+        this.dispose();
+
+    }//GEN-LAST:event_btn_vendasMouseClicked
+
+    private void btn_relatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseClicked
+        //ACESSA A TELA DE RELATÓRIOS
+        TelaRelatorios relatorio = new TelaRelatorios();
+        relatorio.show();
+        this.dispose();
+        
+    }//GEN-LAST:event_btn_relatoriosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -321,6 +365,12 @@ public class TelaMenu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
