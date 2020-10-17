@@ -11,12 +11,12 @@ import javax.swing.JPanel;
  *
  * @author Administrador
  */
-public class TelaBase extends javax.swing.JFrame {
+public class TelaRelatorios extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaBase
      */
-    public TelaBase() {
+    public TelaRelatorios() {
         initComponents();
     }
 
@@ -43,10 +43,17 @@ public class TelaBase extends javax.swing.JFrame {
         btn_relatorios = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btn_voltar = new javax.swing.JPanel();
+        btnDetalhar = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         btn_fechar = new javax.swing.JLabel();
         btn_minimizar = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        lblValorTotalPeriodo = new javax.swing.JLabel();
+        txtValorTotalPeriodo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -80,6 +87,9 @@ public class TelaBase extends javax.swing.JFrame {
         btn_produtos.setBackground(new java.awt.Color(0, 85, 166));
         btn_produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_produtos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_produtosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_produtosMouseEntered(evt);
             }
@@ -103,6 +113,9 @@ public class TelaBase extends javax.swing.JFrame {
         btn_clientes.setBackground(new java.awt.Color(0, 85, 166));
         btn_clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_clientesMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btn_clientesMouseEntered(evt);
             }
@@ -123,12 +136,9 @@ public class TelaBase extends javax.swing.JFrame {
 
         pnl_barraLateral.add(btn_clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 220, 50));
 
-        btn_relatorios.setBackground(new java.awt.Color(0, 85, 166));
+        btn_relatorios.setBackground(new java.awt.Color(40, 40, 40));
         btn_relatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_relatorios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_relatoriosMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btn_relatoriosMouseExited(evt);
             }
@@ -148,28 +158,51 @@ public class TelaBase extends javax.swing.JFrame {
 
         pnl_fundo.add(pnl_barraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 600));
 
-        btn_voltar.setBackground(new java.awt.Color(0, 85, 166));
-        btn_voltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDetalhar.setBackground(new java.awt.Color(0, 85, 166));
+        btnDetalhar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDetalhar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_voltarMouseClicked(evt);
+                btnDetalharMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_voltarMouseEntered(evt);
+                btnDetalharMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_voltarMouseExited(evt);
+                btnDetalharMouseExited(evt);
             }
         });
-        btn_voltar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnDetalhar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Detalhar");
+        btnDetalhar.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+
+        pnl_fundo.add(btnDetalhar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+
+        btnVoltar.setBackground(new java.awt.Color(0, 85, 166));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseExited(evt);
+            }
+        });
+        btnVoltar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Voltar");
-        btn_voltar.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        btnVoltar.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        pnl_fundo.add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+        pnl_fundo.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 540, 90, 40));
 
         btn_fechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
         btn_fechar.setForeground(new java.awt.Color(40, 40, 40));
@@ -193,6 +226,45 @@ public class TelaBase extends javax.swing.JFrame {
         });
         pnl_fundo.add(btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        jLabel10.setText("Relatório sintético");
+        pnl_fundo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
+
+        jScrollPane1.setFont(new java.awt.Font("Berlin Sans FB", 0, 11)); // NOI18N
+
+        jTable1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(40, 40, 40));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID Comanda", "Nome Cliente", "Valor Total", "Data Venda"
+            }
+        ));
+        jTable1.setGridColor(new java.awt.Color(40, 40, 40));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 85, 166));
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        pnl_fundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 540, 330));
+
+        lblValorTotalPeriodo.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblValorTotalPeriodo.setForeground(new java.awt.Color(40, 40, 40));
+        lblValorTotalPeriodo.setText("Valor total do período");
+        pnl_fundo.add(lblValorTotalPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, -1, -1));
+
+        txtValorTotalPeriodo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        txtValorTotalPeriodo.setForeground(new java.awt.Color(40, 40, 40));
+        pnl_fundo.add(txtValorTotalPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 180, -1));
+
         getContentPane().add(pnl_fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         pack();
@@ -215,10 +287,6 @@ public class TelaBase extends javax.swing.JFrame {
         resetColor(btn_clientes);
     }//GEN-LAST:event_btn_clientesMouseExited
 
-    private void btn_relatoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseEntered
-        setColor(btn_relatorios);
-    }//GEN-LAST:event_btn_relatoriosMouseEntered
-
     private void btn_relatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseExited
         resetColor(btn_relatorios);
     }//GEN-LAST:event_btn_relatoriosMouseExited
@@ -227,21 +295,21 @@ public class TelaBase extends javax.swing.JFrame {
         this.setState(1);
     }//GEN-LAST:event_btn_minimizarMouseClicked
 
-    private void btn_voltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_voltarMouseEntered
-        setColor(btn_voltar);
-    }//GEN-LAST:event_btn_voltarMouseEntered
+    private void btnVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseEntered
+        setColor(btnVoltar);
+    }//GEN-LAST:event_btnVoltarMouseEntered
 
-    private void btn_voltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_voltarMouseExited
-        resetColor(btn_voltar);
-    }//GEN-LAST:event_btn_voltarMouseExited
+    private void btnVoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseExited
+        resetColor(btnVoltar);
+    }//GEN-LAST:event_btnVoltarMouseExited
 
-    private void btn_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_voltarMouseClicked
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
         TelaMenu menu = new TelaMenu();
         menu.show();
         this.dispose();
         
-    }//GEN-LAST:event_btn_voltarMouseClicked
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
@@ -258,6 +326,39 @@ public class TelaBase extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_btn_logoutMouseClicked
+
+    private void btnDetalharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalharMouseClicked
+        
+        //ACESSA A TELA DE RELATÓRIO ANALÍTICO
+        TelaRelatorioAnalitico analitico = new TelaRelatorioAnalitico();
+        analitico.show();
+        this.dispose();
+
+    }//GEN-LAST:event_btnDetalharMouseClicked
+
+    private void btnDetalharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalharMouseEntered
+        setColor(btnDetalhar);
+    }//GEN-LAST:event_btnDetalharMouseEntered
+
+    private void btnDetalharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalharMouseExited
+        resetColor(btnDetalhar);
+    }//GEN-LAST:event_btnDetalharMouseExited
+
+    private void btn_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clientesMouseClicked
+        //ACESSA A TELA CLIENTES
+        TelaClientes clientes = new TelaClientes();
+        clientes.show();
+        this.dispose(); 
+
+    }//GEN-LAST:event_btn_clientesMouseClicked
+
+    private void btn_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_produtosMouseClicked
+        //ACESSA A TELA PRODUTOS
+        TelaProdutos produto = new TelaProdutos();
+        produto.show();
+        this.dispose();
+
+    }//GEN-LAST:event_btn_produtosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -291,14 +392,62 @@ public class TelaBase extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -319,29 +468,36 @@ public class TelaBase extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaBase().setVisible(true);
+                new TelaRelatorios().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnDetalhar;
+    private javax.swing.JPanel btnVoltar;
     private javax.swing.JPanel btn_clientes;
     private javax.swing.JLabel btn_fechar;
     private javax.swing.JLabel btn_logout;
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel btn_produtos;
     private javax.swing.JPanel btn_relatorios;
-    private javax.swing.JPanel btn_voltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblValorTotalPeriodo;
     private javax.swing.JLabel lbl_usuario;
     private javax.swing.JPanel pnl_barraLateral;
     private javax.swing.JPanel pnl_fundo;
+    private javax.swing.JTextField txtValorTotalPeriodo;
     // End of variables declaration//GEN-END:variables
 }
