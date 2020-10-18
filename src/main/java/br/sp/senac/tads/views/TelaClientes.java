@@ -4,10 +4,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Administrador
- */
 public class TelaClientes extends javax.swing.JFrame {
 
     /**
@@ -525,7 +521,7 @@ public class TelaClientes extends javax.swing.JFrame {
         //resgata o indice da linha selecionada
         int linhaSelecionada = tblConsulta.getSelectedRow();
 
-        if (linhaSelecionada > 0) {
+        if (linhaSelecionada >= 0) {
             int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o cliente selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
 
@@ -554,7 +550,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         int linhaSelecionada = tblConsulta.getSelectedRow();
 
-        if (linhaSelecionada > 0) {
+        if (linhaSelecionada >= 0) {
             //ACESSA A TELA DE EDITAR CLIENTE
             new TelaClientesEditar().setVisible(true);
             this.dispose();
@@ -672,7 +668,7 @@ public class TelaClientes extends javax.swing.JFrame {
         return true;
     }
 
-    //função limpar para limpar campos
+    //Função limpar para limpar campos
     private void limparCampos() {
         txtNome.setText("");
         txtCPF.setText("");

@@ -1,29 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author JefersonOliveira
- */
 public class TelaClientesEditar extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form TelaBase
      */
-
-    
     public TelaClientesEditar() {
         initComponents();
-        
-        
-        
     }
 
     /**
@@ -270,16 +256,19 @@ public class TelaClientesEditar extends javax.swing.JFrame {
         pnlDadosPessoais.add(lblSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
         rdoFeminino.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoSexo.add(rdoFeminino);
         rdoFeminino.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoFeminino.setText("Feminino");
         pnlDadosPessoais.add(rdoFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, -1));
 
         rdoMasculino.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoSexo.add(rdoMasculino);
         rdoMasculino.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoMasculino.setText("Masculino");
         pnlDadosPessoais.add(rdoMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
 
         rdoOutro2.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoSexo.add(rdoOutro2);
         rdoOutro2.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoOutro2.setText("Outro");
         pnlDadosPessoais.add(rdoOutro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, -1, -1));
@@ -374,7 +363,7 @@ public class TelaClientesEditar extends javax.swing.JFrame {
 
         lblEmail.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(40, 40, 40));
-        lblEmail.setText("E-mail");
+        lblEmail.setText("* E-mail");
         pnlContato.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
 
         lblCelular.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
@@ -427,12 +416,9 @@ public class TelaClientesEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarMouseExited
 
     private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
-        
         //VOLTAR PARA A TELA CLIENTES
-        TelaClientes clientes = new TelaClientes();
-        clientes.show();
-        this.dispose();  
-        
+        new TelaClientes().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_fecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
@@ -445,12 +431,11 @@ public class TelaClientesEditar extends javax.swing.JFrame {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         // TODO add your handling code here:
-        if (campoObrigatorio()==true) {
+        if (campoObrigatorio()) {
             JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
             limparCampos();
             this.dispose();
         }
-        
     }//GEN-LAST:event_btnSalvarMouseClicked
 
     private void btnLimparMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseEntered
@@ -463,16 +448,12 @@ public class TelaClientesEditar extends javax.swing.JFrame {
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
         limparCampos();
-        
     }//GEN-LAST:event_btnLimparMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-    
         //VOLTAR PARA A TELA CLIENTES
-        TelaClientes clientes = new TelaClientes();
-        clientes.show();
-        this.dispose();        
-
+        new TelaClientes().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
@@ -492,59 +473,47 @@ public class TelaClientesEditar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres!", "Erro",
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void txtLogradouroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLogradouroKeyTyped
         // TODO add your handling code here:
         if (txtLogradouro.getText().length() < 30) {
-            if (txtLogradouro.getText().matches("^.*")) {
-                evt.consume();
-                JOptionPane.showMessageDialog(this, "Não é permitido uso de caracter especial no campo \"Logradouro\"!",
-                        "Erro", JOptionPane.ERROR_MESSAGE);
-            }
+            
         } else {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_txtLogradouroKeyTyped
 
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
         // TODO add your handling code here:
         if (txtNumero.getText().length() < 5) {
-            if (txtNumero.getText().matches("^.*")) {
+            if (txtNumero.getText().matches("^[a-zA-Z]")) {
                 evt.consume();
-                JOptionPane.showMessageDialog(this, "Não é permitido uso de caracter especial no campo \"Nº\"",
+                txtNumero.setText("");
+                JOptionPane.showMessageDialog(this, "Não é permitiddo letra no campo \"Nº\"",
                         "Erro", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de até 5 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
-
         }
-
     }//GEN-LAST:event_txtNumeroKeyTyped
 
     private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
         this.setState(1);
     }//GEN-LAST:event_btn_minimizarMouseClicked
 
-    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
-    
+    public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
-        
     }
-    
+
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
-    
+    public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
-        
     }
-    
+
     private void limparCampos() {
         txtEmail.setText("");
         txtLogradouro.setText("");
@@ -560,79 +529,34 @@ public class TelaClientesEditar extends javax.swing.JFrame {
         txtEmail.setText("");
     }
 
-    private void desativar() {
-        txtEmail.setEnabled(false);
-        txtFormatCPF.setEnabled(false);
-        txtFormatadCEP.setEnabled(false);
-        txtFormatadDtNasc.setEnabled(false);
-        txtFormatedCelular.setEnabled(false);
-        txtFormatedTelefone.setEnabled(false);
-        txtLogradouro.setEnabled(false);
-        txtNome.setEnabled(false);
-        txtNumero.setEnabled(false);
-        rdoCasado.setEnabled(false);
-        rdoFeminino.setEnabled(false);
-        rdoMasculino.setEnabled(false);
-        rdoOutro.setEnabled(false);
-        rdoOutro2.setEnabled(false);
-        rdoSolteiro.setEnabled(false);
-        rdoViuvo.setEnabled(false);
-        btnSalvar.setEnabled(false);
-        btnLimpar.setEnabled(false);
-    }
-
-    private void habilitar() {
-        txtEmail.setEnabled(true);
-        txtFormatCPF.setEnabled(true);
-        txtFormatadCEP.setEnabled(true);
-        txtFormatadDtNasc.setEnabled(true);
-        txtFormatedCelular.setEnabled(true);
-        txtFormatedTelefone.setEnabled(true);
-        txtLogradouro.setEnabled(true);
-        txtNome.setEnabled(true);
-        txtNumero.setEnabled(true);
-        rdoCasado.setEnabled(true);
-        rdoFeminino.setEnabled(true);
-        rdoMasculino.setEnabled(true);
-        rdoOutro.setEnabled(true);
-        rdoOutro2.setEnabled(true);
-        rdoSolteiro.setEnabled(true);
-        rdoViuvo.setEnabled(true);
-        btnSalvar.setEnabled(true);
-        btnLimpar.setEnabled(true);
-    }
-    
     private boolean campoObrigatorio() {
         if (this.txtNome.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Campo \"Nome\" é obrigatório!");
             return false;
         }
-        
         if (this.txtFormatCPF.getText().equals("   .   .   -  ")) {
             JOptionPane.showMessageDialog(this, "Campo \"CPF\" é obrigatório!");
             return false;
         }
-        if (this.txtFormatadDtNasc.getText().equals("  /  /   ")) {
-            JOptionPane.showMessageDialog(this, "Campo \"Data de Nascimento\" é obrigatório!" );
+        if (this.txtFormatadDtNasc.getText().equals("  /  /    ")) {
+            JOptionPane.showMessageDialog(this, "Campo \"Data de Nascimento\" é obrigatório!");
             return false;
         }
-        if (this.rdoGrupoEstCivil.getSelection().equals("")) {
-            JOptionPane.showMessageDialog(this, "Campo \"Estado Civil\" é obrigatório!" );
+        if (this.rdoGrupoEstCivil.getSelection() == null) {
+            JOptionPane.showMessageDialog(this, "Campo \"Estado Civil\" é obrigatório!");
             return false;
         }
-        if (this.rdoGrupoSexo.getSelection().equals("")) {
-            JOptionPane.showMessageDialog(this, "Campo \"Sexo\" é obrigatório!" );
+        if (this.rdoGrupoSexo.getSelection() == null) {
+            JOptionPane.showMessageDialog(this, "Campo \"Sexo\" é obrigatório!");
             return false;
         }
         if (this.txtEmail.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Campo \"e-mail\" é obrigatório!" );
+            JOptionPane.showMessageDialog(this, "Campo \"E-mail\" é obrigatório!");
             return false;
         }
-        
         return true;
-
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -655,69 +579,6 @@ public class TelaClientesEditar extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaClientesEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
