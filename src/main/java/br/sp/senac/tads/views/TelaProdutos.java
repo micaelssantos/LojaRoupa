@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
 import javax.swing.JOptionPane;
@@ -322,7 +317,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         pnlFundo.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, 80));
 
         lblPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/pesquisarIcon.png"))); // NOI18N
-        pnlFundo.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+        pnlFundo.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, -1, -1));
 
         txtPesquisar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtPesquisar.setForeground(new java.awt.Color(40, 40, 40));
@@ -371,26 +366,22 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        TelaMenu menu = new TelaMenu();
-        menu.show();
+        new TelaMenu().setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        TelaMenu menu = new TelaMenu();
-        menu.show();
+        new TelaMenu().setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
         //VOLTAR PARA A TELA DE LOGIN
-        TelaLogin login = new TelaLogin();
-        login.show();
+        new TelaLogin().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btn_logoutMouseClicked
 
     private void btnCadastrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseEntered
@@ -419,48 +410,29 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
         int linhaSelecionada = tblProdutos.getSelectedRow();        
-        
-        if (linhaSelecionada > 0) {
-            
+        if (linhaSelecionada >= 0) {
             int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o item selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
-            
             if (result == JOptionPane.YES_OPTION) {
-                
                 DefaultTableModel produtos = new DefaultTableModel();
                 produtos = (DefaultTableModel) tblProdutos.getModel();
-        
                 produtos.removeRow(linhaSelecionada);
-                
             }
-            
         } else {
-            
             JOptionPane.showMessageDialog(this, "Selecione uma linha", "Erro!", JOptionPane.WARNING_MESSAGE);
-            
         }
-        
     }//GEN-LAST:event_btnRemoverMouseClicked
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         int linhaSelecionada = tblProdutos.getSelectedRow();        
-        
-        if (linhaSelecionada > 0) {
-            
+        if (linhaSelecionada >= 0) {
             //ACESSA A TELA DE EDIÇÃO DE PRODUTO
-            TelaProdutosEditar edi = new TelaProdutosEditar();
-            edi.show();
+            new TelaProdutosEditar().setVisible(true);
             this.dispose();
-            
         } else {
-            
             JOptionPane.showMessageDialog(this, "Selecione uma linha", "Erro!", JOptionPane.WARNING_MESSAGE);
-            
         }
-        
     }//GEN-LAST:event_btnEditarMouseClicked
-
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
-        
         //VALIDAÇÃO DE BUSCA POR NOME DO PRODUTO
         if (txtPesquisar.getText().matches("^[0-9].*")) {
                 evt.consume();
@@ -468,31 +440,24 @@ public class TelaProdutos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo", "Erro", JOptionPane.ERROR_MESSAGE);
                 txtPesquisar.setText("");
             }
-
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
         //ACESSA A TELA DE CADASTRO DE PRODUTO
-        TelaProdutosCadastro produto = new TelaProdutosCadastro();
-        produto.show();
+        new TelaProdutosCadastro().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void btn_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clientesMouseClicked
         //ACESSA A TELA CLIENTES
-        TelaClientes clientes = new TelaClientes();
-        clientes.show();
+        new TelaClientes().setVisible(true);
         this.dispose(); 
-
     }//GEN-LAST:event_btn_clientesMouseClicked
 
     private void btn_relatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseClicked
         //ACESSA A TELA DE RELATÓRIOS
-        TelaRelatorios relatorios = new TelaRelatorios();
-        relatorios.show();
+        new TelaRelatorios().setVisible(true);
         this.dispose();  
-
     }//GEN-LAST:event_btn_relatoriosMouseClicked
 
     /**
@@ -501,16 +466,12 @@ public class TelaProdutos extends javax.swing.JFrame {
     
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel){
-    
         panel.setBackground(new java.awt.Color(40, 40, 40));
-        
     }
     
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
     public void resetColor(JPanel panel){
-    
         panel.setBackground(new java.awt.Color(0, 85, 166));
-        
     }
     
     public static void main(String args[]) {
@@ -536,38 +497,6 @@ public class TelaProdutos extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

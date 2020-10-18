@@ -8,10 +8,7 @@ package br.sp.senac.tads.views;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author JefersonOliveira
- */
+
 public class TelaClientesCadastro extends javax.swing.JFrame {
     
     /**
@@ -21,9 +18,7 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     
     public TelaClientesCadastro() {
         initComponents();
-        
-        
-        
+        desativar();
     }
 
     /**
@@ -252,24 +247,28 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         rdoGrupoEstCivil.add(rdoCasado);
         rdoCasado.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoCasado.setText("Casado(a)");
+        rdoCasado.setActionCommand("Casado(a)");
         pnlDadosPessoais.add(rdoCasado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         rdoSolteiro.setBackground(new java.awt.Color(255, 255, 255));
         rdoGrupoEstCivil.add(rdoSolteiro);
         rdoSolteiro.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoSolteiro.setText("Solteiro(a)");
+        rdoSolteiro.setActionCommand("Solteiro(a)");
         pnlDadosPessoais.add(rdoSolteiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
         rdoViuvo.setBackground(new java.awt.Color(255, 255, 255));
         rdoGrupoEstCivil.add(rdoViuvo);
         rdoViuvo.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoViuvo.setText("Viuvo(a)");
+        rdoViuvo.setActionCommand("Viuvo(a)");
         pnlDadosPessoais.add(rdoViuvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
         rdoOutro.setBackground(new java.awt.Color(255, 255, 255));
         rdoGrupoEstCivil.add(rdoOutro);
         rdoOutro.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoOutro.setText("Outro");
+        rdoOutro.setActionCommand("Outro");
         pnlDadosPessoais.add(rdoOutro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
         lblCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
@@ -293,16 +292,19 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         pnlDadosPessoais.add(lblSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
         rdoFeminino.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoSexo.add(rdoFeminino);
         rdoFeminino.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoFeminino.setText("Feminino");
         pnlDadosPessoais.add(rdoFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, -1));
 
         rdoMasculino.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoSexo.add(rdoMasculino);
         rdoMasculino.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoMasculino.setText("Masculino");
         pnlDadosPessoais.add(rdoMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
 
         rdoOutro2.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoSexo.add(rdoOutro2);
         rdoOutro2.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoOutro2.setText("Outro");
         pnlDadosPessoais.add(rdoOutro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, -1, -1));
@@ -397,7 +399,7 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
 
         lblEmail.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(40, 40, 40));
-        lblEmail.setText("E-mail");
+        lblEmail.setText("* E-mail");
         pnlContato.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
 
         lblCelular.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
@@ -450,12 +452,9 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarMouseExited
 
     private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
-        
         //VOLTAR PARA A TELA CLIENTES
-        TelaClientes clientes = new TelaClientes();
-        clientes.show();
+        new TelaClientes().setVisible(true);
         this.dispose();  
-        
     }//GEN-LAST:event_btn_fecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
@@ -468,7 +467,7 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
            //Valida se os campos obrigatórios estão preenchidos
-        if (campoObrigatorio() == true) {
+        if (campoObrigatorio()) {
             JOptionPane.showMessageDialog(this, 
                     "Cliente cadastrado com sucesso!", "Caixa de Texto", JOptionPane.WARNING_MESSAGE);
             limparCampos();
@@ -489,22 +488,18 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
         limparCampos();
-        
     }//GEN-LAST:event_btnLimparMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
     
         //VOLTAR PARA A TELA CLIENTES
-        TelaClientes clientes = new TelaClientes();
-        clientes.show();
+        new TelaClientes().setVisible(true);
         this.dispose();        
-
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnNovoCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoCliMouseClicked
         this.btnNovoCli.setEnabled(false);
         habilitar();
-        
     }//GEN-LAST:event_btnNovoCliMouseClicked
 
     private void btnNovoCliMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoCliMouseEntered
@@ -532,38 +527,31 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres!", "Erro",
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void txtLogradouroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLogradouroKeyTyped
         // TODO add your handling code here:
         if (txtLogradouro.getText().length() < 30) {
-            if (txtLogradouro.getText().matches("^.*")) {
-                evt.consume();
-                JOptionPane.showMessageDialog(this, "Não é permitido uso de caracter especial no campo \"Logradouro\"!",
-                        "Erro", JOptionPane.ERROR_MESSAGE);
-            }
+            
         } else {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_txtLogradouroKeyTyped
 
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
         // TODO add your handling code here:
         if (txtNumero.getText().length() < 5) {
-            if (txtNumero.getText().matches("^.*")) {
+            if (txtNumero.getText().matches("^[a-zA-Z]")) {
                 evt.consume();
-                JOptionPane.showMessageDialog(this, "Não é permitido uso de caracter especial no campo \"Nº\"",
+                txtNumero.setText("");
+                JOptionPane.showMessageDialog(this, "Não é permitiddo letra no campo \"Nº\"",
                         "Erro", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de até 5 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
-
         }
-
     }//GEN-LAST:event_txtNumeroKeyTyped
 
     private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
@@ -574,21 +562,14 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-
-   
-    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel){
-    
         panel.setBackground(new java.awt.Color(40, 40, 40));
-        
     }
     
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
     public void resetColor(JPanel panel){
-    
         panel.setBackground(new java.awt.Color(0, 85, 166));
-        
     }
     
     private void limparCampos() {
@@ -653,30 +634,28 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campo \"Nome\" é obrigatório!");
             return false;
         }
-        
         if (this.txtFormatCPF.getText().equals("   .   .   -  ")) {
             JOptionPane.showMessageDialog(this, "Campo \"CPF\" é obrigatório!");
             return false;
         }
-        if (this.txtFormatadDtNasc.getText().equals("  /  /   ")) {
+        if (this.txtFormatadDtNasc.getText().equals("  /  /    ")) {
             JOptionPane.showMessageDialog(this, "Campo \"Data de Nascimento\" é obrigatório!" );
             return false;
         }
-        if (this.rdoGrupoEstCivil.getSelection().equals("")) {
+        if (this.rdoGrupoEstCivil.getSelection() == null) {
             JOptionPane.showMessageDialog(this, "Campo \"Estado Civil\" é obrigatório!" );
             return false;
         }
-        if (this.rdoGrupoSexo.getSelection().equals("")) {
+        if (this.rdoGrupoSexo.getSelection() == null) {
             JOptionPane.showMessageDialog(this, "Campo \"Sexo\" é obrigatório!" );
             return false;
         }
         if (this.txtEmail.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Campo \"e-mail\" é obrigatório!" );
+            JOptionPane.showMessageDialog(this, "Campo \"E-mail\" é obrigatório!" );
             return false;
         }
         
         return true;
-
     }
     
     public static void main(String args[]) {
@@ -701,37 +680,6 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaClientesCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

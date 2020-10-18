@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
 import javax.swing.JOptionPane;
@@ -20,6 +15,7 @@ public class TelaClientes extends javax.swing.JFrame {
      */
     public TelaClientes() {
         initComponents();
+        desabilitado();
     }
 
     /**
@@ -31,6 +27,7 @@ public class TelaClientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rdoGrupoPesquisa = new javax.swing.ButtonGroup();
         pnl_fundo = new javax.swing.JPanel();
         pnl_barraLateral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -47,15 +44,15 @@ public class TelaClientes extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        btn_voltar = new javax.swing.JPanel();
+        btnVoltar = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         btn_fechar = new javax.swing.JLabel();
         btn_minimizar = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblPesquisarPor = new javax.swing.JLabel();
         rdoNome = new javax.swing.JRadioButton();
         rdoCPF = new javax.swing.JRadioButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblCPF = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtCPF = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -63,17 +60,17 @@ public class TelaClientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblConsulta = new javax.swing.JTable();
         btnCadastrar = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        lblIconeCadastrar = new javax.swing.JLabel();
+        lblCadastrar = new javax.swing.JLabel();
         btnEditar = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        lblIconeEditar = new javax.swing.JLabel();
+        lblEditar = new javax.swing.JLabel();
         btnRemover = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lblIconeRemover = new javax.swing.JLabel();
+        lblRemover = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lblIconePesquisar = new javax.swing.JLabel();
+        lblPesquisar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -197,28 +194,28 @@ public class TelaClientes extends javax.swing.JFrame {
 
         pnl_fundo.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, 90, 40));
 
-        btn_voltar.setBackground(new java.awt.Color(0, 85, 166));
-        btn_voltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnVoltar.setBackground(new java.awt.Color(0, 85, 166));
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_voltarMouseClicked(evt);
+                btnVoltarMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_voltarMouseEntered(evt);
+                btnVoltarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_voltarMouseExited(evt);
+                btnVoltarMouseExited(evt);
             }
         });
-        btn_voltar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnVoltar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Voltar");
-        btn_voltar.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        btnVoltar.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
-        pnl_fundo.add(btn_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+        pnl_fundo.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
         btn_fechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
         btn_fechar.setForeground(new java.awt.Color(40, 40, 40));
@@ -242,12 +239,13 @@ public class TelaClientes extends javax.swing.JFrame {
         });
         pnl_fundo.add(btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(40, 40, 40));
-        jLabel10.setText("Pesquisar por:");
-        pnl_fundo.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+        lblPesquisarPor.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblPesquisarPor.setForeground(new java.awt.Color(40, 40, 40));
+        lblPesquisarPor.setText("Pesquisar por:");
+        pnl_fundo.add(lblPesquisarPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         rdoNome.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoPesquisa.add(rdoNome);
         rdoNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoNome.setText("Nome");
         rdoNome.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -255,9 +253,15 @@ public class TelaClientes extends javax.swing.JFrame {
                 rdoNomeMouseClicked(evt);
             }
         });
+        rdoNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoNomeActionPerformed(evt);
+            }
+        });
         pnl_fundo.add(rdoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
 
         rdoCPF.setBackground(new java.awt.Color(255, 255, 255));
+        rdoGrupoPesquisa.add(rdoCPF);
         rdoCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         rdoCPF.setText("CPF");
         rdoCPF.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -267,15 +271,15 @@ public class TelaClientes extends javax.swing.JFrame {
         });
         pnl_fundo.add(rdoCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(40, 40, 40));
-        jLabel11.setText("Nome");
-        pnl_fundo.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 60, -1));
+        lblNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(40, 40, 40));
+        lblNome.setText("Nome");
+        pnl_fundo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 60, -1));
 
-        jLabel13.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(40, 40, 40));
-        jLabel13.setText("CPF");
-        pnl_fundo.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 40, -1));
+        lblCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblCPF.setForeground(new java.awt.Color(40, 40, 40));
+        lblCPF.setText("CPF");
+        pnl_fundo.add(lblCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 40, -1));
 
         txtNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtNome.setForeground(new java.awt.Color(40, 40, 40));
@@ -338,15 +342,15 @@ public class TelaClientes extends javax.swing.JFrame {
         });
         btnCadastrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/add.png"))); // NOI18N
-        btnCadastrar.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
+        lblIconeCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/add.png"))); // NOI18N
+        btnCadastrar.add(lblIconeCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
-        jLabel20.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Cadastrar");
-        btnCadastrar.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
+        lblCadastrar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCadastrar.setText("Cadastrar");
+        btnCadastrar.add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
 
         pnl_fundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 80, 70));
 
@@ -365,15 +369,15 @@ public class TelaClientes extends javax.swing.JFrame {
         });
         btnEditar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/editarIcon.png"))); // NOI18N
-        btnEditar.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
+        lblIconeEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/editarIcon.png"))); // NOI18N
+        btnEditar.add(lblIconeEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
-        jLabel22.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("Editar");
-        btnEditar.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
+        lblEditar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblEditar.setForeground(new java.awt.Color(255, 255, 255));
+        lblEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditar.setText("Editar");
+        btnEditar.add(lblEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
 
         pnl_fundo.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 80, 70));
 
@@ -392,15 +396,15 @@ public class TelaClientes extends javax.swing.JFrame {
         });
         btnRemover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/removerIcon.png"))); // NOI18N
-        btnRemover.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
+        lblIconeRemover.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/removerIcon.png"))); // NOI18N
+        btnRemover.add(lblIconeRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
-        jLabel18.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Remover");
-        btnRemover.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
+        lblRemover.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblRemover.setForeground(new java.awt.Color(255, 255, 255));
+        lblRemover.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRemover.setText("Remover");
+        btnRemover.add(lblRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
 
         pnl_fundo.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 80, 70));
 
@@ -419,15 +423,15 @@ public class TelaClientes extends javax.swing.JFrame {
         });
         btnPesquisar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/lupa.png"))); // NOI18N
-        btnPesquisar.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
+        lblIconePesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconePesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/lupa.png"))); // NOI18N
+        btnPesquisar.add(lblIconePesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
-        jLabel17.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Pesquisar");
-        btnPesquisar.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
+        lblPesquisar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        lblPesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPesquisar.setText("Pesquisar");
+        btnPesquisar.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
 
         pnl_fundo.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 80, 70));
 
@@ -457,36 +461,30 @@ public class TelaClientes extends javax.swing.JFrame {
         this.setState(1);
     }//GEN-LAST:event_btn_minimizarMouseClicked
 
-    private void btn_voltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_voltarMouseEntered
-        setColor(btn_voltar);
-    }//GEN-LAST:event_btn_voltarMouseEntered
+    private void btnVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseEntered
+        setColor(btnVoltar);
+    }//GEN-LAST:event_btnVoltarMouseEntered
 
-    private void btn_voltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_voltarMouseExited
-        resetColor(btn_voltar);
-    }//GEN-LAST:event_btn_voltarMouseExited
+    private void btnVoltarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseExited
+        resetColor(btnVoltar);
+    }//GEN-LAST:event_btnVoltarMouseExited
 
-    private void btn_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_voltarMouseClicked
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        TelaMenu menu = new TelaMenu();
-        menu.show();
+        new TelaMenu().setVisible(true);
         this.dispose();
-        
-    }//GEN-LAST:event_btn_voltarMouseClicked
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        TelaMenu menu = new TelaMenu();
-        menu.show();
+        new TelaMenu().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btn_fecharMouseClicked
 
     private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
         //VOLTAR PARA A TELA DE LOGIN
-        TelaLogin login = new TelaLogin();
-        login.show();
+        new TelaLogin().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btn_logoutMouseClicked
 
     private void btnCadastrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseEntered
@@ -525,17 +523,24 @@ public class TelaClientes extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         //resgata o indice da linha selecionada
-        int indiceLinha = tblConsulta.getSelectedRow();
+        int linhaSelecionada = tblConsulta.getSelectedRow();
 
-        DefaultTableModel modelo = (DefaultTableModel) tblConsulta.getModel();
-        //passo o indice da linha a ser removida
-        modelo.removeRow(indiceLinha);
+        if (linhaSelecionada > 0) {
+            int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o cliente selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
 
+                DefaultTableModel clientes = new DefaultTableModel();
+                clientes = (DefaultTableModel) tblConsulta.getModel();
+                clientes.removeRow(linhaSelecionada);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um cliente!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnRemoverMouseClicked
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
         limparCampos();
-        
+
     }//GEN-LAST:event_btnLimparMouseClicked
 
     private void btnLimparMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseEntered
@@ -547,103 +552,92 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparMouseExited
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
-        //ACESSA A TELA DE CADASTRO DE PRODUTO
-        TelaClientesEditar cliente = new TelaClientesEditar();
-        cliente.show();
-        this.dispose();
+        int linhaSelecionada = tblConsulta.getSelectedRow();
 
+        if (linhaSelecionada > 0) {
+            //ACESSA A TELA DE EDITAR CLIENTE
+            new TelaClientesEditar().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um Cliente", "Erro!", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditarMouseClicked
-
     private void rdoNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNomeMouseClicked
         if (rdoNome.isSelected()) {
             habilitado();
         }
-
     }//GEN-LAST:event_rdoNomeMouseClicked
-
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
         if (validarFormulario()) {
-            
+
         }
-        
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
     private void rdoCPFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoCPFMouseClicked
         if (rdoCPF.isSelected()) {
             habilitado();
         }
-        
     }//GEN-LAST:event_rdoCPFMouseClicked
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
         // TODO add your handling code here:
-        if (txtNome.getText().length()<30) {
+        if (txtNome.getText().length() < 30) {
             if (txtNome.getText().matches("^[0-9].*")) {
                 evt.consume();
                 JOptionPane.showMessageDialog(this, "Permitido somente letras no campo \"Nome\"!");
             }
-        }else{
+        } else {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres.");
         }
-
     }//GEN-LAST:event_txtNomeKeyTyped
-
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-
         //ACESSA A TELA DE CADASTRO DE CLIENTES
-        TelaClientesCadastro cad = new TelaClientesCadastro();
-        cad.show();
+        new TelaClientesCadastro().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void btn_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_produtosMouseClicked
         //ACESSA A TELA PRODUTOS
-        TelaProdutos produto = new TelaProdutos();
-        produto.show();
+        new TelaProdutos().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btn_produtosMouseClicked
 
     private void btn_relatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseClicked
         //ACESSA A TELA DE RELATÓRIOS
-        TelaRelatorios relatorios = new TelaRelatorios();
-        relatorios.show();
+        new TelaRelatorios().setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btn_relatoriosMouseClicked
+
+    private void rdoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNomeActionPerformed
+
+    }//GEN-LAST:event_rdoNomeActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
-    
+    public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
-        
     }
-    
+
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
-    
+    public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
-        
     }
-    
-        private boolean desabilitado() {
+
+    private boolean desabilitado() {
+        btnCadastrar.setEnabled(false);
         txtCPF.setEnabled(false);
         txtNome.setEnabled(false);
         btnEditar.setEnabled(false);
         btnRemover.setEnabled(false);
         btnPesquisar.setEnabled(false);
         btnLimpar.setEnabled(false);
-        tblConsulta.setEnabled(false);
         return false;
     }
 
-    private boolean habilitado() {
+    private void habilitado() {
         if (rdoNome.isSelected()) {
             txtCPF.setEnabled(false);
             txtNome.setEnabled(true);
@@ -651,8 +645,6 @@ public class TelaClientes extends javax.swing.JFrame {
             btnRemover.setEnabled(true);
             btnPesquisar.setEnabled(true);
             btnLimpar.setEnabled(true);
-            tblConsulta.setEnabled(true);
-            return true;
         } else if (rdoCPF.isSelected()) {
             txtNome.setEnabled(false);
             txtCPF.setEnabled(true);
@@ -660,14 +652,15 @@ public class TelaClientes extends javax.swing.JFrame {
             btnRemover.setEnabled(true);
             btnPesquisar.setEnabled(true);
             btnLimpar.setEnabled(true);
-            tblConsulta.setEnabled(true);
-            return true;
         }
-        return false;
     }
-    
+
     private boolean validarFormulario() {
 
+        if (rdoNome.isSelected() == false && rdoCPF.isSelected() == false) {
+            JOptionPane.showMessageDialog(this, "Selecione uma opção de busca!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
         if (rdoNome.isSelected() && txtNome.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "O campo \"Nome\" está vazio!");
             return false;
@@ -678,14 +671,13 @@ public class TelaClientes extends javax.swing.JFrame {
         }
         return true;
     }
-    
-//função limpar para limpar campos
 
+    //função limpar para limpar campos
     private void limparCampos() {
         txtNome.setText("");
         txtCPF.setText("");
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -709,37 +701,6 @@ public class TelaClientes extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -755,27 +716,16 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JPanel btnLimpar;
     private javax.swing.JPanel btnPesquisar;
     private javax.swing.JPanel btnRemover;
+    private javax.swing.JPanel btnVoltar;
     private javax.swing.JPanel btn_clientes;
     private javax.swing.JLabel btn_fechar;
     private javax.swing.JLabel btn_logout;
     private javax.swing.JLabel btn_minimizar;
     private javax.swing.JPanel btn_produtos;
     private javax.swing.JPanel btn_relatorios;
-    private javax.swing.JPanel btn_voltar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -785,10 +735,22 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblCadastrar;
+    private javax.swing.JLabel lblEditar;
+    private javax.swing.JLabel lblIconeCadastrar;
+    private javax.swing.JLabel lblIconeEditar;
+    private javax.swing.JLabel lblIconePesquisar;
+    private javax.swing.JLabel lblIconeRemover;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPesquisar;
+    private javax.swing.JLabel lblPesquisarPor;
+    private javax.swing.JLabel lblRemover;
     private javax.swing.JLabel lbl_usuario;
     private javax.swing.JPanel pnl_barraLateral;
     private javax.swing.JPanel pnl_fundo;
     private javax.swing.JRadioButton rdoCPF;
+    private javax.swing.ButtonGroup rdoGrupoPesquisa;
     private javax.swing.JRadioButton rdoNome;
     private javax.swing.JTable tblConsulta;
     private javax.swing.JFormattedTextField txtCPF;

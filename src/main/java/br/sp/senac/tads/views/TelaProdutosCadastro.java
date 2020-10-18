@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
 import javax.swing.JOptionPane;
@@ -17,14 +12,9 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     /**
      * Creates new form TelaBase
      */
-    
-    //MATRIZ PARA ARMAZENAR OS PRODUTOS CADASTRADOS
-    String[][] matrizProdutos = new String[5][5];
-    
+        
     public TelaProdutosCadastro() {
         initComponents();
-        
-        
         
     }
 
@@ -181,22 +171,22 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
 
         lblNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblNome.setForeground(new java.awt.Color(40, 40, 40));
-        lblNome.setText("Nome");
+        lblNome.setText("* Nome");
         pnlFundo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
 
         lblCategoria.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblCategoria.setForeground(new java.awt.Color(40, 40, 40));
-        lblCategoria.setText("Categoria");
+        lblCategoria.setText("* Categoria");
         pnlFundo.add(lblCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, -1, -1));
 
         lblMarca.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblMarca.setForeground(new java.awt.Color(40, 40, 40));
-        lblMarca.setText("Marca");
+        lblMarca.setText("* Marca");
         pnlFundo.add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         lblModelo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblModelo.setForeground(new java.awt.Color(40, 40, 40));
-        lblModelo.setText("Modelo");
+        lblModelo.setText("* Modelo");
         pnlFundo.add(lblModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
 
         lblDescricao.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
@@ -221,12 +211,12 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
 
         lblQuantidade.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblQuantidade.setForeground(new java.awt.Color(40, 40, 40));
-        lblQuantidade.setText("Quantidade");
+        lblQuantidade.setText("* Quantidade");
         pnlFundo.add(lblQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
         lblValor.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblValor.setForeground(new java.awt.Color(40, 40, 40));
-        lblValor.setText("Valor");
+        lblValor.setText("* Valor");
         pnlFundo.add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, -1, -1));
 
         txtNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
@@ -312,10 +302,8 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
         
         //VOLTAR PARA A TELA PRODUTOS
-        TelaProdutos produto = new TelaProdutos();
-        produto.show();
+        new TelaProdutos().setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btn_fecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
@@ -329,19 +317,13 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
            
         if (validaCamposVazios()) {
-            
                         
             JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
-            
             limpaCampos();
-            
             //VOLTAR PARA A TELA PRODUTOS
-            TelaProdutos produto = new TelaProdutos();
-            produto.show();
+            new TelaProdutos().setVisible(true);
             this.dispose();
-                        
         }
-        
     }//GEN-LAST:event_btnConcluirMouseClicked
 
     private void btnLimparMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseEntered

@@ -142,6 +142,11 @@ public class ConsultarClienteView extends javax.swing.JFrame {
                 rdoNomeMouseClicked(evt);
             }
         });
+        rdoNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoNomeActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rdoCPF);
         rdoCPF.setText("CPF");
@@ -331,6 +336,10 @@ public class ConsultarClienteView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres.");
         }
     }//GEN-LAST:event_txtNomeKeyTyped
+
+    private void rdoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoNomeActionPerformed
     private boolean desabilitado() {
         txtCPF.setEnabled(false);
         txtNome.setEnabled(false);

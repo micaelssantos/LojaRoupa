@@ -468,13 +468,14 @@ public class TelaVendas extends javax.swing.JFrame {
                         "Erro", JOptionPane.ERROR_MESSAGE);
                 txtCliente.setText("");
             }
-        } else {
+        } 
+        
+        else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 50", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCliente.setText("");
         }
-
     }//GEN-LAST:event_txtClienteKeyTyped
 
     /**
