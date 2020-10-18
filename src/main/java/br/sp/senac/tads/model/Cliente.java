@@ -1,10 +1,5 @@
-
 package br.sp.senac.tads.model;
 
-/**
- *
- * @author dilaz
- */
 public class Cliente {
     
     private int id;

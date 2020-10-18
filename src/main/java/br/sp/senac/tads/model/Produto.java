@@ -1,9 +1,5 @@
 package br.sp.senac.tads.model;
 
-/**
- *
- * @author Micael
- */
 public class Produto {
     
     private int id;

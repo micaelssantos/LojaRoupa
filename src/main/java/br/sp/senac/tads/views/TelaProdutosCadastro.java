@@ -3,19 +3,10 @@ package br.sp.senac.tads.views;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author JefersonOliveira
- */
 public class TelaProdutosCadastro extends javax.swing.JFrame {
-    
-    /**
-     * Creates new form TelaBase
-     */
-        
+
     public TelaProdutosCadastro() {
         initComponents();
-        
     }
 
     /**
@@ -29,15 +20,15 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
 
         pnlFundo = new javax.swing.JPanel();
         pnlBarraTitulo = new javax.swing.JPanel();
-        btn_fechar = new javax.swing.JLabel();
-        btn_minimizar = new javax.swing.JLabel();
-        lbl_usuario = new javax.swing.JLabel();
+        lblFechar = new javax.swing.JLabel();
+        lblMinimizar = new javax.swing.JLabel();
+        lblCadastroProduto = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        lblLimpar = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        lblCancelar = new javax.swing.JLabel();
         btnConcluir = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        lblConcluir = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         lblCategoria = new javax.swing.JLabel();
         lblMarca = new javax.swing.JLabel();
@@ -70,33 +61,33 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         pnlBarraTitulo.setBackground(new java.awt.Color(0, 85, 166));
         pnlBarraTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_fechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
-        btn_fechar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_fechar.setText("X");
-        btn_fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_fechar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblFechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        lblFechar.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechar.setText("X");
+        lblFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_fecharMouseClicked(evt);
+                lblFecharMouseClicked(evt);
             }
         });
-        pnlBarraTitulo.add(btn_fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        pnlBarraTitulo.add(lblFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
 
-        btn_minimizar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
-        btn_minimizar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_minimizar.setText("_");
-        btn_minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMinimizar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        lblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        lblMinimizar.setText("_");
+        lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_minimizarMouseClicked(evt);
+                lblMinimizarMouseClicked(evt);
             }
         });
-        pnlBarraTitulo.add(btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
+        pnlBarraTitulo.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
 
-        lbl_usuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        lbl_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_usuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbl_usuario.setText("Cadastro de produto");
-        pnlBarraTitulo.add(lbl_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
+        lblCadastroProduto.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblCadastroProduto.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastroProduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCadastroProduto.setText("Cadastro de produto");
+        pnlBarraTitulo.add(lblCadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
 
         pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
@@ -115,11 +106,11 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         });
         btnLimpar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Limpar");
-        btnLimpar.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+        lblLimpar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblLimpar.setForeground(new java.awt.Color(255, 255, 255));
+        lblLimpar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLimpar.setText("Limpar");
+        btnLimpar.add(lblLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 90, 40));
 
@@ -138,11 +129,11 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         });
         btnCancelar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Cancelar");
-        btnCancelar.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+        lblCancelar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCancelar.setText("Cancelar");
+        btnCancelar.add(lblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 540, 90, 40));
 
@@ -161,11 +152,11 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         });
         btnConcluir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Concluir");
-        btnConcluir.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        lblConcluir.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblConcluir.setForeground(new java.awt.Color(255, 255, 255));
+        lblConcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblConcluir.setText("Concluir");
+        btnConcluir.add(lblConcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
         pnlFundo.add(btnConcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
@@ -242,6 +233,11 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         txtQuantidade.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtQuantidade.setForeground(new java.awt.Color(40, 40, 40));
         txtQuantidade.setBorder(null);
+        txtQuantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantidadeActionPerformed(evt);
+            }
+        });
         txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtQuantidadeKeyTyped(evt);
@@ -299,12 +295,11 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         resetColor(btnConcluir);
     }//GEN-LAST:event_btnConcluirMouseExited
 
-    private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
-        
+    private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA A TELA PRODUTOS
         new TelaProdutos().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_fecharMouseClicked
+    }//GEN-LAST:event_lblFecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
         setColor(btnCancelar);
@@ -315,9 +310,7 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
-           
         if (validaCamposVazios()) {
-                        
             JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
             limpaCampos();
             //VOLTAR PARA A TELA PRODUTOS
@@ -335,207 +328,171 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparMouseExited
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
-        
         limpaCampos();
-
     }//GEN-LAST:event_btnLimparMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-    
         //VOLTAR PARA A TELA PRODUTOS
-        TelaProdutos produto = new TelaProdutos();
-        produto.show();
-        this.dispose();        
-
+        new TelaProdutos().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
-
-        //////////////////////////////////////////////// VALIDAÇÃO NOME
+        // VALIDAÇÃO NOME
         if (txtNome.getText().length() < 30) {
             //verifica se foi digitado número
             if (txtNome.getText().matches("^[0-9].*")) {
                 evt.consume();
                 //caso tenha sido número, retorna que não é permitido número no campo
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+                        "Erro", JOptionPane.ERROR_MESSAGE);
                 txtNome.setText("");
             }
-            
         } else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 30", "Erro", JOptionPane.ERROR_MESSAGE);
             txtNome.setText("");
-            
         }
-        
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void txtCategoriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCategoriaKeyTyped
-
-        //////////////////////////////////////////////// VALIDAÇÃO CATEGORIA
+        // VALIDAÇÃO CATEGORIA
         if (txtCategoria.getText().length() < 15) {
             //verifica se foi digitado número
             if (txtCategoria.getText().matches("^[0-9].*")) {
                 evt.consume();
                 //caso tenha sido número, retorna que não é permitido número no campo
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+                        "Erro", JOptionPane.ERROR_MESSAGE);
                 txtCategoria.setText("");
             }
-            
         } else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 15", "Erro", JOptionPane.ERROR_MESSAGE);
-            txtCategoria.setText("");
-            
         }
-
     }//GEN-LAST:event_txtCategoriaKeyTyped
 
     private void txtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyTyped
-
-        //////////////////////////////////////////////// VALIDAÇÃO MARCA
+        // VALIDAÇÃO MARCA
         if (txtMarca.getText().length() < 20) {
             //verifica se foi digitado número
             if (txtMarca.getText().matches("^[0-9].*")) {
                 evt.consume();
                 //caso tenha sido número, retorna que não é permitido número no campo
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+                        "Erro", JOptionPane.ERROR_MESSAGE);
                 txtMarca.setText("");
             }
-            
         } else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 20", "Erro", JOptionPane.ERROR_MESSAGE);
-            txtMarca.setText("");
-            
         }
-        
     }//GEN-LAST:event_txtMarcaKeyTyped
 
     private void txtModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModeloKeyTyped
-
-        //////////////////////////////////////////////// VALIDAÇÃO MODELO
+        // VALIDAÇÃO MODELO
         if (txtModelo.getText().length() < 15) {
             //verifica se foi digitado número
             if (txtModelo.getText().matches("^[0-9].*")) {
                 evt.consume();
                 //caso tenha sido número, retorna que não é permitido número no campo
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+                        "Erro", JOptionPane.ERROR_MESSAGE);
                 txtModelo.setText("");
             }
-            
         } else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 15", "Erro", JOptionPane.ERROR_MESSAGE);
-            txtModelo.setText("");
-            
         }
-
     }//GEN-LAST:event_txtModeloKeyTyped
 
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
-
-        //////////////////////////////////////////////// VALIDAÇÃO QUANTIDADE
+        // VALIDAÇÃO QUANTIDADE
         if (txtQuantidade.getText().length() < 5) {
-            
-            String caracteres="0987654321";
-            
-            if(!caracteres.contains(evt.getKeyChar()+"")){
+
+            String caracteres = "0987654321";
+
+            if (!caracteres.contains(evt.getKeyChar() + "")) {
                 evt.consume();
-                
             }
-            
         } else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 5", "Erro", JOptionPane.ERROR_MESSAGE);
-            txtQuantidade.setText("");
-            
         }
-
     }//GEN-LAST:event_txtQuantidadeKeyTyped
 
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
-
-        ///////////////////////////////////////////////// VALIDAÇÃO VALOR
+        // VALIDAÇÃO VALOR
         if (txtValor.getText().length() < 6) {
-            
-            String caracteres="0987654321";
-            
-            if(!caracteres.contains(evt.getKeyChar()+"")){
+            String caracteres = "0987654321";
+            if (!caracteres.contains(evt.getKeyChar() + "")) {
                 evt.consume();
-                
             }
-            
         } else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 6", "Erro", JOptionPane.ERROR_MESSAGE);
-            txtValor.setText("");
-            
         }
-       
-
     }//GEN-LAST:event_txtValorKeyTyped
 
     private void txtDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyTyped
-
-        //////////////////////////////////////////////// VALIDAÇÃO DESCRIÇÃO
+        // VALIDAÇÃO DESCRIÇÃO
         if (txtDescricao.getText().length() < 250) {
-           
-            
         } else {
             //caso seja maior, estoura o limite de caracteres
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 250", "Erro", JOptionPane.ERROR_MESSAGE);
-                        
         }
-
     }//GEN-LAST:event_txtDescricaoKeyTyped
 
-    private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
+    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(1);
-    }//GEN-LAST:event_btn_minimizarMouseClicked
+    }//GEN-LAST:event_lblMinimizarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    
+    private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantidadeActionPerformed
+
     //VALIDAÇÃO DE CAMPOS VAZIOS
     private boolean validaCamposVazios() {
-        
-        boolean status = true;
-        
-        if (this.txtNome.getText().equals("") || this.txtCategoria.getText().equals("") || this.txtMarca.getText().equals("") || this.txtModelo.getText().equals("") || this.txtQuantidade.equals("") ||
-                this.txtValor.getText().equals("") || this.txtDescricao.getText().equals("")) {
-            
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
-            
-            status = false;
-            
-        } else {
-            
-            status = true;
-
+        if (this.txtNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Nome!");
+            return false;
         }
-        
-        return status;
-        
+        if (this.txtCategoria.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Categoria!");
+            return false;
+        }
+        if (this.txtMarca.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Marca!");
+            return false;
+        }
+        if (this.txtModelo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Modelo!");
+            return false;
+        }
+        if (this.txtQuantidade.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Quantidade!");
+            return false;
+        }
+        if (this.txtValor.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Valor!");
+            return false;
+        }
+        if (this.txtDescricao.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo Descrição!");
+            return false;
+        }
+        return true;
     }
-   
-    
+
     //LIMPA CAMPOS
     private void limpaCampos() {
-        
         txtNome.setText("");
         txtCategoria.setText("");
         txtMarca.setText("");
@@ -543,24 +500,21 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         txtQuantidade.setText("");
         txtValor.setText("");
         txtDescricao.setText("");
-        
     }
-   
-    
+
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
-    
+    public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
-        
     }
-    
+
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
-    
+    public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
-        
     }
-    
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -584,21 +538,6 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaProdutosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -612,25 +551,25 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel btnCancelar;
     private javax.swing.JPanel btnConcluir;
     private javax.swing.JPanel btnLimpar;
-    private javax.swing.JLabel btn_fechar;
-    private javax.swing.JLabel btn_minimizar;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel lblCadastroProduto;
+    private javax.swing.JLabel lblCancelar;
     private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblConcluir;
     private javax.swing.JLabel lblDescricao;
+    private javax.swing.JLabel lblFechar;
+    private javax.swing.JLabel lblLimpar;
     private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblValor;
-    private javax.swing.JLabel lbl_usuario;
     private javax.swing.JPanel pnlBarraTitulo;
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JScrollPane srlDescricao;

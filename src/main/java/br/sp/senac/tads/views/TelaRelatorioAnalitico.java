@@ -1,31 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author JefersonOliveira
- */
 public class TelaRelatorioAnalitico extends javax.swing.JFrame {
-    
-    /**
-     * Creates new form TelaBase
-     */
-    
-    //MATRIZ PARA ARMAZENAR OS PRODUTOS CADASTRADOS
-    String[][] matrizProdutos = new String[5][5];
-    
+
     public TelaRelatorioAnalitico() {
         initComponents();
-        
-        
-        
     }
 
     /**
@@ -39,13 +19,13 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
         pnlFundo = new javax.swing.JPanel();
         pnlBarraTitulo = new javax.swing.JPanel();
-        btn_fechar = new javax.swing.JLabel();
-        btn_minimizar = new javax.swing.JLabel();
-        lbl_usuario = new javax.swing.JLabel();
+        lblFechar = new javax.swing.JLabel();
+        lblMinimizar = new javax.swing.JLabel();
+        lblRelatorioAnalitico = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        lblVoltar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRelatorioSintetico = new javax.swing.JTable();
+        tblAnalitico = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -57,33 +37,33 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
         pnlBarraTitulo.setBackground(new java.awt.Color(0, 85, 166));
         pnlBarraTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_fechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
-        btn_fechar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_fechar.setText("X");
-        btn_fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_fechar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblFechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        lblFechar.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechar.setText("X");
+        lblFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_fecharMouseClicked(evt);
+                lblFecharMouseClicked(evt);
             }
         });
-        pnlBarraTitulo.add(btn_fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        pnlBarraTitulo.add(lblFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
 
-        btn_minimizar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
-        btn_minimizar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_minimizar.setText("_");
-        btn_minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMinimizar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        lblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        lblMinimizar.setText("_");
+        lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_minimizarMouseClicked(evt);
+                lblMinimizarMouseClicked(evt);
             }
         });
-        pnlBarraTitulo.add(btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
+        pnlBarraTitulo.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
 
-        lbl_usuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        lbl_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_usuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbl_usuario.setText("Relatório analítico");
-        pnlBarraTitulo.add(lbl_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
+        lblRelatorioAnalitico.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblRelatorioAnalitico.setForeground(new java.awt.Color(255, 255, 255));
+        lblRelatorioAnalitico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblRelatorioAnalitico.setText("Relatório analítico");
+        pnlBarraTitulo.add(lblRelatorioAnalitico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
 
         pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
@@ -102,39 +82,28 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
         });
         btnVoltar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Voltar");
-        btnVoltar.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+        lblVoltar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        lblVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVoltar.setText("Voltar");
+        btnVoltar.add(lblVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
-        tblRelatorioSintetico.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        tblRelatorioSintetico.setForeground(new java.awt.Color(40, 40, 40));
-        tblRelatorioSintetico.setModel(new javax.swing.table.DefaultTableModel(
+        tblAnalitico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Produto", "Data", "Produto", "Quantidade", "Valor Unitário", "Valor Total"
+                "ID Produto", "Produto", "Quantidade", "Valor Unitário", "Valor Total"
             }
         ));
-        tblRelatorioSintetico.setGridColor(new java.awt.Color(40, 40, 40));
-        tblRelatorioSintetico.setSelectionBackground(new java.awt.Color(0, 85, 166));
-        jScrollPane1.setViewportView(tblRelatorioSintetico);
-        if (tblRelatorioSintetico.getColumnModel().getColumnCount() > 0) {
-            tblRelatorioSintetico.getColumnModel().getColumn(0).setResizable(false);
-            tblRelatorioSintetico.getColumnModel().getColumn(1).setResizable(false);
-            tblRelatorioSintetico.getColumnModel().getColumn(2).setResizable(false);
-            tblRelatorioSintetico.getColumnModel().getColumn(3).setResizable(false);
-            tblRelatorioSintetico.getColumnModel().getColumn(5).setResizable(false);
-        }
+        jScrollPane1.setViewportView(tblAnalitico);
 
-        pnlFundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 760, 440));
+        pnlFundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 780, 440));
 
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
@@ -142,14 +111,11 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
-        
+    private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA A TELA DE RELATÓRIOS
-        TelaRelatorios relatorios = new TelaRelatorios();
-        relatorios.show();
+        new TelaRelatorios().setVisible(true);
         this.dispose();
-        
-    }//GEN-LAST:event_btn_fecharMouseClicked
+    }//GEN-LAST:event_lblFecharMouseClicked
 
     private void btnVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseEntered
         setColor(btnVoltar);
@@ -160,39 +126,28 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarMouseExited
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
-    
         //VOLTAR PARA A TELA DE RELATÓRIOS
-        TelaRelatorios relatorios = new TelaRelatorios();
-        relatorios.show();
-        this.dispose();        
-
+        new TelaRelatorios().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
-    private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
+    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(1);
+    }//GEN-LAST:event_lblMinimizarMouseClicked
 
-    }//GEN-LAST:event_btn_minimizarMouseClicked
+    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    public void setColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(40, 40, 40));
+    }
+
+    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    public void resetColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(0, 85, 166));
+    }
 
     /**
      * @param args the command line arguments
      */
-    
-    
-    
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
-    
-        panel.setBackground(new java.awt.Color(40, 40, 40));
-        
-    }
-    
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
-    
-        panel.setBackground(new java.awt.Color(0, 85, 166));
-        
-    }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -216,69 +171,6 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaRelatorioAnalitico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -290,13 +182,13 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnVoltar;
-    private javax.swing.JLabel btn_fechar;
-    private javax.swing.JLabel btn_minimizar;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbl_usuario;
+    private javax.swing.JLabel lblFechar;
+    private javax.swing.JLabel lblMinimizar;
+    private javax.swing.JLabel lblRelatorioAnalitico;
+    private javax.swing.JLabel lblVoltar;
     private javax.swing.JPanel pnlBarraTitulo;
     private javax.swing.JPanel pnlFundo;
-    private javax.swing.JTable tblRelatorioSintetico;
+    private javax.swing.JTable tblAnalitico;
     // End of variables declaration//GEN-END:variables
 }

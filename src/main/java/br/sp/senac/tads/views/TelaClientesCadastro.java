@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
 import javax.swing.JOptionPane;
@@ -34,17 +29,17 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         rdoGrupoSexo = new javax.swing.ButtonGroup();
         pnlFundo = new javax.swing.JPanel();
         pnlBarraTitulo = new javax.swing.JPanel();
-        btn_fechar = new javax.swing.JLabel();
-        btn_minimizar = new javax.swing.JLabel();
-        lbl_usuario = new javax.swing.JLabel();
+        lblFechar = new javax.swing.JLabel();
+        lblMinimizar = new javax.swing.JLabel();
+        lblCadastroCliente = new javax.swing.JLabel();
         btnNovoCli = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
+        lblNovoCliente = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        lblLimpar = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        lblCancelar = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        lblCadastrar = new javax.swing.JLabel();
         pnlDadosPessoais = new javax.swing.JPanel();
         lblID = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -96,33 +91,33 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         pnlBarraTitulo.setBackground(new java.awt.Color(0, 85, 166));
         pnlBarraTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_fechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
-        btn_fechar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_fechar.setText("X");
-        btn_fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_fechar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblFechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        lblFechar.setForeground(new java.awt.Color(255, 255, 255));
+        lblFechar.setText("X");
+        lblFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_fecharMouseClicked(evt);
+                lblFecharMouseClicked(evt);
             }
         });
-        pnlBarraTitulo.add(btn_fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        pnlBarraTitulo.add(lblFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
 
-        btn_minimizar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
-        btn_minimizar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_minimizar.setText("_");
-        btn_minimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblMinimizar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        lblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        lblMinimizar.setText("_");
+        lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_minimizarMouseClicked(evt);
+                lblMinimizarMouseClicked(evt);
             }
         });
-        pnlBarraTitulo.add(btn_minimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
+        pnlBarraTitulo.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
 
-        lbl_usuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        lbl_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_usuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbl_usuario.setText("Cadastro de cliente");
-        pnlBarraTitulo.add(lbl_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
+        lblCadastroCliente.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblCadastroCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastroCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCadastroCliente.setText("Cadastro de cliente");
+        pnlBarraTitulo.add(lblCadastroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
 
         pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
@@ -141,11 +136,11 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         });
         btnNovoCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Novo");
-        btnNovoCli.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+        lblNovoCliente.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblNovoCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lblNovoCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNovoCliente.setText("Novo");
+        btnNovoCli.add(lblNovoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnNovoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 540, 90, 40));
 
@@ -164,11 +159,11 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         });
         btnLimpar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Limpar");
-        btnLimpar.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+        lblLimpar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblLimpar.setForeground(new java.awt.Color(255, 255, 255));
+        lblLimpar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLimpar.setText("Limpar");
+        btnLimpar.add(lblLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 90, 40));
 
@@ -187,11 +182,11 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         });
         btnCancelar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Cancelar");
-        btnCancelar.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+        lblCancelar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCancelar.setText("Cancelar");
+        btnCancelar.add(lblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 540, 90, 40));
 
@@ -210,11 +205,11 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         });
         btnCadastrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Cadastrar");
-        btnCadastrar.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+        lblCadastrar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCadastrar.setText("Cadastrar");
+        btnCadastrar.add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
@@ -451,11 +446,11 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         resetColor(btnCadastrar);
     }//GEN-LAST:event_btnCadastrarMouseExited
 
-    private void btn_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_fecharMouseClicked
+    private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA A TELA CLIENTES
         new TelaClientes().setVisible(true);
         this.dispose();  
-    }//GEN-LAST:event_btn_fecharMouseClicked
+    }//GEN-LAST:event_lblFecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
         setColor(btnCancelar);
@@ -554,9 +549,9 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNumeroKeyTyped
 
-    private void btn_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizarMouseClicked
+    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(1);
-    }//GEN-LAST:event_btn_minimizarMouseClicked
+    }//GEN-LAST:event_lblMinimizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -695,12 +690,6 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel btnCancelar;
     private javax.swing.JPanel btnLimpar;
     private javax.swing.JPanel btnNovoCli;
-    private javax.swing.JLabel btn_fechar;
-    private javax.swing.JLabel btn_minimizar;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -712,17 +701,23 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel lblCEP;
     private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblCadastrar;
+    private javax.swing.JLabel lblCadastroCliente;
+    private javax.swing.JLabel lblCancelar;
     private javax.swing.JLabel lblCelular;
     private javax.swing.JLabel lblDataNascimento;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEstadoCivil;
+    private javax.swing.JLabel lblFechar;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblLimpar;
     private javax.swing.JLabel lblLogradouro;
     private javax.swing.JLabel lblLogradouro1;
+    private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNovoCliente;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefone;
-    private javax.swing.JLabel lbl_usuario;
     private javax.swing.JPanel pnlBarraTitulo;
     private javax.swing.JPanel pnlContato;
     private javax.swing.JPanel pnlDadosPessoais;

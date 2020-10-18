@@ -4,15 +4,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Administrador
- */
 public class TelaProdutos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaBase
-     */
     public TelaProdutos() {
         initComponents();
     }
@@ -28,33 +21,33 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         pnlFundo = new javax.swing.JPanel();
         pnlBarraLateral = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        lbl_usuario = new javax.swing.JLabel();
-        btn_logout = new javax.swing.JLabel();
-        btn_produtos = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        btn_clientes = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        btn_relatorios = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblIconeUsuario = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        lblLogout = new javax.swing.JLabel();
+        btnProdutos = new javax.swing.JPanel();
+        lblIconeProdutos = new javax.swing.JLabel();
+        lblProdutos = new javax.swing.JLabel();
+        btnClientes = new javax.swing.JPanel();
+        lblIconeClientes = new javax.swing.JLabel();
+        lblClientes = new javax.swing.JLabel();
+        btnRelatorios = new javax.swing.JPanel();
+        lblIconeRelatorios = new javax.swing.JLabel();
+        lblRelatorios = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        lblVoltar = new javax.swing.JLabel();
         btnFechar = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JLabel();
         sclProdutos = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
         btnCadastrar = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblIconeCadastrar = new javax.swing.JLabel();
+        lblCadastrar = new javax.swing.JLabel();
         btnEditar = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblIconeEditar = new javax.swing.JLabel();
+        lblEditar = new javax.swing.JLabel();
         btnRemover = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        lblIconeRemover = new javax.swing.JLabel();
+        lblRemover = new javax.swing.JLabel();
         lblPesquisar = new javax.swing.JLabel();
         txtPesquisar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -69,91 +62,91 @@ public class TelaProdutos extends javax.swing.JFrame {
         pnlBarraLateral.setBackground(new java.awt.Color(0, 85, 166));
         pnlBarraLateral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/user.png"))); // NOI18N
-        pnlBarraLateral.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 40, 40));
+        lblIconeUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/user.png"))); // NOI18N
+        pnlBarraLateral.add(lblIconeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 40, 40));
 
-        lbl_usuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        lbl_usuario.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_usuario.setText("ADMIN");
-        pnlBarraLateral.add(lbl_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, -1, 40));
+        lblUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsuario.setText("ADMIN");
+        pnlBarraLateral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, -1, 40));
 
-        btn_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/logout.png"))); // NOI18N
-        btn_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/logout.png"))); // NOI18N
+        lblLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_logoutMouseClicked(evt);
+                lblLogoutMouseClicked(evt);
             }
         });
-        pnlBarraLateral.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        pnlBarraLateral.add(lblLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        btn_produtos.setBackground(new java.awt.Color(40, 40, 40));
-        btn_produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_produtos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnProdutos.setBackground(new java.awt.Color(40, 40, 40));
+        btnProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProdutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/produtosIcon.png"))); // NOI18N
-        btn_produtos.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        lblIconeProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        lblIconeProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/produtosIcon.png"))); // NOI18N
+        btnProdutos.add(lblIconeProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Produtos");
-        btn_produtos.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, -1));
+        lblProdutos.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblProdutos.setForeground(new java.awt.Color(255, 255, 255));
+        lblProdutos.setText("Produtos");
+        btnProdutos.add(lblProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, -1));
 
-        pnlBarraLateral.add(btn_produtos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 220, 50));
+        pnlBarraLateral.add(btnProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 220, 50));
 
-        btn_clientes.setBackground(new java.awt.Color(0, 85, 166));
-        btn_clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnClientes.setBackground(new java.awt.Color(0, 85, 166));
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_clientesMouseClicked(evt);
+                btnClientesMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_clientesMouseEntered(evt);
+                btnClientesMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_clientesMouseExited(evt);
+                btnClientesMouseExited(evt);
             }
         });
-        btn_clientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/clientesIcon.png"))); // NOI18N
-        btn_clientes.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        lblIconeClientes.setForeground(new java.awt.Color(255, 255, 255));
+        lblIconeClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/clientesIcon.png"))); // NOI18N
+        btnClientes.add(lblIconeClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Clientes");
-        btn_clientes.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, -1));
+        lblClientes.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblClientes.setForeground(new java.awt.Color(255, 255, 255));
+        lblClientes.setText("Clientes");
+        btnClientes.add(lblClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, -1));
 
-        pnlBarraLateral.add(btn_clientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 220, 50));
+        pnlBarraLateral.add(btnClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 220, 50));
 
-        btn_relatorios.setBackground(new java.awt.Color(0, 85, 166));
-        btn_relatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_relatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRelatorios.setBackground(new java.awt.Color(0, 85, 166));
+        btnRelatorios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRelatorios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_relatoriosMouseClicked(evt);
+                btnRelatoriosMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_relatoriosMouseEntered(evt);
+                btnRelatoriosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_relatoriosMouseExited(evt);
+                btnRelatoriosMouseExited(evt);
             }
         });
-        btn_relatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnRelatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/relatoriosIcon.png"))); // NOI18N
-        btn_relatorios.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        lblIconeRelatorios.setForeground(new java.awt.Color(255, 255, 255));
+        lblIconeRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/relatoriosIcon.png"))); // NOI18N
+        btnRelatorios.add(lblIconeRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Relatórios");
-        btn_relatorios.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, -1));
+        lblRelatorios.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblRelatorios.setForeground(new java.awt.Color(255, 255, 255));
+        lblRelatorios.setText("Relatórios");
+        btnRelatorios.add(lblRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 130, -1));
 
-        pnlBarraLateral.add(btn_relatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 220, 50));
+        pnlBarraLateral.add(btnRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 220, 50));
 
         pnlFundo.add(pnlBarraLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 600));
 
@@ -172,11 +165,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         });
         btnVoltar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel12.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Voltar");
-        btnVoltar.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+        lblVoltar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        lblVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVoltar.setText("Voltar");
+        btnVoltar.add(lblVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
         pnlFundo.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
@@ -250,15 +243,15 @@ public class TelaProdutos extends javax.swing.JFrame {
         });
         btnCadastrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/add.png"))); // NOI18N
-        btnCadastrar.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
+        lblIconeCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/add.png"))); // NOI18N
+        btnCadastrar.add(lblIconeCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 40));
 
-        jLabel10.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Cadastrar");
-        btnCadastrar.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, -1));
+        lblCadastrar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCadastrar.setText("Cadastrar");
+        btnCadastrar.add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, -1));
 
         pnlFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, 80));
 
@@ -277,15 +270,15 @@ public class TelaProdutos extends javax.swing.JFrame {
         });
         btnEditar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/editarIcon.png"))); // NOI18N
-        btnEditar.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
+        lblIconeEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/editarIcon.png"))); // NOI18N
+        btnEditar.add(lblIconeEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
-        jLabel14.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Editar");
-        btnEditar.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, -1));
+        lblEditar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblEditar.setForeground(new java.awt.Color(255, 255, 255));
+        lblEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditar.setText("Editar");
+        btnEditar.add(lblEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, -1));
 
         pnlFundo.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, 80));
 
@@ -304,19 +297,24 @@ public class TelaProdutos extends javax.swing.JFrame {
         });
         btnRemover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/removerIcon.png"))); // NOI18N
-        btnRemover.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
+        lblIconeRemover.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconeRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/removerIcon.png"))); // NOI18N
+        btnRemover.add(lblIconeRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
-        jLabel16.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Remover");
-        btnRemover.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, -1));
+        lblRemover.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblRemover.setForeground(new java.awt.Color(255, 255, 255));
+        lblRemover.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRemover.setText("Remover");
+        btnRemover.add(lblRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, -1));
 
         pnlFundo.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, 80));
 
         lblPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/pesquisarIcon.png"))); // NOI18N
+        lblPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPesquisarMouseClicked(evt);
+            }
+        });
         pnlFundo.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, -1, -1));
 
         txtPesquisar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
@@ -336,21 +334,21 @@ public class TelaProdutos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_clientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clientesMouseEntered
-        setColor(btn_clientes);
-    }//GEN-LAST:event_btn_clientesMouseEntered
+    private void btnClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseEntered
+        setColor(btnClientes);
+    }//GEN-LAST:event_btnClientesMouseEntered
 
-    private void btn_clientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clientesMouseExited
-        resetColor(btn_clientes);
-    }//GEN-LAST:event_btn_clientesMouseExited
+    private void btnClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseExited
+        resetColor(btnClientes);
+    }//GEN-LAST:event_btnClientesMouseExited
 
-    private void btn_relatoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseEntered
-        setColor(btn_relatorios);
-    }//GEN-LAST:event_btn_relatoriosMouseEntered
+    private void btnRelatoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseEntered
+        setColor(btnRelatorios);
+    }//GEN-LAST:event_btnRelatoriosMouseEntered
 
-    private void btn_relatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseExited
-        resetColor(btn_relatorios);
-    }//GEN-LAST:event_btn_relatoriosMouseExited
+    private void btnRelatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseExited
+        resetColor(btnRelatorios);
+    }//GEN-LAST:event_btnRelatoriosMouseExited
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
         this.setState(1);
@@ -368,21 +366,19 @@ public class TelaProdutos extends javax.swing.JFrame {
         //VOLTAR PARA O MENU PRINCIPAL
         new TelaMenu().setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
         new TelaMenu().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnFecharMouseClicked
 
-    private void btn_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_logoutMouseClicked
+    private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
         //VOLTAR PARA A TELA DE LOGIN
         new TelaLogin().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_logoutMouseClicked
+    }//GEN-LAST:event_lblLogoutMouseClicked
 
     private void btnCadastrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseEntered
         setColor(btnCadastrar);
@@ -409,7 +405,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverMouseExited
 
     private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
-        int linhaSelecionada = tblProdutos.getSelectedRow();        
+        int linhaSelecionada = tblProdutos.getSelectedRow();
         if (linhaSelecionada >= 0) {
             int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o item selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
@@ -418,28 +414,28 @@ public class TelaProdutos extends javax.swing.JFrame {
                 produtos.removeRow(linhaSelecionada);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma linha", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um item!", "Erro!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnRemoverMouseClicked
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
-        int linhaSelecionada = tblProdutos.getSelectedRow();        
+        int linhaSelecionada = tblProdutos.getSelectedRow();
         if (linhaSelecionada >= 0) {
             //ACESSA A TELA DE EDIÇÃO DE PRODUTO
             new TelaProdutosEditar().setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma linha", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um item", "Erro!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarMouseClicked
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
         //VALIDAÇÃO DE BUSCA POR NOME DO PRODUTO
         if (txtPesquisar.getText().matches("^[0-9].*")) {
-                evt.consume();
-                //caso tenha sido número, retorna que não é permitido número no campo
-                JOptionPane.showMessageDialog(this, "Não é permitido números neste campo", "Erro", JOptionPane.ERROR_MESSAGE);
-                txtPesquisar.setText("");
-            }
+            evt.consume();
+            //caso tenha sido número, retorna que não é permitido número no campo
+            JOptionPane.showMessageDialog(this, "Não é permitido números neste campo", "Erro", JOptionPane.ERROR_MESSAGE);
+            txtPesquisar.setText("");
+        }
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
@@ -448,32 +444,37 @@ public class TelaProdutos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
-    private void btn_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_clientesMouseClicked
+    private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
         //ACESSA A TELA CLIENTES
         new TelaClientes().setVisible(true);
-        this.dispose(); 
-    }//GEN-LAST:event_btn_clientesMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnClientesMouseClicked
 
-    private void btn_relatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_relatoriosMouseClicked
+    private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
         //ACESSA A TELA DE RELATÓRIOS
         new TelaRelatorios().setVisible(true);
-        this.dispose();  
-    }//GEN-LAST:event_btn_relatoriosMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnRelatoriosMouseClicked
+
+    private void lblPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPesquisarMouseClicked
+        if (this.txtPesquisar.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Insira o Nome do Produto!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_lblPesquisarMouseClicked
+
+    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    public void setColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(40, 40, 40));
+    }
+
+    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    public void resetColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(0, 85, 166));
+    }
 
     /**
      * @param args the command line arguments
      */
-    
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
-        panel.setBackground(new java.awt.Color(40, 40, 40));
-    }
-    
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
-        panel.setBackground(new java.awt.Color(0, 85, 166));
-    }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -507,32 +508,32 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnCadastrar;
+    private javax.swing.JPanel btnClientes;
     private javax.swing.JPanel btnEditar;
     private javax.swing.JLabel btnFechar;
     private javax.swing.JLabel btnMinimizar;
+    private javax.swing.JPanel btnProdutos;
+    private javax.swing.JPanel btnRelatorios;
     private javax.swing.JPanel btnRemover;
     private javax.swing.JPanel btnVoltar;
-    private javax.swing.JPanel btn_clientes;
-    private javax.swing.JLabel btn_logout;
-    private javax.swing.JPanel btn_produtos;
-    private javax.swing.JPanel btn_relatorios;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCadastrar;
+    private javax.swing.JLabel lblClientes;
+    private javax.swing.JLabel lblEditar;
+    private javax.swing.JLabel lblIconeCadastrar;
+    private javax.swing.JLabel lblIconeClientes;
+    private javax.swing.JLabel lblIconeEditar;
+    private javax.swing.JLabel lblIconeProdutos;
+    private javax.swing.JLabel lblIconeRelatorios;
+    private javax.swing.JLabel lblIconeRemover;
+    private javax.swing.JLabel lblIconeUsuario;
+    private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel lblPesquisar;
-    private javax.swing.JLabel lbl_usuario;
+    private javax.swing.JLabel lblProdutos;
+    private javax.swing.JLabel lblRelatorios;
+    private javax.swing.JLabel lblRemover;
+    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblVoltar;
     private javax.swing.JPanel pnlBarraLateral;
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JScrollPane sclProdutos;

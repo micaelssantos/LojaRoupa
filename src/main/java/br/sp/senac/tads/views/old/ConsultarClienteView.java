@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.sp.senac.tads.views;
+package br.sp.senac.tads.views.old;
 
+import br.sp.senac.tads.views.old.EditarClienteView;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

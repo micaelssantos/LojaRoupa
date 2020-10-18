@@ -5,7 +5,7 @@
 
 TELA CADASTRO DE CLIENTE - RESPONSÁVEL: DALILA DI LAZZARO TADS 2B NOTURNO
  */
-package br.sp.senac.tads.views;
+package br.sp.senac.tads.views.old;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
