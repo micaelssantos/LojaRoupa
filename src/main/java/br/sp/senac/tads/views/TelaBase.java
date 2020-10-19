@@ -1,21 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
 import javax.swing.JPanel;
 
-/**
- *
- * @author Administrador
- */
 public class TelaBase extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaBase
-     */
     public TelaBase() {
         initComponents();
     }
@@ -237,46 +225,35 @@ public class TelaBase extends javax.swing.JFrame {
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        TelaMenu menu = new TelaMenu();
-        menu.show();
+        new TelaMenu().setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        TelaMenu menu = new TelaMenu();
-        menu.show();
+        new TelaMenu().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
         //VOLTAR PARA A TELA DE LOGIN
-        TelaLogin login = new TelaLogin();
-        login.show();
+        new TelaLogin().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_lblLogoutMouseClicked
+
+    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    public void setColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(40, 40, 40));
+    }
+
+    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    public void resetColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(0, 85, 166));
+    }
 
     /**
      * @param args the command line arguments
      */
-    
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
-    
-        panel.setBackground(new java.awt.Color(40, 40, 40));
-        
-    }
-    
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
-    
-        panel.setBackground(new java.awt.Color(0, 85, 166));
-        
-    }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -299,22 +276,6 @@ public class TelaBase extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
