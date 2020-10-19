@@ -1,5 +1,5 @@
 package br.sp.senac.tads.dao;
 
-public class Venda {
+public class VendaDAO {
     
 }
