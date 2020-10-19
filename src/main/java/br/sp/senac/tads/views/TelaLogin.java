@@ -178,12 +178,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     private boolean validaCamposVazios() {
+        String senha = String.valueOf(txtSenha.getPassword());
+        
         if (this.txtUsuario.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
             return false;
         }
-        if (this.txtSenha.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+        if (senha.equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo de Senha!");
             return false;
         }
         return true;
