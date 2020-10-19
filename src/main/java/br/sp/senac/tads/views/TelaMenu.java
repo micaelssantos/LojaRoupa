@@ -1,21 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.views;
 
 import javax.swing.JPanel;
 
-/**
- *
- * @author Administrador
- */
 public class TelaMenu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaBase
-     */
     public TelaMenu() {
         initComponents();
     }
@@ -281,68 +269,51 @@ public class TelaMenu extends javax.swing.JFrame {
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //ENCERRA A APLICAÇÃO
         System.exit(0);
-        
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-
         //VOLTAR PARA A TELA DE LOGIN
-        TelaLogin login = new TelaLogin();
-        login.show();
+        new TelaLogin().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_lblLogoutMouseClicked
 
     private void btnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutosMouseClicked
         //ACESSA A TELA DE PRODUTOS
-        TelaProdutos produtos = new TelaProdutos();
-        produtos.show();
+        new TelaProdutos().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnProdutosMouseClicked
 
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
         //ACESSA A TELA DE CLIENTES
-        TelaClientes clientes = new TelaClientes();
-        clientes.show();
+        new TelaClientes().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnClientesMouseClicked
 
     private void btnVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasMouseClicked
         //ACESSA A TELA DE VENDAS
-        TelaVendas venda = new TelaVendas();
-        venda.show();
+        new TelaVendas().setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnVendasMouseClicked
 
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
         //ACESSA A TELA DE RELATÓRIOS
-        TelaRelatorios relatorio = new TelaRelatorios();
-        relatorio.show();
+        new TelaRelatorios().setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnRelatoriosMouseClicked
+
+    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    public void setColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(40, 40, 40));
+    }
+
+    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    public void resetColor(JPanel panel) {
+        panel.setBackground(new java.awt.Color(0, 85, 166));
+    }
 
     /**
      * @param args the command line arguments
      */
-    
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
-    
-        panel.setBackground(new java.awt.Color(40, 40, 40));
-        
-    }
-    
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
-    
-        panel.setBackground(new java.awt.Color(0, 85, 166));
-        
-    }
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -365,13 +336,6 @@ public class TelaMenu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
