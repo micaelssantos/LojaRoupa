@@ -182,7 +182,7 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
 
         lblDescricao.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblDescricao.setForeground(new java.awt.Color(40, 40, 40));
-        lblDescricao.setText("Descrição");
+        lblDescricao.setText("* Descrição");
         pnlFundo.add(lblDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
         srlDescricao.setAutoscrolls(true);
