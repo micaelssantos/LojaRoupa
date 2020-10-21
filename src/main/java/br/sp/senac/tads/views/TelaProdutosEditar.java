@@ -1,5 +1,6 @@
 package br.sp.senac.tads.views;
 
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -405,31 +406,43 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtModeloKeyTyped
 
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
-        // VALIDAÇÃO QUANTIDADE
-        if (txtQuantidade.getText().length() < 5) {
-            String caracteres = "0987654321";
-            if (!caracteres.contains(evt.getKeyChar() + "")) {
-                evt.consume();
-            }
-        } else {
-            //caso seja maior, estoura o limite de caracteres
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Limite de caractere em 5", "Erro", JOptionPane.ERROR_MESSAGE);
+       
+        try {
+            if (!this.txtQuantidade.getText().equalsIgnoreCase("")) {
+                Integer.parseInt(txtQuantidade.getText()); //efetua a conversão para inteiro
+                
         }
+            
+        //caso não consiga, exibe mensagem de erro de conversão 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Quantidade", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+            txtQuantidade.setText("");
+            
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            
+        }
+        
+        
     }//GEN-LAST:event_txtQuantidadeKeyTyped
 
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
-        // VALIDAÇÃO VALOR
-        if (txtValor.getText().length() < 6) {
-            String caracteres = "0987654321";
-            if (!caracteres.contains(evt.getKeyChar() + "")) {
-                evt.consume();
+        try {
+            if (!this.txtValor.getText().equalsIgnoreCase("")) {
+                Double.parseDouble(txtValor.getText()); //efetua a conversão para double
+                
             }
-        } else {
-            //caso seja maior, estoura o limite de caracteres
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Limite de caractere em 6", "Erro", JOptionPane.ERROR_MESSAGE);
+            
+        //caso não consiga, exibe mensagem de erro de conversão 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Valor", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+            txtValor.setText("");
+
+        } catch (HeadlessException e) { 
+            JOptionPane.showMessageDialog(null, e.getMessage());
+           
         }
+        
     }//GEN-LAST:event_txtValorKeyTyped
 
     private void txtDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyTyped
