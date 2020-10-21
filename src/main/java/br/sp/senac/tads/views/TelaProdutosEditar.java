@@ -406,19 +406,7 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtModeloKeyTyped
 
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
-        // VALIDAÇÃO QUANTIDADE
-        
-        /*if (txtQuantidade.getText().length() < 5) {
-            String caracteres = "0987654321";
-            if (!caracteres.contains(evt.getKeyChar() + "")) {
-                evt.consume();
-            }
-        } else {
-            //caso seja maior, estoura o limite de caracteres
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Limite de caractere em 5", "Erro", JOptionPane.ERROR_MESSAGE);
-        }*/
-        
+       
         try {
             if (!this.txtQuantidade.getText().equalsIgnoreCase("")) {
                 Integer.parseInt(txtQuantidade.getText()); //efetua a conversão para inteiro
@@ -439,21 +427,6 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQuantidadeKeyTyped
 
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
-        // VALIDAÇÃO VALOR
-       
-        
-        /*if (txtValor.getText().length() < 6) {
-            String caracteres = "0987654321";
-            if (!caracteres.contains(evt.getKeyChar() + "")) {
-                evt.consume();
-            }
-        } else {
-            //caso seja maior, estoura o limite de caracteres
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Limite de caractere em 6", "Erro", JOptionPane.ERROR_MESSAGE);
-        }*/
-        
-        
         try {
             if (!this.txtValor.getText().equalsIgnoreCase("")) {
                 Double.parseDouble(txtValor.getText()); //efetua a conversão para double
