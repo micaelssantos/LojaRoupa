@@ -47,11 +47,13 @@ public class TelaVendas extends javax.swing.JFrame {
         lblCPF1 = new javax.swing.JLabel();
         txtCliente1 = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
-        lblPesquisarPor3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblPesquisarPor2 = new javax.swing.JLabel();
         rdoNome3 = new javax.swing.JRadioButton();
         rdoCodProd1 = new javax.swing.JRadioButton();
         btnPesquisar = new javax.swing.JPanel();
         lblPesquisar = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
         pnlItens = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblItens = new javax.swing.JTable();
@@ -65,14 +67,15 @@ public class TelaVendas extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         btnConfirmar1 = new javax.swing.JPanel();
         lblConfirmar2 = new javax.swing.JLabel();
-        rdoNome = new javax.swing.JRadioButton();
-        lblPesquisarPor1 = new javax.swing.JLabel();
-        rdoCPF = new javax.swing.JRadioButton();
         jSeparator9 = new javax.swing.JSeparator();
         txtCPF = new javax.swing.JFormattedTextField();
         lblCPF2 = new javax.swing.JLabel();
         btnPesquisar2 = new javax.swing.JPanel();
         lblPesquisar3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblPesquisarPor1 = new javax.swing.JLabel();
+        rdoNome = new javax.swing.JRadioButton();
+        rdoCPF = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -191,13 +194,13 @@ public class TelaVendas extends javax.swing.JFrame {
         lblProduto.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblProduto.setForeground(new java.awt.Color(40, 40, 40));
         lblProduto.setText("Produto");
-        pnlProdutos.add(lblProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        pnlProdutos.add(lblProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         txtProduto.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtProduto.setForeground(new java.awt.Color(40, 40, 40));
         txtProduto.setBorder(null);
-        pnlProdutos.add(txtProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 310, -1));
-        pnlProdutos.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 310, 10));
+        pnlProdutos.add(txtProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 310, -1));
+        pnlProdutos.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 168, 310, -1));
 
         lblQtdEstoque.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblQtdEstoque.setForeground(new java.awt.Color(40, 40, 40));
@@ -213,7 +216,7 @@ public class TelaVendas extends javax.swing.JFrame {
         lblQtd.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblQtd.setForeground(new java.awt.Color(40, 40, 40));
         lblQtd.setText("Quantidade");
-        pnlProdutos.add(lblQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        pnlProdutos.add(lblQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         txtQtd.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtQtd.setForeground(new java.awt.Color(40, 40, 40));
@@ -223,8 +226,8 @@ public class TelaVendas extends javax.swing.JFrame {
                 txtQtdKeyTyped(evt);
             }
         });
-        pnlProdutos.add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 310, -1));
-        pnlProdutos.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 310, 10));
+        pnlProdutos.add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 310, -1));
+        pnlProdutos.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 310, 10));
 
         btnLimpar.setBackground(new java.awt.Color(0, 85, 166));
         btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -275,7 +278,7 @@ public class TelaVendas extends javax.swing.JFrame {
         lblCPF1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblCPF1.setForeground(new java.awt.Color(40, 40, 40));
         lblCPF1.setText("Cód Produto");
-        pnlProdutos.add(lblCPF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 100, -1));
+        pnlProdutos.add(lblCPF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 100, -1));
 
         txtCliente1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtCliente1.setForeground(new java.awt.Color(40, 40, 40));
@@ -285,13 +288,16 @@ public class TelaVendas extends javax.swing.JFrame {
                 txtCliente1KeyTyped(evt);
             }
         });
-        pnlProdutos.add(txtCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 310, 20));
-        pnlProdutos.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 152, 310, 10));
+        pnlProdutos.add(txtCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 310, 20));
+        pnlProdutos.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 310, 0));
 
-        lblPesquisarPor3.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        lblPesquisarPor3.setForeground(new java.awt.Color(40, 40, 40));
-        lblPesquisarPor3.setText("Pesquisar por:");
-        pnlProdutos.add(lblPesquisarPor3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Escolha uma opção"));
+
+        lblPesquisarPor2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblPesquisarPor2.setForeground(new java.awt.Color(40, 40, 40));
+        lblPesquisarPor2.setText("Pesquisar por:");
+        jPanel2.add(lblPesquisarPor2);
 
         rdoNome3.setBackground(new java.awt.Color(255, 255, 255));
         rdoNome3.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
@@ -306,7 +312,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 rdoNome3ActionPerformed(evt);
             }
         });
-        pnlProdutos.add(rdoNome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+        jPanel2.add(rdoNome3);
 
         rdoCodProd1.setBackground(new java.awt.Color(255, 255, 255));
         rdoCodProd1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
@@ -316,7 +322,9 @@ public class TelaVendas extends javax.swing.JFrame {
                 rdoCodProd1MouseClicked(evt);
             }
         });
-        pnlProdutos.add(rdoCodProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+        jPanel2.add(rdoCodProd1);
+
+        pnlProdutos.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, 60));
 
         btnPesquisar.setBackground(new java.awt.Color(0, 85, 166));
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -339,7 +347,8 @@ public class TelaVendas extends javax.swing.JFrame {
         lblPesquisar.setText("Pesquisar");
         btnPesquisar.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
-        pnlProdutos.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 90, 40));
+        pnlProdutos.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, 40));
+        pnlProdutos.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 310, 10));
 
         pnlFundo.add(pnlProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 350, 370));
 
@@ -415,7 +424,7 @@ public class TelaVendas extends javax.swing.JFrame {
         lblNomeCli2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblNomeCli2.setForeground(new java.awt.Color(40, 40, 40));
         lblNomeCli2.setText("Nome do cliente");
-        pnlClientes2.add(lblNomeCli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        pnlClientes2.add(lblNomeCli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         txtCliente.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtCliente.setForeground(new java.awt.Color(40, 40, 40));
@@ -425,8 +434,8 @@ public class TelaVendas extends javax.swing.JFrame {
                 txtClienteKeyTyped(evt);
             }
         });
-        pnlClientes2.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 310, -1));
-        pnlClientes2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 310, 10));
+        pnlClientes2.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 310, -1));
+        pnlClientes2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 310, 10));
 
         btnConfirmar1.setBackground(new java.awt.Color(0, 85, 166));
         btnConfirmar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -449,38 +458,8 @@ public class TelaVendas extends javax.swing.JFrame {
         lblConfirmar2.setText("Confirmar");
         btnConfirmar1.add(lblConfirmar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
-        pnlClientes2.add(btnConfirmar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 90, 40));
-
-        rdoNome.setBackground(new java.awt.Color(255, 255, 255));
-        rdoNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        rdoNome.setText("Nome");
-        rdoNome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rdoNomeMouseClicked(evt);
-            }
-        });
-        rdoNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNomeActionPerformed(evt);
-            }
-        });
-        pnlClientes2.add(rdoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
-
-        lblPesquisarPor1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        lblPesquisarPor1.setForeground(new java.awt.Color(40, 40, 40));
-        lblPesquisarPor1.setText("Pesquisar por:");
-        pnlClientes2.add(lblPesquisarPor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
-
-        rdoCPF.setBackground(new java.awt.Color(255, 255, 255));
-        rdoCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        rdoCPF.setText("CPF");
-        rdoCPF.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rdoCPFMouseClicked(evt);
-            }
-        });
-        pnlClientes2.add(rdoCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
-        pnlClientes2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 190, 10));
+        pnlClientes2.add(btnConfirmar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 90, 40));
+        pnlClientes2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 190, 10));
 
         txtCPF.setBorder(null);
         txtCPF.setForeground(new java.awt.Color(40, 40, 40));
@@ -490,12 +469,12 @@ public class TelaVendas extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        pnlClientes2.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 190, -1));
+        pnlClientes2.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 190, -1));
 
         lblCPF2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblCPF2.setForeground(new java.awt.Color(40, 40, 40));
         lblCPF2.setText("CPF");
-        pnlClientes2.add(lblCPF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 40, -1));
+        pnlClientes2.add(lblCPF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 40, -1));
 
         btnPesquisar2.setBackground(new java.awt.Color(0, 85, 166));
         btnPesquisar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -518,9 +497,44 @@ public class TelaVendas extends javax.swing.JFrame {
         lblPesquisar3.setText("Pesquisar");
         btnPesquisar2.add(lblPesquisar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
-        pnlClientes2.add(btnPesquisar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 90, 40));
+        pnlClientes2.add(btnPesquisar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 90, 40));
 
-        pnlFundo.add(pnlClientes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 350, 220));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Escolha uma opção"));
+
+        lblPesquisarPor1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblPesquisarPor1.setForeground(new java.awt.Color(40, 40, 40));
+        lblPesquisarPor1.setText("Pesquisar por:");
+        jPanel1.add(lblPesquisarPor1);
+
+        rdoNome.setBackground(new java.awt.Color(255, 255, 255));
+        rdoNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        rdoNome.setText("Nome");
+        rdoNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoNomeMouseClicked(evt);
+            }
+        });
+        rdoNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoNomeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rdoNome);
+
+        rdoCPF.setBackground(new java.awt.Color(255, 255, 255));
+        rdoCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        rdoCPF.setText("CPF");
+        rdoCPF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdoCPFMouseClicked(evt);
+            }
+        });
+        jPanel1.add(rdoCPF);
+
+        pnlClientes2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 310, 60));
+
+        pnlFundo.add(pnlClientes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 350, 230));
 
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 720));
 
@@ -791,10 +805,13 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JPanel btnLimpar;
     private javax.swing.JPanel btnPesquisar;
     private javax.swing.JPanel btnPesquisar2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
@@ -815,7 +832,7 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JLabel lblPesquisar1;
     private javax.swing.JLabel lblPesquisar3;
     private javax.swing.JLabel lblPesquisarPor1;
-    private javax.swing.JLabel lblPesquisarPor3;
+    private javax.swing.JLabel lblPesquisarPor2;
     private javax.swing.JLabel lblProduto;
     private javax.swing.JLabel lblQtd;
     private javax.swing.JLabel lblQtdEstoque;
