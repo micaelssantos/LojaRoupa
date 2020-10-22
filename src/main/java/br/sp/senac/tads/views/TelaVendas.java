@@ -61,15 +61,15 @@ public class TelaVendas extends javax.swing.JFrame {
         lblPesquisar1 = new javax.swing.JLabel();
         pnlClientes2 = new javax.swing.JPanel();
         lblNomeCli2 = new javax.swing.JLabel();
-        txtCliente3 = new javax.swing.JTextField();
+        txtCliente = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         btnConfirmar1 = new javax.swing.JPanel();
         lblConfirmar2 = new javax.swing.JLabel();
-        rdoNome1 = new javax.swing.JRadioButton();
+        rdoNome = new javax.swing.JRadioButton();
         lblPesquisarPor1 = new javax.swing.JLabel();
-        rdoCPF1 = new javax.swing.JRadioButton();
+        rdoCPF = new javax.swing.JRadioButton();
         jSeparator9 = new javax.swing.JSeparator();
-        txtCPF1 = new javax.swing.JFormattedTextField();
+        txtCPF = new javax.swing.JFormattedTextField();
         lblCPF2 = new javax.swing.JLabel();
         btnPesquisar2 = new javax.swing.JPanel();
         lblPesquisar3 = new javax.swing.JLabel();
@@ -417,15 +417,15 @@ public class TelaVendas extends javax.swing.JFrame {
         lblNomeCli2.setText("Nome do cliente");
         pnlClientes2.add(lblNomeCli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        txtCliente3.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        txtCliente3.setForeground(new java.awt.Color(40, 40, 40));
-        txtCliente3.setBorder(null);
-        txtCliente3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCliente.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        txtCliente.setForeground(new java.awt.Color(40, 40, 40));
+        txtCliente.setBorder(null);
+        txtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCliente3KeyTyped(evt);
+                txtClienteKeyTyped(evt);
             }
         });
-        pnlClientes2.add(txtCliente3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 310, -1));
+        pnlClientes2.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 310, -1));
         pnlClientes2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 310, 10));
 
         btnConfirmar1.setBackground(new java.awt.Color(0, 85, 166));
@@ -451,46 +451,46 @@ public class TelaVendas extends javax.swing.JFrame {
 
         pnlClientes2.add(btnConfirmar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 90, 40));
 
-        rdoNome1.setBackground(new java.awt.Color(255, 255, 255));
-        rdoNome1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        rdoNome1.setText("Nome");
-        rdoNome1.addMouseListener(new java.awt.event.MouseAdapter() {
+        rdoNome.setBackground(new java.awt.Color(255, 255, 255));
+        rdoNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        rdoNome.setText("Nome");
+        rdoNome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rdoNome1MouseClicked(evt);
+                rdoNomeMouseClicked(evt);
             }
         });
-        rdoNome1.addActionListener(new java.awt.event.ActionListener() {
+        rdoNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNome1ActionPerformed(evt);
+                rdoNomeActionPerformed(evt);
             }
         });
-        pnlClientes2.add(rdoNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+        pnlClientes2.add(rdoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
         lblPesquisarPor1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblPesquisarPor1.setForeground(new java.awt.Color(40, 40, 40));
         lblPesquisarPor1.setText("Pesquisar por:");
         pnlClientes2.add(lblPesquisarPor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        rdoCPF1.setBackground(new java.awt.Color(255, 255, 255));
-        rdoCPF1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        rdoCPF1.setText("CPF");
-        rdoCPF1.addMouseListener(new java.awt.event.MouseAdapter() {
+        rdoCPF.setBackground(new java.awt.Color(255, 255, 255));
+        rdoCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        rdoCPF.setText("CPF");
+        rdoCPF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rdoCPF1MouseClicked(evt);
+                rdoCPFMouseClicked(evt);
             }
         });
-        pnlClientes2.add(rdoCPF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+        pnlClientes2.add(rdoCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
         pnlClientes2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 190, 10));
 
-        txtCPF1.setBorder(null);
-        txtCPF1.setForeground(new java.awt.Color(40, 40, 40));
+        txtCPF.setBorder(null);
+        txtCPF.setForeground(new java.awt.Color(40, 40, 40));
         try {
-            txtCPF1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCPF1.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        pnlClientes2.add(txtCPF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 190, -1));
+        txtCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        pnlClientes2.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 190, -1));
 
         lblCPF2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblCPF2.setForeground(new java.awt.Color(40, 40, 40));
@@ -639,9 +639,9 @@ public class TelaVendas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
-    private void txtCliente3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCliente3KeyTyped
+    private void txtClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCliente3KeyTyped
+    }//GEN-LAST:event_txtClienteKeyTyped
 
     private void btnConfirmar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmar1MouseClicked
         // TODO add your handling code here:
@@ -655,17 +655,17 @@ public class TelaVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmar1MouseExited
 
-    private void rdoNome1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNome1MouseClicked
+    private void rdoNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNomeMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_rdoNome1MouseClicked
+    }//GEN-LAST:event_rdoNomeMouseClicked
 
-    private void rdoNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNome1ActionPerformed
+    private void rdoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rdoNome1ActionPerformed
+    }//GEN-LAST:event_rdoNomeActionPerformed
 
-    private void rdoCPF1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoCPF1MouseClicked
+    private void rdoCPFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoCPFMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_rdoCPF1MouseClicked
+    }//GEN-LAST:event_rdoCPFMouseClicked
 
     private void btnPesquisar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisar2MouseClicked
         // TODO add your handling code here:
@@ -825,14 +825,14 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JPanel pnlItens;
     private javax.swing.JPanel pnlProdutos;
-    private javax.swing.JRadioButton rdoCPF1;
+    private javax.swing.JRadioButton rdoCPF;
     private javax.swing.JRadioButton rdoCodProd1;
-    private javax.swing.JRadioButton rdoNome1;
+    private javax.swing.JRadioButton rdoNome;
     private javax.swing.JRadioButton rdoNome3;
     private javax.swing.JTable tblItens;
-    private javax.swing.JFormattedTextField txtCPF1;
+    private javax.swing.JFormattedTextField txtCPF;
+    private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtCliente1;
-    private javax.swing.JTextField txtCliente3;
     private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtQtd;
     private javax.swing.JTextField txtQtdEstoque;
