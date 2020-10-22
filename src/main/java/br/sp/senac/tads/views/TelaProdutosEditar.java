@@ -234,6 +234,11 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         txtQuantidade.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtQuantidade.setForeground(new java.awt.Color(40, 40, 40));
         txtQuantidade.setBorder(null);
+        txtQuantidade.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtQuantidadeFocusLost(evt);
+            }
+        });
         txtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtQuantidadeKeyTyped(evt);
@@ -264,6 +269,11 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         txtValor.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtValor.setForeground(new java.awt.Color(40, 40, 40));
         txtValor.setBorder(null);
+        txtValor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtValorFocusLost(evt);
+            }
+        });
         txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtValorKeyTyped(evt);
@@ -407,19 +417,21 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
 
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
        
-        try {
-            if (!this.txtQuantidade.getText().equalsIgnoreCase("")) {
-                Integer.parseInt(txtQuantidade.getText()); //efetua a conversão para inteiro
+        //////////////////////////////////////////////// VALIDAÇÃO QUANTIDADE
+        if (txtQuantidade.getText().length() < 5) {
+            
+            String caracteres="0987654321";
+            
+            if(!caracteres.contains(evt.getKeyChar()+"")){
+                evt.consume();
                 
-        }
+            }
             
-        //caso não consiga, exibe mensagem de erro de conversão 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Quantidade", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+        } else {
+            //caso seja maior, estoura o limite de caracteres
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Limite de caractere em 5", "Erro", JOptionPane.ERROR_MESSAGE);
             txtQuantidade.setText("");
-            
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             
         }
         
@@ -427,20 +439,23 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQuantidadeKeyTyped
 
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
-        try {
-            if (!this.txtValor.getText().equalsIgnoreCase("")) {
-                Double.parseDouble(txtValor.getText()); //efetua a conversão para double
+        
+        ///////////////////////////////////////////////// VALIDAÇÃO VALOR
+        if (txtValor.getText().length() < 7) {
+            
+            String caracteres="0987654321,";
+            
+            if(!caracteres.contains(evt.getKeyChar()+"")){
+                evt.consume();
                 
             }
             
-        //caso não consiga, exibe mensagem de erro de conversão 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Valor", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+        } else {
+            //caso seja maior, estoura o limite de caracteres
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Limite de caractere em 7", "Erro", JOptionPane.ERROR_MESSAGE);
             txtValor.setText("");
-
-        } catch (HeadlessException e) { 
-            JOptionPane.showMessageDialog(null, e.getMessage());
-           
+            
         }
         
     }//GEN-LAST:event_txtValorKeyTyped
@@ -458,6 +473,49 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(1);
     }//GEN-LAST:event_lblMinimizarMouseClicked
+
+    private void txtQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQuantidadeFocusLost
+        
+        //validação do campo Quantidade do cadastro de produto
+        try {
+            if (!this.txtQuantidade.getText().equalsIgnoreCase("")) {
+                Integer.parseInt(txtQuantidade.getText()); //efetua a conversão para inteiro
+                
+            }
+        
+        //caso não consiga, exibe mensagem de erro de conversão 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Quantidade", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+            txtQuantidade.setText("");
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+    
+        }
+        
+
+    }//GEN-LAST:event_txtQuantidadeFocusLost
+
+    private void txtValorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFocusLost
+
+        //validação do campo Valor do cadastro de produto
+        try {
+            if (!this.txtValor.getText().equalsIgnoreCase("")) {
+                Double.parseDouble(txtValor.getText().replace(",", ".")); //efetua a conversão para double e converte a vírgula em ponto
+                
+            }
+        
+        //caso não consiga, exibe mensagem de erro de conversão 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Valor", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+            txtValor.setText("");
+        
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+    
+        }
+        
+    }//GEN-LAST:event_txtValorFocusLost
 
     //VALIDAÇÃO DE CAMPOS VAZIOS
     private boolean validaCamposVazios() {
