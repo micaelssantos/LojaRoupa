@@ -543,7 +543,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 itens.removeRow(linhaSelecionada);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um cliente!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um Item!", "Erro!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnExcluirItemMouseClicked
 
