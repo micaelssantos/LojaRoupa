@@ -110,7 +110,7 @@ public class TelaClientesEditar extends javax.swing.JFrame {
         lblCadastroCliente.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         lblCadastroCliente.setForeground(new java.awt.Color(255, 255, 255));
         lblCadastroCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCadastroCliente.setText("Cadastro de cliente");
+        lblCadastroCliente.setText("Edição de cliente");
         pnlBarraTitulo.add(lblCadastroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
 
         pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
@@ -488,15 +488,14 @@ public class TelaClientesEditar extends javax.swing.JFrame {
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
         // TODO add your handling code here:
         if (txtNumero.getText().length() < 5) {
-            if (txtNumero.getText().matches("^[a-zA-Z]")) {
+            String caracteres = "0987654321";
+            if (!caracteres.contains(evt.getKeyChar() + "")) {
                 evt.consume();
-                txtNumero.setText("");
-                JOptionPane.showMessageDialog(this, "Não é permitiddo letra no campo \"Nº\"",
-                        "Erro", JOptionPane.ERROR_MESSAGE);
             }
         } else {
+            //caso seja maior, estoura o limite de caracteres
             evt.consume();
-            JOptionPane.showMessageDialog(this, "Limite de até 5 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Limite de caractere em 5", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtNumeroKeyTyped
 

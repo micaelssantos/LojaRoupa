@@ -6,7 +6,6 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     public TelaRelatorios() {
         initComponents();
-        this.txtValorTotalPeriodo.setEditable(false);
     }
 
     /**
@@ -42,7 +41,6 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSintetico = new javax.swing.JTable();
         lblValorTotalPeriodo = new javax.swing.JLabel();
-        txtValorTotalPeriodo = new javax.swing.JTextField();
         lblAte = new javax.swing.JLabel();
         lblPeriodo = new javax.swing.JLabel();
         txtFormatadDtAte = new javax.swing.JFormattedTextField();
@@ -52,6 +50,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         btnPesquisar = new javax.swing.JPanel();
         lblPesquisar = new javax.swing.JLabel();
+        lblValorPeriodo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -256,12 +255,8 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
         lblValorTotalPeriodo.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         lblValorTotalPeriodo.setForeground(new java.awt.Color(40, 40, 40));
-        lblValorTotalPeriodo.setText("Valor total do período");
+        lblValorTotalPeriodo.setText("Valor total do período:");
         pnlFundo.add(lblValorTotalPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, -1, -1));
-
-        txtValorTotalPeriodo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        txtValorTotalPeriodo.setForeground(new java.awt.Color(40, 40, 40));
-        pnlFundo.add(txtValorTotalPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 490, 200, -1));
 
         lblAte.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblAte.setForeground(new java.awt.Color(40, 40, 40));
@@ -271,7 +266,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
         lblPeriodo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblPeriodo.setForeground(new java.awt.Color(40, 40, 40));
         lblPeriodo.setText("Período");
-        pnlFundo.add(lblPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 70, -1));
+        pnlFundo.add(lblPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 70, -1));
 
         txtFormatadDtAte.setBorder(null);
         txtFormatadDtAte.setForeground(new java.awt.Color(40, 40, 40));
@@ -322,6 +317,11 @@ public class TelaRelatorios extends javax.swing.JFrame {
         btnPesquisar.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlFundo.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 90, 40));
+
+        lblValorPeriodo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblValorPeriodo.setForeground(new java.awt.Color(40, 40, 40));
+        lblValorPeriodo.setText("R$ 0,00");
+        pnlFundo.add(lblValorPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, 130, 30));
 
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
@@ -488,6 +488,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JLabel lblRelatorioSintetico;
     private javax.swing.JLabel lblRelatorios;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblValorPeriodo;
     private javax.swing.JLabel lblValorTotalPeriodo;
     private javax.swing.JLabel lblVoltar;
     private javax.swing.JPanel pnlBarraLateral;
@@ -495,6 +496,5 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JTable tblSintetico;
     private javax.swing.JFormattedTextField txtFormatadDtAte;
     private javax.swing.JFormattedTextField txtFormatadDtDe;
-    private javax.swing.JTextField txtValorTotalPeriodo;
     // End of variables declaration//GEN-END:variables
 }

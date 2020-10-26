@@ -51,6 +51,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         lblPesquisar = new javax.swing.JLabel();
         txtPesquisar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -328,6 +329,10 @@ public class TelaProdutos extends javax.swing.JFrame {
         pnlFundo.add(txtPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 360, 20));
         pnlFundo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 360, 10));
 
+        jLabel1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel1.setText("Nome");
+        pnlFundo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         pack();
@@ -516,6 +521,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     private javax.swing.JPanel btnRelatorios;
     private javax.swing.JPanel btnRemover;
     private javax.swing.JPanel btnVoltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCadastrar;
     private javax.swing.JLabel lblClientes;

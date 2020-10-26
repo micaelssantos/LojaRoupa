@@ -64,6 +64,11 @@ public class TelaMenu extends javax.swing.JFrame {
         lblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
         lblMinimizar.setText("_");
         lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizarMouseClicked(evt);
+            }
+        });
         pnlBarraTitulo.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
 
         lblIconeUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -300,6 +305,10 @@ public class TelaMenu extends javax.swing.JFrame {
         new TelaRelatorios().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRelatoriosMouseClicked
+
+    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
+        this.setState(1);
+    }//GEN-LAST:event_lblMinimizarMouseClicked
 
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
