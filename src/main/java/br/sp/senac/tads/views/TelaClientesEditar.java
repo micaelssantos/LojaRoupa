@@ -110,7 +110,7 @@ public class TelaClientesEditar extends javax.swing.JFrame {
         lblCadastroCliente.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         lblCadastroCliente.setForeground(new java.awt.Color(255, 255, 255));
         lblCadastroCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCadastroCliente.setText("Cadastro de cliente");
+        lblCadastroCliente.setText("Edição de cliente");
         pnlBarraTitulo.add(lblCadastroCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
 
         pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
