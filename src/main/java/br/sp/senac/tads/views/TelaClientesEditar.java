@@ -434,6 +434,7 @@ public class TelaClientesEditar extends javax.swing.JFrame {
         if (campoObrigatorio()) {
             JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
             limparCampos();
+            new TelaClientes().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
