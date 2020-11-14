@@ -1,14 +1,25 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.controller.ProdutoController;
+import br.sp.senac.tads.model.Produto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaProdutos extends javax.swing.JFrame {
-
+    
+    //INSTANCIAÇÃO DAS CLASSES PRODUTO
+    Produto produtoBean = new Produto();
+    ProdutoController produto = new ProdutoController();
+    
     public TelaProdutos() {
         initComponents();
+        listarTabelaProduto();
+        
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,17 +210,14 @@ public class TelaProdutos extends javax.swing.JFrame {
         tblProdutos.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Nome", "Categoria", "Modelo", "Quantidade", "Valor"
+                "ID", "Nome", "Categoria", "Marca", "Quantidade", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -222,9 +230,12 @@ public class TelaProdutos extends javax.swing.JFrame {
         sclProdutos.setViewportView(tblProdutos);
         if (tblProdutos.getColumnModel().getColumnCount() > 0) {
             tblProdutos.getColumnModel().getColumn(0).setResizable(false);
+            tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
             tblProdutos.getColumnModel().getColumn(1).setResizable(false);
             tblProdutos.getColumnModel().getColumn(2).setResizable(false);
+            tblProdutos.getColumnModel().getColumn(3).setResizable(false);
             tblProdutos.getColumnModel().getColumn(4).setResizable(false);
+            tblProdutos.getColumnModel().getColumn(5).setResizable(false);
         }
 
         pnlFundo.add(sclProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 540, 290));
@@ -410,14 +421,29 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverMouseExited
 
     private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
+
         int linhaSelecionada = tblProdutos.getSelectedRow();
+        
         if (linhaSelecionada >= 0) {
+        
             int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o item selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
+            
             if (result == JOptionPane.YES_OPTION) {
-                DefaultTableModel produtos = new DefaultTableModel();
-                produtos = (DefaultTableModel) tblProdutos.getModel();
-                produtos.removeRow(linhaSelecionada);
+                
+                int codProduto = Integer.parseInt(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 0).toString());
+                       
+                produtoBean.setId(codProduto);
+                
+                System.out.println(codProduto);
+                
+                produto.removerController(produtoBean);
+                
+                DefaultTableModel tmProdutos = new DefaultTableModel();
+                tmProdutos = (DefaultTableModel) tblProdutos.getModel();
+                tmProdutos.removeRow(linhaSelecionada);
+                
             }
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um item!", "Erro!", JOptionPane.WARNING_MESSAGE);
         }
@@ -425,12 +451,22 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         int linhaSelecionada = tblProdutos.getSelectedRow();
+        
         if (linhaSelecionada >= 0) {
-            //ACESSA A TELA DE EDIÇÃO DE PRODUTO
-            new TelaProdutosEditar().setVisible(true);
+            
+            int codProduto = Integer.parseInt(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 0).toString());
+                       
+            produtoBean.setId(codProduto);
+            
+            //ACESSAR A TELA DE EDIÇÃO DE PRODUTO
+            TelaProdutosEditar telaEditar = new TelaProdutosEditar();
+            telaEditar.setVisible(true);
+            telaEditar.preencheCampos(produtoBean);
             this.dispose();
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um item", "Erro!", JOptionPane.WARNING_MESSAGE);
+            
         }
     }//GEN-LAST:event_btnEditarMouseClicked
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
@@ -462,11 +498,52 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRelatoriosMouseClicked
 
     private void lblPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPesquisarMouseClicked
+        
         if (this.txtPesquisar.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Insira o Nome do Produto!", "Erro", JOptionPane.ERROR_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_lblPesquisarMouseClicked
 
+    public void listarTabelaProduto() {
+            
+            ArrayList<ProdutoController> listaProduto = produto.listarTabelaController();
+            
+            //Adiciono as linhas na tabela
+            if(listaProduto.size() > 0){
+        
+                DefaultTableModel tmProduto = new DefaultTableModel();
+                
+                tmProduto.addColumn("ID");
+                tmProduto.addColumn("Nome");
+                tmProduto.addColumn("Categoria");
+                tmProduto.addColumn("Marca");
+                tmProduto.addColumn("Quantidade");
+                tmProduto.addColumn("Valor");
+                tblProdutos.setModel(tmProduto);
+                               
+                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
+                tmProduto.setRowCount(0);
+               
+                int i = 0;
+                
+                for(Object obj: this.produto.listarTabelaController()){
+                    Produto produto = (Produto) obj;
+                    tmProduto.addRow(new String[1]);
+                    tblProdutos.setValueAt(produto.getId(), i, 0);
+                    tblProdutos.setValueAt(produto.getNome(), i, 1);
+                    tblProdutos.setValueAt(produto.getCategoria(), i, 2);
+                    tblProdutos.setValueAt(produto.getMarca(), i, 3);
+                    tblProdutos.setValueAt(produto.getQuantidade(), i, 4);
+                    tblProdutos.setValueAt(produto.getValorUnitario(), i, 5);
+                    i++;
+                    
+                }
+                                
+            }
+    }
+    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
