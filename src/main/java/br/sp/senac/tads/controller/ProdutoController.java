@@ -46,6 +46,15 @@ public class ProdutoController {
         
     }
     
+    public ArrayList pesquisarController(Produto prodBean) {
+        
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+        
+        listaProduto = produto.pesquisarProduto(prodBean);
+        
+        return listaProduto;
+        
+    }
     
     
 }

@@ -433,9 +433,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 int codProduto = Integer.parseInt(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 0).toString());
                        
                 produtoBean.setId(codProduto);
-                
-                System.out.println(codProduto);
-                
+               
                 produto.removerController(produtoBean);
                 
                 DefaultTableModel tmProdutos = new DefaultTableModel();
@@ -476,6 +474,48 @@ public class TelaProdutos extends javax.swing.JFrame {
             //caso tenha sido número, retorna que não é permitido número no campo
             JOptionPane.showMessageDialog(this, "Não é permitido números neste campo", "Erro", JOptionPane.ERROR_MESSAGE);
             txtPesquisar.setText("");
+        } else {
+            
+            produtoBean.setNome(txtPesquisar.getText());
+
+            ArrayList<ProdutoController> lista = produto.pesquisarController(produtoBean);
+
+            //Adiciono as linhas na tabela
+            if (lista.size() > 0) {
+
+                DefaultTableModel tmProduto = new DefaultTableModel();
+
+                tmProduto.addColumn("ID");
+                tmProduto.addColumn("Nome");
+                tmProduto.addColumn("Categoria");
+                tmProduto.addColumn("Marca");
+                tmProduto.addColumn("Quantidade");
+                tmProduto.addColumn("Valor");
+                tblProdutos.setModel(tmProduto);
+
+                tblProdutos.setModel(tmProduto);
+
+                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
+                tmProduto.setRowCount(0);
+
+                int i = 0;
+
+                for (Object obj : lista) {
+                    Produto bean = (Produto) obj;
+                    tmProduto.addRow(new String[1]);
+                    tblProdutos.setValueAt(bean.getId(), i, 0);
+                    tblProdutos.setValueAt(bean.getNome(), i, 1);
+                    tblProdutos.setValueAt(bean.getCategoria(), i, 2);
+                    tblProdutos.setValueAt(bean.getMarca(), i, 3);
+                    tblProdutos.setValueAt(bean.getQuantidade(), i, 4);
+                    tblProdutos.setValueAt(bean.getValorUnitario(), i, 5);
+
+                    i++;
+
+                }
+
+        }
+            
         }
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
@@ -529,14 +569,14 @@ public class TelaProdutos extends javax.swing.JFrame {
                 int i = 0;
                 
                 for(Object obj: this.produto.listarTabelaController()){
-                    Produto produto = (Produto) obj;
+                    Produto bean = (Produto) obj;
                     tmProduto.addRow(new String[1]);
-                    tblProdutos.setValueAt(produto.getId(), i, 0);
-                    tblProdutos.setValueAt(produto.getNome(), i, 1);
-                    tblProdutos.setValueAt(produto.getCategoria(), i, 2);
-                    tblProdutos.setValueAt(produto.getMarca(), i, 3);
-                    tblProdutos.setValueAt(produto.getQuantidade(), i, 4);
-                    tblProdutos.setValueAt(produto.getValorUnitario(), i, 5);
+                    tblProdutos.setValueAt(bean.getId(), i, 0);
+                    tblProdutos.setValueAt(bean.getNome(), i, 1);
+                    tblProdutos.setValueAt(bean.getCategoria(), i, 2);
+                    tblProdutos.setValueAt(bean.getMarca(), i, 3);
+                    tblProdutos.setValueAt(bean.getQuantidade(), i, 4);
+                    tblProdutos.setValueAt(bean.getValorUnitario(), i, 5);
                     i++;
                     
                 }

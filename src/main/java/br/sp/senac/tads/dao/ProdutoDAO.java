@@ -3,6 +3,7 @@ package br.sp.senac.tads.dao;
 import br.sp.senac.tads.model.Produto;
 import br.sp.senac.tads.util.GerenciadorConexao;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -265,6 +266,69 @@ public class ProdutoDAO {
         
     }
     
+    public ArrayList<Produto> pesquisarProduto(Produto prodBean) {
+        
+        ResultSet rs = null;
+        PreparedStatement instrucaoSQL = null;
+        
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>(); 
+        
+        try {
+            
+            
+            Class.forName(DRIVER);
+            
+            conexao = GerenciadorConexao.abrirConexao();
+            
+            instrucaoSQL = conexao.prepareStatement("select ID_PRODUTO, NOME_PRODUTO, CATEGORIA, MARCA, MODELO, DESCRICAO, QUANTIDADE, VALOR from PRODUTO where NOME_PRODUTO like ?");
+            
+            instrucaoSQL.setString(1, prodBean.getNome() + "%");
+                       
+            rs = instrucaoSQL.executeQuery();
+            
+            while (rs.next()) {
+                               
+                Produto prod = new Produto();
+                prod.setId(rs.getInt("ID_PRODUTO"));
+                prod.setNome(rs.getString("NOME_PRODUTO"));
+                prod.setCategoria(rs.getString("CATEGORIA"));
+                prod.setMarca(rs.getString("MARCA"));
+                prod.setModelo(rs.getString("MODELO"));
+                prod.setDescricao(rs.getString("DESCRICAO"));
+                prod.setQuantidade(rs.getInt("QUANTIDADE"));
+                prod.setValorUnitario(rs.getDouble("VALOR"));
+                
+                listaProduto.add(prod);
+                
+            }
+            
+            return listaProduto;
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Falha na consulta!");
+            
+            return null;
+                        
+        } finally {
+        
+            try {
+                if(rs!=null)
+                    rs.close();
+                
+                if(instrucaoSQL!=null)
+                    instrucaoSQL.close();
+                
+                //Fecho a minha conexão
+                conexao.close();
+            }
+            catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao fechar a conexão!");
+            }
+        
+        }
+        
+    }
     
 }
 
