@@ -17,9 +17,7 @@ public class ItemVendaController
         model.setQtd(qtd);
         model.setNomeProduto(nome_produto);
         
-   
-
-        return ItemVenda.Inserir(model);
+        return  ItemVendaDAO.Inserir(model);
     }
 
     public static boolean Consultar(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
@@ -34,7 +32,7 @@ public class ItemVendaController
         
    
 
-        return ItemVenda.Consultar(model);
+        return  ItemVendaDAO.Consultar(model);
     }
     public static boolean Alterar(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
         
@@ -47,7 +45,7 @@ public class ItemVendaController
         model.setNomeProduto(nome_produto);
         
    
-        return ItemVenda.Alterar(model);
+        return  ItemVendaDAO.Alterar(model);
     }
 
     public static boolean Remover(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
@@ -61,7 +59,7 @@ public class ItemVendaController
         model.setNomeProduto(nome_produto);
         
    
-        return ItemVenda.(model);
+        return  ItemVendaDAO.Remover(model);
     }
     
     
