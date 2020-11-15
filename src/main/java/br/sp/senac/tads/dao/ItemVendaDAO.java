@@ -1,11 +1,13 @@
 package br.sp.senac.tads.dao;
 
+import static br.sp.senac.tads.dao.VendaDAO.abrirConexao;
 import br.sp.senac.tads.model.ItemVenda;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -47,11 +49,14 @@ public class ItemVendaDAO {
         return CONEXAO;
     }
      
-     
-     
-    public void Inserir(br.sp.senac.tads.model.ItemVenda itemModel)
+         
+    public static boolean Inserir(br.sp.senac.tads.model.ItemVenda itemModel)
     {
-        try 
+         boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+      try 
       {
             abrirConexao();
             
@@ -64,10 +69,18 @@ public class ItemVendaDAO {
             
             int linhaAfetadas = instrucaoSQL.executeUpdate();
 
-             if(linhaAfetadas>0)
-            {
-               JOptionPane.showMessageDialog(null,"Informações cadastradas com sucesso!");
-            }           
+             if (linhaAfetadas > 0) {
+                retorno = true;
+
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do cliente
+                if (generatedKeys.next()) {
+                    itemModel.setIdVenda(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Falha ao obter o ID da Venda.");
+                }
+            } else {
+                retorno = false;
+            }      
        }   
       catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao carregar o driver!");
@@ -75,6 +88,132 @@ public class ItemVendaDAO {
                 JOptionPane.showMessageDialog(null, "Erro ao abrir a conexão!");
             }
     
+      return retorno;
     }
 
+      
+    public static boolean Consultar(br.sp.senac.tads.model.ItemVenda itemModel)
+    {
+         boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+      try 
+      {
+            abrirConexao();
+            
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM ITEM_VENDA (ID_PRODUTO, ID_VENDA, NOME_PRODUTO, QUANTIDADE, VALOR_ITEM) VALUES(?, ?, ?, ?, ?)");
+            instrucaoSQL.setInt(1,itemModel.getIdProduto());
+            instrucaoSQL.setInt(2,itemModel.getIdVenda());
+            instrucaoSQL.setString(3,itemModel.getNomeProduto());
+            instrucaoSQL.setInt(4,itemModel.getQtd());
+            instrucaoSQL.setFloat(5,itemModel.getVlUnit());
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do cliente
+                if (generatedKeys.next()) {
+                    itemModel.setIdVenda(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Falha ao obter o ID da Venda.");
+                }
+            } else {
+                retorno = false;
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+        return retorno;
+    }
+    
+    
+    
+    public static boolean Alterar(br.sp.senac.tads.model.ItemVenda itemModel)
+    {
+         boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+      try 
+      {
+            abrirConexao();
+            
+            instrucaoSQL = CONEXAO.prepareStatement("ALTER TABLE ITEM_VENDA (ID_PRODUTO, ID_VENDA, NOME_PRODUTO, QUANTIDADE, VALOR_ITEM) VALUES(?, ?, ?, ?, ?)");
+            instrucaoSQL.setInt(1,itemModel.getIdProduto());
+            instrucaoSQL.setInt(2,itemModel.getIdVenda());
+            instrucaoSQL.setString(3,itemModel.getNomeProduto());
+            instrucaoSQL.setInt(4,itemModel.getQtd());
+            instrucaoSQL.setFloat(5,itemModel.getVlUnit());
+
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do cliente
+                if (generatedKeys.next()) {
+                    itemModel.setIdVenda(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Falha ao alterar a Venda.");
+                }
+            } else {
+                retorno = false;
+            }
+
+        } catch (ClassNotFoundException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar o driver!");
+       } catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao abrir a conexão!");
+       }
+    
+        return retorno;
+     }
+     
+     
+       public static boolean Remover(br.sp.senac.tads.model.ItemVenda itemModel)
+    {
+         boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+      try 
+      {
+            abrirConexao();
+            
+            instrucaoSQL = CONEXAO.prepareStatement("DROP TABLE ITEM_VENDA (ID_PRODUTO, ID_VENDA, NOME_PRODUTO, QUANTIDADE, VALOR_ITEM) VALUES(?, ?, ?, ?, ?)");
+            instrucaoSQL.setInt(1,itemModel.getIdProduto());
+            instrucaoSQL.setInt(2,itemModel.getIdVenda());
+            instrucaoSQL.setString(3,itemModel.getNomeProduto());
+            instrucaoSQL.setInt(4,itemModel.getQtd());
+            instrucaoSQL.setFloat(5,itemModel.getVlUnit());
+
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); 
+                if (generatedKeys.next()) {
+                    itemModel.setIdVenda(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Falha ao excluir a Venda.");
+                }
+            } else {
+                retorno = false;
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+        return retorno;
+    }
+     
 }

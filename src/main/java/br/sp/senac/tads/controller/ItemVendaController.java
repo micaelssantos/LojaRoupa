@@ -1,61 +1,67 @@
 package br.sp.senac.tads.controller;
 
-import br.sp.senac.tads.dao.VendaDAO;
-import br.sp.senac.tads.model.Venda;
+import br.sp.senac.tads.dao.ItemVendaDAO;
+import br.sp.senac.tads.model.ItemVenda;
 import java.sql.Date;
 
 public class ItemVendaController 
 {
     
-    public static boolean Adicionar(float valorVenda, int idcliente, String nomeCliente, Date data) {
+    public static boolean Adicionar(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
         
-        Venda model = new Venda();
+        ItemVenda model = new ItemVenda();
         
-        model.setNomeCliente(nomeCliente);
-        model.setIdCliente(idcliente);
-        model.setData(data);
-        model.setValorvenda(valorVenda);
+        model.setIdVenda(idVenda);
+        model.setIdProduto(idProduto);
+        model.setVlUnit(valorItem);
+        model.setQtd(qtd);
+        model.setNomeProduto(nome_produto);
+        
    
 
-        return VendaDAO.Inserir(model);
+        return ItemVenda.Inserir(model);
     }
 
-    public static boolean Consultar(float valorVenda, int idcliente, String nomeCliente, Date data) {
+    public static boolean Consultar(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
         
-        Venda model = new Venda();
+        ItemVenda model = new ItemVenda();
         
-        model.setNomeCliente(nomeCliente);
-        model.setIdCliente(idcliente);
-        model.setData(data);
-        model.setValorvenda(valorVenda);
+        model.setIdVenda(idVenda);
+        model.setIdProduto(idProduto);
+        model.setVlUnit(valorItem);
+        model.setQtd(qtd);
+        model.setNomeProduto(nome_produto);
+        
    
 
-        return VendaDAO.Consultar(model);
+        return ItemVenda.Consultar(model);
     }
-     public static boolean Alterar(float valorVenda, int idcliente, String nomeCliente, Date data) {
+    public static boolean Alterar(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
         
-        Venda model = new Venda();
+        ItemVenda model = new ItemVenda();
         
-        model.setNomeCliente(nomeCliente);
-        model.setIdCliente(idcliente);
-        model.setData(data);
-        model.setValorvenda(valorVenda);
+        model.setIdVenda(idVenda);
+        model.setIdProduto(idProduto);
+        model.setVlUnit(valorItem);
+        model.setQtd(qtd);
+        model.setNomeProduto(nome_produto);
+        
    
-
-        return VendaDAO.Alterar(model);
+        return ItemVenda.Alterar(model);
     }
 
-   public static boolean Remover(float valorVenda, int idcliente, String nomeCliente, Date data) {
+    public static boolean Remover(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
         
-        Venda model = new Venda();
+        ItemVenda model = new ItemVenda();
         
-        model.setNomeCliente(nomeCliente);
-        model.setIdCliente(idcliente);
-        model.setData(data);
-        model.setValorvenda(valorVenda);
+        model.setIdVenda(idVenda);
+        model.setIdProduto(idProduto);
+        model.setVlUnit(valorItem);
+        model.setQtd(qtd);
+        model.setNomeProduto(nome_produto);
+        
    
-
-        return VendaDAO.Remover(model);
+        return ItemVenda.(model);
     }
     
     
