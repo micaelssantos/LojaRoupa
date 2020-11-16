@@ -1,11 +1,16 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.controller.ProdutoController;
+import br.sp.senac.tads.model.Produto;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class TelaProdutosCadastro extends javax.swing.JFrame {
-
+    
+    ProdutoController produto = new ProdutoController();
+    Produto prodBean = new Produto();
+    
     public TelaProdutosCadastro() {
         initComponents();
     }
@@ -317,11 +322,22 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
 
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
         if (validaCamposVazios()) {
-            JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
+                       
+            prodBean.setNome(txtNome.getText());
+            prodBean.setCategoria(txtCategoria.getText());
+            prodBean.setMarca(txtMarca.getText());
+            prodBean.setModelo(txtModelo.getText());
+            prodBean.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+            prodBean.setDescricao(txtDescricao.getText());
+                       
+            produto.cadastrarController(prodBean);
+            
             limpaCampos();
+            
             //VOLTAR PARA A TELA PRODUTOS
             new TelaProdutos().setVisible(true);
             this.dispose();
+            
         }
     }//GEN-LAST:event_btnConcluirMouseClicked
 
@@ -477,8 +493,8 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         //validação do campo Valor do cadastro de produto
         try {
             if (!this.txtValor.getText().equalsIgnoreCase("")) {
-                Double.parseDouble(txtValor.getText().replace(",", ".")); //efetua a conversão para double e converte a vírgula em ponto
-                
+                String valor = formataValor(txtValor.getText());
+                prodBean.setValorUnitario(Double.parseDouble(valor)); //efetua a conversão para double e converte a vírgula em ponto
             }
         
         //caso não consiga, exibe mensagem de erro de conversão 
@@ -490,8 +506,7 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
     
         }
-
-        
+               
     }//GEN-LAST:event_txtValorFocusLost
 
     private void txtQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQuantidadeFocusLost
@@ -514,7 +529,15 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtQuantidadeFocusLost
-
+    
+    //FORMATAÇÃO DO CAMPO VALOR
+    public String formataValor(String valor) {
+        
+        valor = valor.replaceAll(",", ".");
+                
+        return valor;
+    }
+    
     //VALIDAÇÃO DE CAMPOS VAZIOS
     private boolean validaCamposVazios() {
         if (this.txtNome.getText().equals("")) {
