@@ -59,4 +59,45 @@ public class VendaController
 
         return VendaDAO.Remover(model);
     }
+   
+    public static String ConsultarClientePorNome(String nome) 
+    {
+        String result = "";
+        
+        result = VendaDAO.ConsultarClientePorNome(nome);
+        
+        return result;
+        
+    }
+    
+     public static String ConsultarClientePorCPF(String cpf) 
+    {
+        String result = "";
+        
+        result = VendaDAO.ConsultarClientePorCPF(cpf);
+        
+        return result;
+        
+    }
+     
+     public static String ConsultarProdutoPorNome(String nome) 
+    {
+        String result = "";
+        
+        result = VendaDAO.ConsultarProdutoPorNome(nome);
+        
+        return result;
+        
+    }
+     
+    public static String ConsultarProdutoPorCodigo(String cod) 
+    {
+        String result = "";
+        
+        result = VendaDAO.ConsultarProdutoPorCodigo(cod);
+        
+        return result;
+        
+    }
 }
+
