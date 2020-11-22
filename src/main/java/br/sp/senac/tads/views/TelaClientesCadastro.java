@@ -3,14 +3,11 @@ package br.sp.senac.tads.views;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
 public class TelaClientesCadastro extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form TelaBase
      */
-
-    
     public TelaClientesCadastro() {
         initComponents();
         desativar();
@@ -449,7 +446,7 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA A TELA CLIENTES
         new TelaClientes().setVisible(true);
-        this.dispose();  
+        this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
@@ -461,15 +458,15 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-           //Valida se os campos obrigatórios estão preenchidos
+        //Valida se os campos obrigatórios estão preenchidos
         if (campoObrigatorio()) {
-            JOptionPane.showMessageDialog(this, 
+            JOptionPane.showMessageDialog(this,
                     "Cliente cadastrado com sucesso!", "Caixa de Texto", JOptionPane.WARNING_MESSAGE);
             limparCampos();
             desativar();
             this.btnNovoCli.setEnabled(true);
-        } else{
-        
+        } else {
+
         }
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
@@ -486,10 +483,10 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-    
+
         //VOLTAR PARA A TELA CLIENTES
         new TelaClientes().setVisible(true);
-        this.dispose();        
+        this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnNovoCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoCliMouseClicked
@@ -527,7 +524,7 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
     private void txtLogradouroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLogradouroKeyTyped
         // TODO add your handling code here:
         if (txtLogradouro.getText().length() < 30) {
-            
+
         } else {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -552,20 +549,16 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         this.setState(1);
     }//GEN-LAST:event_lblMinimizarMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
+    public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
     }
-    
+
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
+    public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
-    
+
     private void limparCampos() {
         txtEmail.setText("");
         txtLogradouro.setText("");
@@ -622,7 +615,7 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
         btnCadastrar.setEnabled(true);
         btnLimpar.setEnabled(true);
     }
-    
+
     private boolean campoObrigatorio() {
         if (this.txtNome.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Campo \"Nome\" é obrigatório!");
@@ -633,25 +626,28 @@ public class TelaClientesCadastro extends javax.swing.JFrame {
             return false;
         }
         if (this.txtFormatadDtNasc.getText().equals("  /  /    ")) {
-            JOptionPane.showMessageDialog(this, "Campo \"Data de Nascimento\" é obrigatório!" );
+            JOptionPane.showMessageDialog(this, "Campo \"Data de Nascimento\" é obrigatório!");
             return false;
         }
         if (this.rdoGrupoEstCivil.getSelection() == null) {
-            JOptionPane.showMessageDialog(this, "Campo \"Estado Civil\" é obrigatório!" );
+            JOptionPane.showMessageDialog(this, "Campo \"Estado Civil\" é obrigatório!");
             return false;
         }
         if (this.rdoGrupoSexo.getSelection() == null) {
-            JOptionPane.showMessageDialog(this, "Campo \"Sexo\" é obrigatório!" );
+            JOptionPane.showMessageDialog(this, "Campo \"Sexo\" é obrigatório!");
             return false;
         }
         if (this.txtEmail.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Campo \"E-mail\" é obrigatório!" );
+            JOptionPane.showMessageDialog(this, "Campo \"E-mail\" é obrigatório!");
             return false;
         }
-        
+
         return true;
     }
-    
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

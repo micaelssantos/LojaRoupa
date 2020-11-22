@@ -1,5 +1,7 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.controller.ClienteController;
+import br.sp.senac.tads.controller.VendaController;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -583,10 +585,22 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void btnPesquisarProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosMouseClicked
         if (ValidarPesquisaProduto()) {
-            JOptionPane.showMessageDialog(this, "Produto Localizado!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Produto Não Localizado!");
-        }
+            
+            String nome = txtNomeProduto.getText();
+            String COD = txtCodigoProduto.getText();
+            
+            String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
+            String respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
+            
+            if (respostaNome.equals(nome) || respostaCOD.equals(COD)) 
+            {
+                JOptionPane.showMessageDialog(this, "Produto Localizado!");
+            }
+            else 
+            {
+                JOptionPane.showMessageDialog(this, "Produto Não Localizado!");
+            }
+        } 
     }//GEN-LAST:event_btnPesquisarProdutosMouseClicked
 
     private void txtQtdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtdKeyTyped
@@ -659,6 +673,8 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
         if (ValidarCliente()) {
+            
+        
             JOptionPane.showMessageDialog(this, "Cliente Selecionado!");
         }
     }//GEN-LAST:event_btnConfirmarMouseClicked
@@ -688,10 +704,22 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_rdoCPFMouseClicked
 
     private void btnPesquisarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarClienteMouseClicked
-        if (ValidarCliente()) {
-            JOptionPane.showMessageDialog(this, "Cliente Localizado!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Cliente Não Localizado!");
+        if (ValidarCliente()) 
+        {
+            String nome = txtNomeCliente.getText();
+            String CPF = txtCPF.getText();
+            
+            String respostaNome = VendaController.ConsultarClientePorNome(nome);
+            String respostaCPF = VendaController.ConsultarClientePorCPF(CPF);
+            
+            if (respostaNome.equals(nome) || respostaCPF.equals(CPF)) 
+            {
+                JOptionPane.showMessageDialog(this, "Cliente Localizado!");
+            }
+            else 
+            {
+                JOptionPane.showMessageDialog(this, "Cliente Não Localizado!");
+            }
         }
     }//GEN-LAST:event_btnPesquisarClienteMouseClicked
 

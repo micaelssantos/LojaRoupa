@@ -602,9 +602,6 @@ public class TelaClientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rdoNomeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
@@ -667,6 +664,9 @@ public class TelaClientes extends javax.swing.JFrame {
         txtCPF.setText("");
     }
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

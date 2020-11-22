@@ -438,7 +438,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 
                 DefaultTableModel tmProdutos = new DefaultTableModel();
                 tmProdutos = (DefaultTableModel) tblProdutos.getModel();
-                tmProdutos.removeRow(linhaSelecionada);
+                listarTabelaProduto();
                 
             }
             
