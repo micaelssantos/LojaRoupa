@@ -50,5 +50,9 @@ public class Venda {
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
     }
+
+    public String getNome() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

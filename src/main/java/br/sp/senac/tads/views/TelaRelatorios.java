@@ -1,11 +1,23 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.controller.VendaController;
+import br.sp.senac.tads.model.Venda;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JPanel;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaRelatorios extends javax.swing.JFrame {
-
+    
+    //INSTANCIAÇÃO DAS CLASSES PRODUTO
+    Venda vendaBean =new Venda();
+    VendaController venda = new VendaController();
+    
     public TelaRelatorios() {
         initComponents();
+        vendaRelatorio();
     }
 
     /**
@@ -43,14 +55,12 @@ public class TelaRelatorios extends javax.swing.JFrame {
         lblValorTotalPeriodo = new javax.swing.JLabel();
         lblAte = new javax.swing.JLabel();
         lblPeriodo = new javax.swing.JLabel();
-        txtFormatadDtAte = new javax.swing.JFormattedTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         lblDe = new javax.swing.JLabel();
-        txtFormatadDtDe = new javax.swing.JFormattedTextField();
-        jSeparator3 = new javax.swing.JSeparator();
         btnPesquisar = new javax.swing.JPanel();
         lblPesquisar = new javax.swing.JLabel();
         lblValorPeriodo = new javax.swing.JLabel();
+        jdtAte = new com.toedter.calendar.JDateChooser();
+        jdtDE = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -261,39 +271,17 @@ public class TelaRelatorios extends javax.swing.JFrame {
         lblAte.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblAte.setForeground(new java.awt.Color(40, 40, 40));
         lblAte.setText("Até:");
-        pnlFundo.add(lblAte, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 40, -1));
+        pnlFundo.add(lblAte, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 40, -1));
 
         lblPeriodo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblPeriodo.setForeground(new java.awt.Color(40, 40, 40));
         lblPeriodo.setText("Período");
         pnlFundo.add(lblPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 70, -1));
 
-        txtFormatadDtAte.setBorder(null);
-        txtFormatadDtAte.setForeground(new java.awt.Color(40, 40, 40));
-        try {
-            txtFormatadDtAte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtFormatadDtAte.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        pnlFundo.add(txtFormatadDtAte, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 90, -1));
-        pnlFundo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 100, 10));
-
         lblDe.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblDe.setForeground(new java.awt.Color(40, 40, 40));
         lblDe.setText("De:");
         pnlFundo.add(lblDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 40, -1));
-
-        txtFormatadDtDe.setBorder(null);
-        txtFormatadDtDe.setForeground(new java.awt.Color(40, 40, 40));
-        try {
-            txtFormatadDtDe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtFormatadDtDe.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        pnlFundo.add(txtFormatadDtDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 90, -1));
-        pnlFundo.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 100, 10));
 
         btnPesquisar.setBackground(new java.awt.Color(0, 85, 166));
         btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -322,6 +310,8 @@ public class TelaRelatorios extends javax.swing.JFrame {
         lblValorPeriodo.setForeground(new java.awt.Color(40, 40, 40));
         lblValorPeriodo.setText("R$ 0,00");
         pnlFundo.add(lblValorPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, 130, 30));
+        pnlFundo.add(jdtAte, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 140, -1));
+        pnlFundo.add(jdtDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 140, -1));
 
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
@@ -406,7 +396,35 @@ public class TelaRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutosMouseClicked
 
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
-        // TODO add your handling code here:
+
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null; 
+        
+        //Armazeno as informaçoes da tabela (resultSet) em um ArrayList
+        ArrayList<VendaController> listaVenda = venda.listarVendaController(jdtDE.getDate(),jdtAte.getDate());
+      
+        DefaultTableModel tmVenda = new DefaultTableModel();
+                
+        tmVenda.addColumn("IdVenda");
+        tmVenda.addColumn("nomeCliente");
+        tmVenda.addColumn("valorvenda");
+        tmVenda.addColumn("data");
+        tblSintetico.setModel(tmVenda);
+        
+
+        //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
+        tmVenda.setRowCount(0);
+        for (VendaController c : listaVenda) {
+            tmVenda.addRow(new Object[]{c.getIdVenda(),c.getNome(),c.getValorvenda(),c.getData});
+        }
+        //Defino o tamanho para cada coluna
+        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
+        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(300);
+        tblSintetico.getColumnModel().getColumn(1).setPreferredWidth(100);
+
+
+
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
     private void btnPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseEntered
@@ -417,6 +435,42 @@ public class TelaRelatorios extends javax.swing.JFrame {
         resetColor(btnPesquisar);
     }//GEN-LAST:event_btnPesquisarMouseExited
 
+    
+    public void listarVendaRelatorioSintetico() {
+            
+            ArrayList<VendaController> listaVenda = venda.listarVendaController();
+            
+            //Adiciono as linhas na tabela
+            if(listaVenda.size() > 0){
+        
+                DefaultTableModel tmVenda = new DefaultTableModel();
+                
+                tmVenda.addColumn("IdVenda");
+                tmVenda.addColumn("nomeCliente");
+                tmVenda.addColumn("valorvenda");
+                tmVenda.addColumn("data");
+
+                               
+                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
+                tmVenda.setRowCount(0);
+               
+                int i = 0;
+                
+                for(Object obj: this.venda.listarVendaController()){
+                    Venda bean = (Venda) obj;
+                    tmVenda.addRow(new String[1]);
+                    tblSintetico.setValueAt(bean.getIdVenda(), i, 0);
+                    tblSintetico.setValueAt(bean.getNome(), i, 1);
+                    tblSintetico.setValueAt(bean.getValorvenda(), i, 2);
+                    tblSintetico.setValueAt(bean.getData(), i, 3);
+                    i++;
+                    
+                }
+                                
+            }
+    }
+    
+    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
@@ -469,8 +523,8 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JPanel btnRelatorios;
     private javax.swing.JPanel btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
+    private com.toedter.calendar.JDateChooser jdtAte;
+    private com.toedter.calendar.JDateChooser jdtDE;
     private javax.swing.JLabel lblAte;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblDe;
@@ -494,7 +548,9 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBarraLateral;
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JTable tblSintetico;
-    private javax.swing.JFormattedTextField txtFormatadDtAte;
-    private javax.swing.JFormattedTextField txtFormatadDtDe;
     // End of variables declaration//GEN-END:variables
+
+    private void vendaRelatorio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
