@@ -13,14 +13,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import  br.sp.senac.tads.model.Venda;
+import br.sp.senac.tads.util.GerenciadorConexao;
+import java.util.ArrayList;
 
 public class VendaDAO {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";                                                                 //Driver do MySQL a partir da versão 8.0
     private static final String LOGIN = "root";                                                                                     //Nome de Usuário do Bando de Dados
-    private static final String SENHA = "1234";                                                                                //Senha de Acesso ao Banco de Dados
+    private static final String SENHA = "";                                                                                //Senha de Acesso ao Banco de Dados
     private static final String URL = "jdbc:mysql://localhost:3306/loja_roupa?useTimezone=true&serverTimezone=UTC&useSSL=false";     //URL do banco de dados
-     private static Connection CONEXAO = null;
+    private static Connection CONEXAO = null;
+    Connection conexao;
     
     PreparedStatement instrucaoSQL;
     
@@ -358,6 +361,75 @@ public class VendaDAO {
 
         return CodProduto;
     }
+       
+    
+    //Relatório Sintético
+     public ArrayList<Venda> listarVendaRelatorioSintetico(Venda prodBean) {
+        
+        ResultSet rs = null;
+        PreparedStatement instrucaoSQL = null;
+        
+        ArrayList<Venda> listaVenda = new ArrayList<Venda>(); 
+        
+        try {
+            
+            
+            Class.forName(DRIVER);
+            
+            conexao = GerenciadorConexao.abrirConexao();
+            
+            instrucaoSQL = conexao.prepareStatement("select IdVenda, nomeCliente, valorvenda, data");
+            
+            instrucaoSQL.setString(1, prodBean.getNome() + "%");
+                       
+            rs = instrucaoSQL.executeQuery();
+            
+            while (rs.next()) {
+                               
+                Venda Vend = new Venda();
+                Vend.setIdVenda(rs.getInt("IdVenda"));
+                Vend.setNomeCliente(rs.getString("nomeCliente"));
+                Vend.setValorvenda((float) rs.getDouble("valorvenda"));
+                Vend.setData(rs.getDate("data"));
+                
+                listaVenda.add(Vend);
+                
+            }
+            
+            return listaVenda;
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Falha na consulta!");
+            
+            return null;
+                        
+        } finally {
+        
+            try {
+                if(rs!=null)
+                    rs.close();
+                
+                if(instrucaoSQL!=null)
+                    instrucaoSQL.close();
+                
+                //Fecho a minha conexão
+                conexao.close();
+            }
+            catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Falha ao fechar a conexão!");
+            }
+        
+        }
+        
+    }   
+
+    public ArrayList<Venda> vendaRelatorio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+       
+       
+       
      
        
          public static int ConsultarQuantidadePRPorNome(String nome) 

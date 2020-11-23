@@ -15,7 +15,7 @@ public class ItemVendaDAO {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";                                                                 //Driver do MySQL a partir da versão 8.0
     private static final String LOGIN = "root";                                                                                     //Nome de Usuário do Bando de Dados
-    private static final String SENHA = "1234";                                                                                //Senha de Acesso ao Banco de Dados
+    private static final String SENHA = "";                                                                                //Senha de Acesso ao Banco de Dados
     private static final String URL = "jdbc:mysql://localhost:3306/loja_roupa?useTimezone=true&serverTimezone=UTC&useSSL=false";     //URL do banco de dados
     private static Connection CONEXAO = null;
     

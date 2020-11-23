@@ -10,10 +10,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+//teste
 public class ClienteDAO {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";            //Driver do MySQL a partir da versão 8.0
-    private static final String LOGIN = "admin";                                           //Nome de Usuário do Bando de Dados
+    private static final String LOGIN = "root";                                           //Nome de Usuário do Bando de Dados
     private static final String SENHA = "";                                   //Senha de Acesso ao Banco de Dados
     private static final String URL = "jdbc:mysql://localhost:3306/loja_roupa?useTimezone=true&serverTimezone=UTC&useSSL=false";     //URL do banco de dados
     private static Connection CONEXAO;
@@ -91,8 +92,8 @@ public class ClienteDAO {
             //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = GerenciadorConexao.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente (nome,CPF, dataNascimento, estadoCivil,"
-                    + "sexo, CEP, logradouro, numero, telefone, celular, email) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            instrucaoSQL = conexao.prepareStatement("SELECT cliente nome,CPF, dataNascimento, estadoCivil,"
+                    + "sexo, CEP, logradouro, numero, telefone, celular, email",
                      Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
 
             //Adiciono os parâmetros ao meu comando SQL
@@ -154,7 +155,7 @@ public class ClienteDAO {
             //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = GerenciadorConexao.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("ALTER TABLE cliente (nome,CPF, dataNascimento, estadoCivil,"
+            instrucaoSQL = conexao.prepareStatement("update cliente set (nome,CPF, dataNascimento, estadoCivil,"
                     + "sexo, CEP, logradouro, numero, telefone, celular, email) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
 
@@ -217,22 +218,11 @@ public class ClienteDAO {
             //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
             conexao = GerenciadorConexao.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("DROP TABLE cliente (nome,CPF, dataNascimento, estadoCivil,"
-                    + "sexo, CEP, logradouro, numero, telefone, celular, email) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            instrucaoSQL = conexao.prepareStatement("delete from cliente where nome=?",
                      Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
 
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setString(1, pCliente.getNomeCliente());
-            instrucaoSQL.setString(2, pCliente.getCPF());
-            instrucaoSQL.setString(3, pCliente.getDataNascimento());
-            instrucaoSQL.setString(4, pCliente.getEstadoCivil());
-            instrucaoSQL.setString(5, pCliente.getSexo());
-            instrucaoSQL.setString(6, pCliente.getCEP());
-            instrucaoSQL.setString(7, pCliente.getLogradouro());
-            instrucaoSQL.setString(8, pCliente.getNumero());
-            instrucaoSQL.setString(9, pCliente.getTelefone());
-            instrucaoSQL.setString(10, pCliente.getCelular());
-            instrucaoSQL.setString(11, pCliente.getEmail());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 

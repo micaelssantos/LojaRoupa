@@ -4,11 +4,11 @@ import br.sp.senac.tads.dao.VendaDAO;
 import br.sp.senac.tads.model.Venda;
 import java.sql.Date;
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
 
 public class VendaController 
-{
-    
-  
+        
+{ 
     public static boolean Adicionar(float valorVenda, int idcliente, String nomeCliente, Date data) {
         
         Venda model = new Venda();
@@ -101,6 +101,35 @@ public class VendaController
         
     }
     
+   
+    //Relatório Sintético
+    VendaDAO venda = new VendaDAO();
+    public Object getData;
+
+    public ArrayList listarVendaController() {
+        
+    ArrayList<Venda> listaVenda = new ArrayList<Venda>();
+        
+    listaVenda = venda.vendaRelatorio();
+        
+    return listaVenda;
+        
+    }
+
+    public Object getIdVenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getNome() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Object getValorvenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }
+  
+
     public static int ConsultarQuantidadePRPorCOD(int cod) 
     {
         int result ;
@@ -117,7 +146,6 @@ public class VendaController
         
         result = VendaDAO.ConsultarProdutoPorCodigo(cod);
         return result;
-    }
 
 }
 
