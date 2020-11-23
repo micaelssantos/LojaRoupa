@@ -300,8 +300,6 @@ public class VendaDAO {
             PreparedStatement instrucaoSQL = null;
 
         try {
-
-            
               abrirConexao();
 
             instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM PRODUTO WHERE NOME_PRODUTO LIKE ?");
@@ -313,7 +311,7 @@ public class VendaDAO {
             while(rs.next()){
                 
                 Produto model = new Produto();
-                model.setNome(rs.getString("NOME_CLIENTE"));
+                model.setNome(rs.getString("NOME_PRODUTO"));
                 
                 nomeProduto = model.getNome();
             }
@@ -327,10 +325,10 @@ public class VendaDAO {
         return nomeProduto;
     }
      
-       public static String ConsultarProdutoPorCodigo(String cod) 
+         public static int ConsultarProdutoPorCodigo(int cod) 
        {
         
-           String CodProduto = "";
+            int CodProduto = 0;
             boolean retorno = false;
             Connection conexao = null;
             PreparedStatement instrucaoSQL = null;
@@ -338,7 +336,7 @@ public class VendaDAO {
         try {
               abrirConexao();
 
-            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM PRODUTO WHERE NOME_PRODUTO LIKE ?");
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM PRODUTO WHERE ID_PRODUTO LIKE ?");
             instrucaoSQL.setString(1, cod + "%");
            
             
@@ -347,9 +345,9 @@ public class VendaDAO {
             while(rs.next()){
                 
                 Produto model = new Produto();
-                model.setNome(rs.getString("NOME_CLIENTE"));
+                model.setId(rs.getInt("ID_PRODUTO"));
                 
-                CodProduto = model.getNome();
+                CodProduto = model.getId();
             }
             
         } catch (SQLException | ClassNotFoundException ex) {
@@ -361,4 +359,73 @@ public class VendaDAO {
         return CodProduto;
     }
      
+       
+         public static int ConsultarQuantidadePRPorNome(String nome) 
+       {
+        
+           int QtdProduto = 0;
+            boolean retorno = false;
+            Connection conexao = null;
+            PreparedStatement instrucaoSQL = null;
+
+        try {
+              abrirConexao();
+
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT QUANTIDADE FROM PRODUTO WHERE NOME_PRODUTO LIKE ?");
+            instrucaoSQL.setString(1, nome + "%");
+           
+            
+            ResultSet rs = instrucaoSQL.executeQuery();
+            
+            while(rs.next()){
+                
+                Produto model = new Produto();
+                model.setQuantidade(rs.getInt("QUANTIDADE"));
+                
+                QtdProduto = model.getQuantidade();
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+
+        return QtdProduto;
+    }
+           public static int ConsultarQuantidadePRPorCOD(int cod) 
+       {
+        
+           int QtdProduto = 0;
+            boolean retorno = false;
+            Connection conexao = null;
+            PreparedStatement instrucaoSQL = null;
+
+        try {
+              abrirConexao();
+
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT QUANTIDADE FROM PRODUTO WHERE ID_PRODUTO LIKE ?");
+            instrucaoSQL.setString(1, cod + "%");
+           
+            
+            ResultSet rs = instrucaoSQL.executeQuery();
+            
+            while(rs.next()){
+                
+                Produto model = new Produto();
+                model.setQuantidade(rs.getInt("QUANTIDADE"));
+                
+                QtdProduto = model.getQuantidade();
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+
+        return QtdProduto;
+    }
 }
+
+
