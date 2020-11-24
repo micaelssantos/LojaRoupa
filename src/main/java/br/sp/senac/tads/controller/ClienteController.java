@@ -2,8 +2,65 @@ package br.sp.senac.tads.controller;
 
 import br.sp.senac.tads.dao.ClienteDAO;
 import br.sp.senac.tads.model.Cliente;
+import java.util.ArrayList;
 
 public class ClienteController {
+
+    ClienteDAO cliente = new ClienteDAO();
+
+    public void cadastrarController(Cliente cliBean) {
+
+        cliente.adicionar(cliBean);
+
+    }
+
+    public void alterarController(Cliente cliBean) {
+
+        cliente.alterar(cliBean);
+        
+    }
+
+    public void removerController(Cliente cliBean) {
+
+        cliente.remover(cliBean);
+
+    }
+    
+    
+    
+     public ArrayList consultarController(Cliente cliBean) {
+        
+        ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+        
+        listaCliente = cliente.consultarCliente(cliBean);
+        
+        return listaCliente;
+        
+    }
+    
+    public ArrayList listarTabelaController() {
+        
+        ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+        
+        listaCliente = cliente.listarTabelaCliente();
+        
+        return listaCliente;
+        
+    }
+    
+    public ArrayList pesquisarController(Cliente cliBean) {
+        
+        ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+        
+        listaCliente= cliente.pesquisarCliente(cliBean);
+        
+        return listaCliente;
+        
+    }
+    
+    
+    
+    
 
     public static boolean Adicionar(String nome, String CPF, String dataNascimento, String estadoCivil, String sexo, String CEP,
             String logradouro, String numero, String telefone, String celular, String email) {

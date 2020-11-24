@@ -154,7 +154,8 @@ public class ProdutoDAO {
             
             conexao = GerenciadorConexao.abrirConexao();
             
-            instrucaoSQL = conexao.prepareStatement("select ID_PRODUTO, NOME_PRODUTO, CATEGORIA, MARCA, MODELO, DESCRICAO, QUANTIDADE, VALOR from PRODUTO where ID_PRODUTO = ?");
+            instrucaoSQL = conexao.prepareStatement("select ID_PRODUTO, NOME_PRODUTO, CATEGORIA, MARCA, MODELO, "
+                    + "DESCRICAO, QUANTIDADE, VALOR from PRODUTO where ID_PRODUTO = ?");
             
             instrucaoSQL.setInt(1,prodBean.getId());
             
@@ -217,7 +218,8 @@ public class ProdutoDAO {
             
             conexao = GerenciadorConexao.abrirConexao();
             
-            instrucaoSQL = conexao.prepareStatement("select ID_PRODUTO, NOME_PRODUTO, CATEGORIA, MARCA, MODELO, DESCRICAO, QUANTIDADE, VALOR from PRODUTO");
+            instrucaoSQL = conexao.prepareStatement("select ID_PRODUTO, NOME_PRODUTO, CATEGORIA, MARCA, MODELO, "
+                    + "DESCRICAO, QUANTIDADE, VALOR from PRODUTO");
                        
             rs = instrucaoSQL.executeQuery();
             
