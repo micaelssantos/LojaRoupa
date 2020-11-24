@@ -13,6 +13,9 @@ public class TelaVendas extends javax.swing.JFrame {
         initComponents();
         this.txtQtdEstoque.setEditable(false);
         desabilitado();
+            btnPesquisarProdutos1.setVisible(false);
+            btnPesquisarProdutosCOD.setVisible(false);
+        
     }
 
     /**
@@ -62,12 +65,14 @@ public class TelaVendas extends javax.swing.JFrame {
         lblCPF1 = new javax.swing.JLabel();
         txtCodigoProduto = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
-        btnPesquisarProdutos = new javax.swing.JPanel();
-        lblPesquisar = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         lblPesquisarPor2 = new javax.swing.JLabel();
         rdoNomeProduto = new javax.swing.JRadioButton();
         rdoCodProd = new javax.swing.JRadioButton();
+        btnPesquisarProdutos1 = new javax.swing.JPanel();
+        lblPesquisar1 = new javax.swing.JLabel();
+        btnPesquisarProdutosCOD = new javax.swing.JPanel();
+        lblPesquisar = new javax.swing.JLabel();
         pnlItens = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblItens = new javax.swing.JTable();
@@ -257,18 +262,18 @@ public class TelaVendas extends javax.swing.JFrame {
         lblQtdEstoque.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblQtdEstoque.setForeground(new java.awt.Color(40, 40, 40));
         lblQtdEstoque.setText("Quantidade em estoque");
-        pnlProdutos.add(lblQtdEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 231, 200, 20));
+        pnlProdutos.add(lblQtdEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 200, 20));
 
         txtQtdEstoque.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtQtdEstoque.setForeground(new java.awt.Color(40, 40, 40));
         txtQtdEstoque.setBorder(null);
-        pnlProdutos.add(txtQtdEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 310, -1));
-        pnlProdutos.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 310, 10));
+        pnlProdutos.add(txtQtdEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 310, -1));
+        pnlProdutos.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 310, 10));
 
         lblQtd.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblQtd.setForeground(new java.awt.Color(40, 40, 40));
         lblQtd.setText("Quantidade");
-        pnlProdutos.add(lblQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        pnlProdutos.add(lblQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         txtQtd.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
         txtQtd.setForeground(new java.awt.Color(40, 40, 40));
@@ -278,8 +283,8 @@ public class TelaVendas extends javax.swing.JFrame {
                 txtQtdKeyTyped(evt);
             }
         });
-        pnlProdutos.add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 170, -1));
-        pnlProdutos.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 170, 10));
+        pnlProdutos.add(txtQtd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 170, -1));
+        pnlProdutos.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 170, 10));
 
         btnLimpar.setBackground(new java.awt.Color(0, 85, 166));
         btnLimpar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -302,7 +307,7 @@ public class TelaVendas extends javax.swing.JFrame {
         lblLimpar.setText("Limpar");
         btnLimpar.add(lblLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
-        pnlProdutos.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, 40));
+        pnlProdutos.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 40));
 
         btnInserir.setBackground(new java.awt.Color(0, 85, 166));
         btnInserir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -325,7 +330,7 @@ public class TelaVendas extends javax.swing.JFrame {
         lblInserir.setText("Inserir");
         btnInserir.add(lblInserir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
-        pnlProdutos.add(btnInserir, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, 40));
+        pnlProdutos.add(btnInserir, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, 40));
 
         lblCPF1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblCPF1.setForeground(new java.awt.Color(40, 40, 40));
@@ -342,29 +347,6 @@ public class TelaVendas extends javax.swing.JFrame {
         });
         pnlProdutos.add(txtCodigoProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 310, -1));
         pnlProdutos.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 310, 0));
-
-        btnPesquisarProdutos.setBackground(new java.awt.Color(0, 85, 166));
-        btnPesquisarProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPesquisarProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPesquisarProdutosMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPesquisarProdutosMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPesquisarProdutosMouseExited(evt);
-            }
-        });
-        btnPesquisarProdutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblPesquisar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        lblPesquisar.setForeground(new java.awt.Color(255, 255, 255));
-        lblPesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPesquisar.setText("Pesquisar");
-        btnPesquisarProdutos.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
-
-        pnlProdutos.add(btnPesquisarProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, 40));
         pnlProdutos.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 310, 10));
 
         lblPesquisarPor2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
@@ -398,6 +380,52 @@ public class TelaVendas extends javax.swing.JFrame {
             }
         });
         pnlProdutos.add(rdoCodProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+
+        btnPesquisarProdutos1.setBackground(new java.awt.Color(0, 85, 166));
+        btnPesquisarProdutos1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisarProdutos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesquisarProdutos1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPesquisarProdutos1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPesquisarProdutos1MouseExited(evt);
+            }
+        });
+        btnPesquisarProdutos1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblPesquisar1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblPesquisar1.setForeground(new java.awt.Color(255, 255, 255));
+        lblPesquisar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPesquisar1.setText("Pesquisar");
+        btnPesquisarProdutos1.add(lblPesquisar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+
+        pnlProdutos.add(btnPesquisarProdutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, 40));
+
+        btnPesquisarProdutosCOD.setBackground(new java.awt.Color(0, 85, 166));
+        btnPesquisarProdutosCOD.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisarProdutosCOD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesquisarProdutosCODMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPesquisarProdutosCODMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPesquisarProdutosCODMouseExited(evt);
+            }
+        });
+        btnPesquisarProdutosCOD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblPesquisar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        lblPesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPesquisar.setText("Pesquisar");
+        btnPesquisarProdutosCOD.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+
+        pnlProdutos.add(btnPesquisarProdutosCOD, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 40));
 
         pnlFundo.add(pnlProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 350, 350));
 
@@ -575,25 +603,26 @@ public class TelaVendas extends javax.swing.JFrame {
         limpar();
     }//GEN-LAST:event_btnLimparMouseClicked
 
-    private void btnPesquisarProdutosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosMouseExited
-        resetColor(btnPesquisarProdutos);
-    }//GEN-LAST:event_btnPesquisarProdutosMouseExited
+    private void btnPesquisarProdutosCODMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosCODMouseExited
+        resetColor(btnPesquisarProdutosCOD);
+    }//GEN-LAST:event_btnPesquisarProdutosCODMouseExited
 
-    private void btnPesquisarProdutosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosMouseEntered
-        setColor(btnPesquisarProdutos);
-    }//GEN-LAST:event_btnPesquisarProdutosMouseEntered
+    private void btnPesquisarProdutosCODMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosCODMouseEntered
+        setColor(btnPesquisarProdutosCOD);
+    }//GEN-LAST:event_btnPesquisarProdutosCODMouseEntered
 
-    private void btnPesquisarProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosMouseClicked
+    private void btnPesquisarProdutosCODMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosCODMouseClicked
         if (ValidarPesquisaProduto()) {
             
-            String nome = txtNomeProduto.getText();
-            String COD = txtCodigoProduto.getText();
+           int  COD = Integer.parseInt(txtCodigoProduto.getText());
             
-            String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
-            String respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
-            
-            if (respostaNome.equals(nome) || respostaCOD.equals(COD)) 
+           int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
+          
+           int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
+          
+             if(respostaCOD == COD)
             {
+                txtQtdEstoque.setText(Integer.toString(qtd));
                 JOptionPane.showMessageDialog(this, "Produto Localizado!");
             }
             else 
@@ -601,10 +630,11 @@ public class TelaVendas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Produto Não Localizado!");
             }
         } 
-    }//GEN-LAST:event_btnPesquisarProdutosMouseClicked
+    }//GEN-LAST:event_btnPesquisarProdutosCODMouseClicked
 
     private void txtQtdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtdKeyTyped
         // VALIDAÇÃO QUANTIDADE
+     
         if (txtQtd.getText().length() < 5) {
             String caracteres = "0987654321";
             if (!caracteres.contains(evt.getKeyChar() + "")) {
@@ -643,6 +673,7 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
+        limpar();
         new TelaMenu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
@@ -759,6 +790,34 @@ public class TelaVendas extends javax.swing.JFrame {
         ValidacaoFormato();
     }//GEN-LAST:event_lblValorTotalKeyTyped
 
+    private void btnPesquisarProdutos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseClicked
+
+            String nome = txtNomeProduto.getText();
+
+            String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
+            int qtd = VendaController.ConsultarQuantidadePRPorNome(nome);
+          
+             if(respostaNome.equals(nome))
+            {
+                txtQtdEstoque.setText(Integer.toString(qtd));
+                JOptionPane.showMessageDialog(this, "Produto Localizado!");
+            }   
+            else 
+            {
+                 JOptionPane.showMessageDialog(this, "Produto Não Localizado!");
+            }
+             
+            
+    }//GEN-LAST:event_btnPesquisarProdutos1MouseClicked
+
+    private void btnPesquisarProdutos1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarProdutos1MouseEntered
+
+    private void btnPesquisarProdutos1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarProdutos1MouseExited
+
     private void limpar() {
         this.txtNomeProduto.setText("");
         this.txtQtd.setText("");
@@ -791,19 +850,29 @@ public class TelaVendas extends javax.swing.JFrame {
         if (rdoNomeProduto.isSelected()) {
             txtCodigoProduto.setEnabled(false);
             txtNomeProduto.setEnabled(true);
-            btnPesquisarProdutos.setEnabled(true);
+            btnPesquisarProdutosCOD.setEnabled(true);
             txtQtd.setEnabled(true);
             txtQtdEstoque.setEnabled(true);
             btnLimpar.setEnabled(true);
             btnInserir.setEnabled(true);
+            btnPesquisarProdutosCOD.setEnabled(false);
+            btnPesquisarProdutos1.setVisible(true);
+            btnPesquisarProdutosCOD.setVisible(false);
+            
         } else if (rdoCodProd.isSelected()) {
+            btnPesquisarProdutosCOD.setEnabled(true);
             txtNomeProduto.setEnabled(false);
             txtCodigoProduto.setEnabled(true);
-            btnPesquisarProdutos.setEnabled(true);
+            btnPesquisarProdutosCOD.setEnabled(true);
             txtQtd.setEnabled(true);
             txtQtdEstoque.setEnabled(true);
             btnLimpar.setEnabled(true);
             btnInserir.setEnabled(true);
+            btnPesquisarProdutos1.setEnabled(false);
+            btnPesquisarProdutos1.setVisible(false);
+            btnPesquisarProdutosCOD.setVisible(true);
+            
+            
         }
     }
 
@@ -933,7 +1002,8 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JPanel btnInserir;
     private javax.swing.JPanel btnLimpar;
     private javax.swing.JPanel btnPesquisarCliente;
-    private javax.swing.JPanel btnPesquisarProdutos;
+    private javax.swing.JPanel btnPesquisarProdutos1;
+    private javax.swing.JPanel btnPesquisarProdutosCOD;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -956,6 +1026,7 @@ public class TelaVendas extends javax.swing.JFrame {
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblNovaVenda;
     private javax.swing.JLabel lblPesquisar;
+    private javax.swing.JLabel lblPesquisar1;
     private javax.swing.JLabel lblPesquisarCliente;
     private javax.swing.JLabel lblPesquisarClientePor;
     private javax.swing.JLabel lblPesquisarPor2;
