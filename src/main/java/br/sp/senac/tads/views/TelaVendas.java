@@ -1,8 +1,12 @@
 package br.sp.senac.tads.views;
 
 import br.sp.senac.tads.controller.ClienteController;
+import br.sp.senac.tads.controller.ProdutoController;
 import br.sp.senac.tads.controller.VendaController;
+import br.sp.senac.tads.model.ItemVenda;
+import br.sp.senac.tads.model.Produto;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +19,7 @@ public class TelaVendas extends javax.swing.JFrame {
         desabilitado();
             btnPesquisarProdutos1.setVisible(false);
             btnPesquisarProdutosCOD.setVisible(false);
-        
+      
     }
 
     /**
@@ -586,11 +590,70 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirMouseEntered
 
     private void btnInserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirMouseClicked
-        if (ValidarProduto()) {
+        if (ValidarProduto() ) {
+            
+            Produto modelo = new Produto();
+            ItemVenda modeloI = new ItemVenda();
+            
+            int  COD = Integer.parseInt(txtCodigoProduto.getText());
+            String nome = txtNomeProduto.getText();
+            int qtd = Integer.parseInt(txtQtd.getText());
+            
+            modelo.setNome(nome);
+            modelo.setId(COD);
+
+            ArrayList<Produto> lista = VendaController.ConsultarProduto(COD);
+            
+            ArrayList<ItemVenda> Item = new ArrayList<ItemVenda>();
+
+            //Adiciono as linhas na tabela
+            if (lista.size() > 0) {
+
+                DefaultTableModel tmItem = new DefaultTableModel();
+
+                tmItem.addColumn("Nome Produto");
+                tmItem.addColumn("Quantidade");
+                tmItem.addColumn("Valor Unitário");
+                tmItem.addColumn("Total");
+                tblItens.setModel(tmItem);
+
+                tblItens.setModel(tmItem);
+
+                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
+                tmItem.setRowCount(0);
+
+                int i = 0;
+
+                for (Object obj : lista) {
+                    
+                    Produto modeloP = (Produto) obj;
+                    
+                        modeloI.setIdProduto(COD);
+                        modeloI.setNomeProduto(modeloP.getNome());
+                        modeloI.setQtd(qtd);
+                        modeloI.setVlUnit(modeloP.getValorUnitario());
+                        modeloI.setTotal(modeloP.getValorUnitario() * qtd);
+                    
+                    
+                    tmItem.addRow(new String[1]);
+                    tblItens.setValueAt(modeloI.getNomeProduto(), i, 0);
+                    tblItens.setValueAt(modeloI.getQtd(), i, 1);
+                    tblItens.setValueAt(modeloI.getVlUnit(), i, 2);
+                    tblItens.setValueAt(modeloI.getTotal(), i, 3);
+                    
+                    
+                    i++;
+
+                }
+
+        }
+            
             JOptionPane.showMessageDialog(this, "Produto Adicionado a lista!");
         }
     }//GEN-LAST:event_btnInserirMouseClicked
 
+   
+    
     private void btnLimparMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseExited
         resetColor(btnLimpar);
     }//GEN-LAST:event_btnLimparMouseExited

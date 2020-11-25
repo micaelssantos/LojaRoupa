@@ -1,6 +1,7 @@
 package br.sp.senac.tads.controller;
 
 import br.sp.senac.tads.dao.VendaDAO;
+import br.sp.senac.tads.model.Produto;
 import br.sp.senac.tads.model.Venda;
 import java.sql.Date;
 import javax.xml.crypto.Data;
@@ -146,6 +147,19 @@ public class VendaController
         
         result = VendaDAO.ConsultarProdutoPorCodigo(cod);
         return result;
+    }
+    
+     public static ArrayList<Produto> ConsultarProduto(int COD) {
+        
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+        
+        listaProduto = VendaDAO.pesquisarProduto(COD);
+        
+        return listaProduto;
+        
+    }
+    
+    
 
 }
 

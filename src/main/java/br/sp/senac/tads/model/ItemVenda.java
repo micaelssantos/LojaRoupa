@@ -23,8 +23,8 @@ public class ItemVenda
     }
     private String nomeProduto;
     private int qtd;
-    private float vlUnit;
-    private float total;
+    private double vlUnit;
+    private double total;
 
     public int getIdItem() {
         return IdItem;
@@ -50,20 +50,22 @@ public class ItemVenda
         this.qtd = qtd;
     }
 
-    public float getVlUnit() {
+    public double getVlUnit() {
         return vlUnit;
     }
 
-    public void setVlUnit(float vlUnit) {
+    public void setVlUnit(double vlUnit) {
         this.vlUnit = vlUnit;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
     }
-   
+
+    
+
 }

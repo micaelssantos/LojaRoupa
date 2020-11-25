@@ -20,7 +20,7 @@ public class VendaDAO {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";                                                                 //Driver do MySQL a partir da versão 8.0
     private static final String LOGIN = "root";                                                                                     //Nome de Usuário do Bando de Dados
-    private static final String SENHA = "";                                                                                //Senha de Acesso ao Banco de Dados
+    private static final String SENHA = "1234";                                                                                //Senha de Acesso ao Banco de Dados
     private static final String URL = "jdbc:mysql://localhost:3306/loja_roupa?useTimezone=true&serverTimezone=UTC&useSSL=false";     //URL do banco de dados
     private static Connection CONEXAO = null;
     Connection conexao;
@@ -429,9 +429,6 @@ public class VendaDAO {
     }
        
        
-       
-     
-       
          public static int ConsultarQuantidadePRPorNome(String nome) 
        {
         
@@ -498,6 +495,55 @@ public class VendaDAO {
 
         return QtdProduto;
     }
+           
+           
+     public static ArrayList<Produto> pesquisarProduto(int COD) {
+        
+         boolean retorno = false;
+        ResultSet rs = null;
+        PreparedStatement instrucaoSQL = null;
+        
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>(); 
+        
+        try {
+            
+            
+            Class.forName(DRIVER);
+            
+            abrirConexao();
+            
+           instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM PRODUTO WHERE ID_PRODUTO LIKE ?");
+            
+            instrucaoSQL.setString(1, COD + "%");
+                       
+            rs = instrucaoSQL.executeQuery();
+            
+            while (rs.next()) {
+                               
+                Produto prod = new Produto();
+                prod.setId(rs.getInt("ID_PRODUTO"));
+                prod.setNome(rs.getString("NOME_PRODUTO"));
+                prod.setCategoria(rs.getString("CATEGORIA"));
+                prod.setMarca(rs.getString("MARCA"));
+                prod.setModelo(rs.getString("MODELO"));
+                prod.setDescricao(rs.getString("DESCRICAO"));
+                prod.setQuantidade(rs.getInt("QUANTIDADE"));
+                prod.setValorUnitario(rs.getDouble("VALOR"));
+                
+                listaProduto.add(prod);
+                
+            }
+            
+            return listaProduto;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+        return listaProduto;
+     }
+
 }
 
 
