@@ -1,19 +1,19 @@
 package br.sp.senac.tads.views;
 
-import br.sp.senac.tads.controller.VendaController;
-import br.sp.senac.tads.model.Venda;
+import br.sp.senac.tads.controller.RelatoriosController;
+import br.sp.senac.tads.dao.RelatoriosDAO;
+import br.sp.senac.tads.model.Relatorios;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JPanel;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class TelaRelatorios extends javax.swing.JFrame {
-    
-    //INSTANCIAÇÃO DAS CLASSES PRODUTO
-    Venda vendaBean =new Venda();
-    VendaController venda = new VendaController();
+
+    Relatorios venda = new Relatorios();
     
     public TelaRelatorios() {
         initComponents();
@@ -400,30 +400,31 @@ public class TelaRelatorios extends javax.swing.JFrame {
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null; 
-        
-        //Armazeno as informaçoes da tabela (resultSet) em um ArrayList
-        ArrayList<VendaController> listaVenda = venda.listarVendaController(jdtDE.getDate(),jdtAte.getDate());
-      
-        DefaultTableModel tmVenda = new DefaultTableModel();
                 
-        tmVenda.addColumn("IdVenda");
-        tmVenda.addColumn("nomeCliente");
-        tmVenda.addColumn("valorvenda");
-        tmVenda.addColumn("data");
-        tblSintetico.setModel(tmVenda);
+        //Armazeno as informaçoes da tabela (resultSet) em um ArrayList
+        ArrayList<Relatorios> listaVenda = RelatoriosDAO.listarRelatorioController(jdtDE.getDate(),jdtAte.getDate());
+        //ArrayList<Relatorios> listavenda = RelatoriosDAO.consultarRelatorios(                   );
         
+        DefaultTableModel tmRelatorios = new DefaultTableModel();
+
+        tmRelatorios.addColumn("IdVenda");
+        tmRelatorios.addColumn("nomeCliente");
+        tmRelatorios.addColumn("valorvenda");
+        tmRelatorios.addColumn("data");
+        tblSintetico.setModel(tmRelatorios);
 
         //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
-        tmVenda.setRowCount(0);
-        for (VendaController c : listaVenda) {
-            tmVenda.addRow(new Object[]{c.getIdVenda(),c.getNome(),c.getValorvenda(),c.getData});
+        tmRelatorios.setRowCount(0);
+        
+        //Para cada cliente resgatado do banco de dados, atualizo a tabela
+        for (Relatorios c : listaVenda) {
+            tmRelatorios.addRow(new Object[]{c.getIdVenda(),c.getNomeCliente(),c.getValorTotalvenda(),c.getData()});
         }
         //Defino o tamanho para cada coluna
         tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
-        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(300);
-        tblSintetico.getColumnModel().getColumn(1).setPreferredWidth(100);
-
-
+        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(100); // NomeCliente
+        tblSintetico.getColumnModel().getColumn(1).setPreferredWidth(10); //ValorTotal
+        tblSintetico.getColumnModel().getColumn(3).setPreferredWidth(10); //Data Venda
 
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
@@ -435,40 +436,51 @@ public class TelaRelatorios extends javax.swing.JFrame {
         resetColor(btnPesquisar);
     }//GEN-LAST:event_btnPesquisarMouseExited
 
-    
-    public void listarVendaRelatorioSintetico() {
-            
-            ArrayList<VendaController> listaVenda = venda.listarVendaController();
-            
-            //Adiciono as linhas na tabela
-            if(listaVenda.size() > 0){
-        
-                DefaultTableModel tmVenda = new DefaultTableModel();
-                
-                tmVenda.addColumn("IdVenda");
-                tmVenda.addColumn("nomeCliente");
-                tmVenda.addColumn("valorvenda");
-                tmVenda.addColumn("data");
+    public void CarregarRelatorioSintetico() {
 
-                               
+        //Pedir à classe DAO para consultar as vendas
+        ArrayList<Relatorios> listavenda = RelatoriosDAO.consultarRelatorios(jdtDE.getDate(), jdtAte.getDate());
+        
+        DefaultTableModel tmRelatorios = new DefaultTableModel();
+        
+        for (Relatorios Relatorios : listavenda) {
+            
+        }
+        
+                    //Adiciono as linhas na tabela
+            if(listavenda.size() > 0){
+        
+                
+                tmRelatorios.addColumn("IdVenda");
+                tmRelatorios.addColumn("nomeCliente");
+                tmRelatorios.addColumn("valorvenda");
+                tmRelatorios.addColumn("data");
+           
                 //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
-                tmVenda.setRowCount(0);
+                tmRelatorios.setRowCount(0);
                
                 int i = 0;
-                
-                for(Object obj: this.venda.listarVendaController()){
-                    Venda bean = (Venda) obj;
-                    tmVenda.addRow(new String[1]);
-                    tblSintetico.setValueAt(bean.getIdVenda(), i, 0);
-                    tblSintetico.setValueAt(bean.getNome(), i, 1);
-                    tblSintetico.setValueAt(bean.getValorvenda(), i, 2);
-                    tblSintetico.setValueAt(bean.getData(), i, 3);
-                    i++;
-                    
-                }
-                                
             }
+
+        //Defina sua estrutura com a estrutura tmRelatorios;
+        tblSintetico.setModel(tmRelatorios);
+
+        //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
+        tmRelatorios.setRowCount(0);
+
+
+        for (Relatorios c : listavenda) {
+            tmRelatorios.addRow(new Object[]{c.getIdVenda(), c.getNomeCliente(), c.getValorTotalvenda(), c.getData()});
+        }
+
+        //Defino o tamanho para cada coluna
+        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
+        tblSintetico.getColumnModel().getColumn(1).setPreferredWidth(100); // NomeCliente
+        tblSintetico.getColumnModel().getColumn(2).setPreferredWidth(50); //ValorTotal
+        tblSintetico.getColumnModel().getColumn(3).setPreferredWidth(10); //Data Venda
     }
+
+    
     
     
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
