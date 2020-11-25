@@ -396,7 +396,8 @@ public class ClienteDAO {
         }
 
     }
-
+    
+ 
     public ArrayList<Cliente> pesquisarCliente(Cliente cliBean) {
 
         ResultSet rs = null;
