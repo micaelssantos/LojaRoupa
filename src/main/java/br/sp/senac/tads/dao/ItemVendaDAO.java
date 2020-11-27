@@ -65,7 +65,7 @@ public class ItemVendaDAO {
             instrucaoSQL.setInt(2,itemModel.getIdVenda());
             instrucaoSQL.setString(3,itemModel.getNomeProduto());
             instrucaoSQL.setInt(4,itemModel.getQtd());
-            instrucaoSQL.setFloat(5,itemModel.getVlUnit());
+            instrucaoSQL.setDouble(5,itemModel.getVlUnit());
             
             int linhaAfetadas = instrucaoSQL.executeUpdate();
 
@@ -107,7 +107,7 @@ public class ItemVendaDAO {
             instrucaoSQL.setInt(2,itemModel.getIdVenda());
             instrucaoSQL.setString(3,itemModel.getNomeProduto());
             instrucaoSQL.setInt(4,itemModel.getQtd());
-            instrucaoSQL.setFloat(5,itemModel.getVlUnit());
+            instrucaoSQL.setDouble(5,itemModel.getVlUnit());
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
             if (linhasAfetadas > 0) {
@@ -148,7 +148,7 @@ public class ItemVendaDAO {
             instrucaoSQL.setInt(2,itemModel.getIdVenda());
             instrucaoSQL.setString(3,itemModel.getNomeProduto());
             instrucaoSQL.setInt(4,itemModel.getQtd());
-            instrucaoSQL.setFloat(5,itemModel.getVlUnit());
+            instrucaoSQL.setDouble(5,itemModel.getVlUnit());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
@@ -191,7 +191,7 @@ public class ItemVendaDAO {
             instrucaoSQL.setInt(2,itemModel.getIdVenda());
             instrucaoSQL.setString(3,itemModel.getNomeProduto());
             instrucaoSQL.setInt(4,itemModel.getQtd());
-            instrucaoSQL.setFloat(5,itemModel.getVlUnit());
+            instrucaoSQL.setDouble(5,itemModel.getVlUnit());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
