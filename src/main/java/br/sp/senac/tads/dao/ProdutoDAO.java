@@ -3,36 +3,42 @@ package br.sp.senac.tads.dao;
 import br.sp.senac.tads.model.Produto;
 import br.sp.senac.tads.util.GerenciadorConexao;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+*
+* @author joliveira
+* @see br.sp.senac.tads.util.GerenciadorConexao
+* @see br.sp.senac.tads.model.Produto
+* 
+*/
+
 public class ProdutoDAO {
     
     Connection conexao;
 
-
     public ProdutoDAO() {
         
     }
-
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";                                                                 //Driver do MySQL a partir da versão 8.0
-    private static final String LOGIN = "root";                                                                                     //Nome de Usuário do Bando de Dados
-    private static final String SENHA = "adminadmin";                                                                                //Senha de Acesso ao Banco de Dados
-    private static final String URL = "jdbc:mysql://localhost:3306/loja_roupa?useTimezone=true&serverTimezone=UTC&useSSL=false";     //URL do banco de dados
+    
+    /**Driver do MySQL a partir da versão 8.0*/
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     
     
+    /*
+    * @param prodBean - Objeto de Produto
+    * Método que insere os dados do produto no banco de dados
+    */
     public void cadastrarProduto(Produto prodBean) {
 
         try {
 
-            //Carregar o driver
             Class.forName(DRIVER);
 
-            //Carregar o objeto de conexão
             conexao = GerenciadorConexao.abrirConexao();
             
             String sql = "insert into PRODUTO (NOME_PRODUTO, CATEGORIA, MARCA, MODELO, DESCRICAO, QUANTIDADE, VALOR) values (?, ?, ?, ?, ?, ?, ?)";
@@ -67,14 +73,16 @@ public class ProdutoDAO {
 
     }
     
+    /*
+    * @param prodBean - Objeto de Produto
+    * Método que altera os dados de um produto no banco de dados
+    */
     public void alterarProduto(Produto prodBean) {
         
         try {
             
-            //Carregar o driver
             Class.forName(DRIVER);
 
-            //Carregar o objeto de conexão
             conexao = GerenciadorConexao.abrirConexao();
 
             PreparedStatement instrucaoSQL = conexao.prepareStatement("update PRODUTO set NOME_PRODUTO = ?, CATEGORIA = ?, MARCA = ?,"
@@ -109,6 +117,10 @@ public class ProdutoDAO {
         
     }
     
+    /*
+    * @param prodBean - Objeto de Produto
+    * Método que remove um produto no banco de dados
+    */
     public void removerProduto(Produto prodBean) {
         
         try {
@@ -137,10 +149,15 @@ public class ProdutoDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao carregar o driver");
             
-        }
+        } 
         
     }
     
+    /*
+    * @param prodBean - Objeto de Produto
+    * @return ArrayList - Lista com produtos
+    * Método que lista todos os registros da tabela PRODUTO no banco de dados
+    */
     public ArrayList<Produto> consultarProduto(Produto prodBean) {
         
         ResultSet rs = null;
@@ -173,7 +190,6 @@ public class ProdutoDAO {
                 prod.setQuantidade(rs.getInt("QUANTIDADE"));
                 prod.setValorUnitario(rs.getDouble("VALOR"));
                 
-                
                 listaProduto.add(prod);
                 
             }
@@ -191,8 +207,8 @@ public class ProdutoDAO {
                 if(instrucaoSQL!=null)
                     instrucaoSQL.close();
                 
-                //Fecho a minha conexão
                 conexao.close();
+                
             }
             catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao fechar a conexão!");
@@ -204,6 +220,11 @@ public class ProdutoDAO {
         
     }
     
+    /*
+    * @param prodBean - Objeto de Produto
+    * @return ArrayList - Lista com produtos
+    * Método que Lista apenas os registros da tabela PRODUTO do banco de dados que estão presentes na tabela na tela de produtos
+    */
     public ArrayList<Produto> listarTabelaProduto() {
         
         ResultSet rs = null;
@@ -212,7 +233,6 @@ public class ProdutoDAO {
         ArrayList<Produto> listaProduto = new ArrayList<Produto>(); 
         
         try {
-            
             
             Class.forName(DRIVER);
             
@@ -236,6 +256,7 @@ public class ProdutoDAO {
                 prod.setValorUnitario(rs.getDouble("VALOR"));
                 
                 listaProduto.add(prod);
+                
             }
             
             return listaProduto;
@@ -255,19 +276,22 @@ public class ProdutoDAO {
                 if(instrucaoSQL!=null)
                     instrucaoSQL.close();
                 
-                //Fecho a minha conexão
                 conexao.close();
-            }
-            catch (SQLException ex) {
+                
+            } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Falha ao fechar a conexão!");
+                
             }
         
         }
         
-        
-        
     }
     
+    /*
+    * @param prodBean - Objeto de Produto
+    * @return ArrayList - Lista com produtos
+    * Método que lista registros pelo nome na tabela PRODUTO do banco de dados
+    */
     public ArrayList<Produto> pesquisarProduto(Produto prodBean) {
         
         ResultSet rs = null;

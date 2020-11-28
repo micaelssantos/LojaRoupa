@@ -7,9 +7,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
+/**
+*
+* @author joliveira
+* @see br.sp.senac.tads.controller.ProdutoController
+* @see br.sp.senac.tads.model.Produto
+* 
+*/
+
 public class TelaProdutos extends javax.swing.JFrame {
     
-    //INSTANCIAÇÃO DAS CLASSES PRODUTO
     Produto produtoBean = new Produto();
     ProdutoController produto = new ProdutoController();
     
@@ -18,8 +25,6 @@ public class TelaProdutos extends javax.swing.JFrame {
         listarTabelaProduto();
         
     }
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -365,7 +370,8 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void btnRelatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseExited
         resetColor(btnRelatorios);
     }//GEN-LAST:event_btnRelatoriosMouseExited
-
+    
+    /**Método que minimiza a tela*/
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
         this.setState(1);
     }//GEN-LAST:event_btnMinimizarMouseClicked
@@ -379,19 +385,19 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarMouseExited
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
-        //VOLTAR PARA O MENU PRINCIPAL
+        /**Acessa a tela de menu principal*/
         new TelaMenu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
-        //VOLTAR PARA O MENU PRINCIPAL
+        /**Acessa a tela de menu principal*/
         new TelaMenu().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-        //VOLTAR PARA A TELA DE LOGIN
+        /**Acessa a tela de login*/
         new TelaLogin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblLogoutMouseClicked
@@ -420,6 +426,7 @@ public class TelaProdutos extends javax.swing.JFrame {
         resetColor(btnRemover);
     }//GEN-LAST:event_btnRemoverMouseExited
 
+    /**Método que remove o produto selecionado na tabela*/
     private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
 
         int linhaSelecionada = tblProdutos.getSelectedRow();
@@ -445,8 +452,10 @@ public class TelaProdutos extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um item!", "Erro!", JOptionPane.WARNING_MESSAGE);
         }
+        
     }//GEN-LAST:event_btnRemoverMouseClicked
 
+    /**Método que redireciona para a tela de edição daquele produto selecionado*/
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
         int linhaSelecionada = tblProdutos.getSelectedRow();
         
@@ -468,10 +477,12 @@ public class TelaProdutos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarMouseClicked
     private void txtPesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyTyped
-        //VALIDAÇÃO DE BUSCA POR NOME DO PRODUTO
+        
+        /**Validação de busca por nome*/
         if (txtPesquisar.getText().matches("^[0-9].*")) {
             evt.consume();
-            //caso tenha sido número, retorna que não é permitido número no campo
+            
+            /**caso tenha sido número, retorna que não é permitido número no campo*/
             JOptionPane.showMessageDialog(this, "Não é permitido números neste campo", "Erro", JOptionPane.ERROR_MESSAGE);
             txtPesquisar.setText("");
         } else {
@@ -480,7 +491,6 @@ public class TelaProdutos extends javax.swing.JFrame {
 
             ArrayList<ProdutoController> lista = produto.pesquisarController(produtoBean);
 
-            //Adiciono as linhas na tabela
             if (lista.size() > 0) {
 
                 DefaultTableModel tmProduto = new DefaultTableModel();
@@ -495,7 +505,6 @@ public class TelaProdutos extends javax.swing.JFrame {
 
                 tblProdutos.setModel(tmProduto);
 
-                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
                 tmProduto.setRowCount(0);
 
                 int i = 0;
@@ -514,43 +523,47 @@ public class TelaProdutos extends javax.swing.JFrame {
 
                 }
 
-        }
+            }
             
         }
+        
     }//GEN-LAST:event_txtPesquisarKeyTyped
 
+    /**Método que acessa a tela de cadastro de produto*/
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-        //ACESSA A TELA DE CADASTRO DE PRODUTO
         new TelaProdutosCadastro().setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
+    /**Método que acessa a tela de clientes*/
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
-        //ACESSA A TELA CLIENTES
         new TelaClientes().setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnClientesMouseClicked
-
+    
+    /**Método que acessa a tela de relatórios*/
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
-        //ACESSA A TELA DE RELATÓRIOS
         new TelaRelatorios().setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnRelatoriosMouseClicked
 
+    /**Método que faz a validação do campo de pesquisa*/
     private void lblPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPesquisarMouseClicked
-        
         if (this.txtPesquisar.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Insira o Nome do Produto!", "Erro", JOptionPane.ERROR_MESSAGE);
             
         }
         
     }//GEN-LAST:event_lblPesquisarMouseClicked
-
+    
+    /**Método que preenche as linhaas e colunas da tabela na tela*/
     public void listarTabelaProduto() {
             
             ArrayList<ProdutoController> listaProduto = produto.listarTabelaController();
             
-            //Adiciono as linhas na tabela
             if(listaProduto.size() > 0){
         
                 DefaultTableModel tmProduto = new DefaultTableModel();
@@ -563,7 +576,6 @@ public class TelaProdutos extends javax.swing.JFrame {
                 tmProduto.addColumn("Valor");
                 tblProdutos.setModel(tmProduto);
                                
-                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
                 tmProduto.setRowCount(0);
                
                 int i = 0;
@@ -584,12 +596,12 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
     }
     
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    /**Método que altera a cor de um objeto ao passar o mouse por cima*/
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
     }
 
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    /**Método que restaura para a cor original do objeto ao tirar o mouse de cima*/
     public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }

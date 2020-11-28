@@ -7,8 +7,16 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class TelaProdutosEditar extends javax.swing.JFrame {
+/**
+*
+* @author joliveira
+* @see br.sp.senac.tads.controller.ProdutoController
+* @see br.sp.senac.tads.model.Produto
+* 
+*/
 
+public class TelaProdutosEditar extends javax.swing.JFrame {
+    
     ProdutoController produto = new ProdutoController();
     Produto produtoBean = new Produto();
 
@@ -60,8 +68,6 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        btnConcluir1 = new javax.swing.JPanel();
-        lblConcluir1 = new javax.swing.JLabel();
         lblProduto = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
 
@@ -300,29 +306,6 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         pnlFundo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 180, 10));
         pnlFundo.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 140, 10));
 
-        btnConcluir1.setBackground(new java.awt.Color(0, 85, 166));
-        btnConcluir1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnConcluir1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConcluir1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnConcluir1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnConcluir1MouseExited(evt);
-            }
-        });
-        btnConcluir1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblConcluir1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        lblConcluir1.setForeground(new java.awt.Color(255, 255, 255));
-        lblConcluir1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblConcluir1.setText("Concluir");
-        btnConcluir1.add(lblConcluir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
-
-        pnlFundo.add(btnConcluir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 750, 90, 40));
-
         lblProduto.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblProduto.setForeground(new java.awt.Color(40, 40, 40));
         lblProduto.setText("Cod. Produto:");
@@ -346,11 +329,12 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     private void btnConcluirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseExited
         resetColor(btnConcluir);
     }//GEN-LAST:event_btnConcluirMouseExited
-
+    
+    /**Método que acessa a tela de produtos*/
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
-        //VOLTAR PARA A TELA PRODUTOS
         new TelaProdutos().setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
@@ -361,6 +345,7 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         resetColor(btnCancelar);
     }//GEN-LAST:event_btnCancelarMouseExited
 
+    /**Método conclui o processo de edição do produto*/
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
         
         if (validaCamposVazios()) {
@@ -380,7 +365,7 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
                 produto.alterarController(produtoBean);
                 
                 limpaCampos();
-                //VOLTAR PARA A TELA PRODUTOS
+
                 new TelaProdutos().setVisible(true);
                 this.dispose();
                 
@@ -402,88 +387,114 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         limpaCampos();
         
     }//GEN-LAST:event_btnLimparMouseClicked
-
+    
+    /**Método que acessa a tela de produtos*/
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        //VOLTAR PARA A TELA PRODUTOS
         new TelaProdutos().setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnCancelarMouseClicked
-
+    
+    /**Método que valida o tipo de dado no campo de NOME*/
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
-        // VALIDAÇÃO NOME
         if (txtNome.getText().length() < 30) {
-            //verifica se foi digitado número
+            
+            /**verifica se foi digitado número*/
             if (txtNome.getText().matches("^[0-9].*")) {
                 evt.consume();
-                //caso tenha sido número, retorna que não é permitido número no campo
+                
+                /**caso tenha sido número, retorna que não é permitido número no campo*/
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
                         "Erro", JOptionPane.ERROR_MESSAGE);
                 txtNome.setText("");
+                
             }
+            
         } else {
-            //caso seja maior, estoura o limite de caracteres
+            
+            /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 30", "Erro", JOptionPane.ERROR_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_txtNomeKeyTyped
 
+    /**Método que valida o tipo de dado no campo de CATEGORIA*/
     private void txtCategoriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCategoriaKeyTyped
-        // VALIDAÇÃO CATEGORIA
         if (txtCategoria.getText().length() < 15) {
-            //verifica se foi digitado número
+            
+            /**verifica se foi digitado número*/
             if (txtCategoria.getText().matches("^[0-9].*")) {
                 evt.consume();
-                //caso tenha sido número, retorna que não é permitido número no campo
+                
+                /**caso tenha sido número, retorna que não é permitido número no campo*/
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
                         "Erro", JOptionPane.ERROR_MESSAGE);
                 txtCategoria.setText("");
             }
+            
         } else {
-            //caso seja maior, estoura o limite de caracteres
+            
+            /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 15", "Erro", JOptionPane.ERROR_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_txtCategoriaKeyTyped
-
+    
+    /**Método que valida o tipo de dado no campo de MARCA*/
     private void txtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyTyped
-        // VALIDAÇÃO MARCA
         if (txtMarca.getText().length() < 20) {
-            //verifica se foi digitado número
+            
+            /**verifica se foi digitado número*/
             if (txtMarca.getText().matches("^[0-9].*")) {
                 evt.consume();
-                //caso tenha sido número, retorna que não é permitido número no campo
+                
+                /**caso tenha sido número, retorna que não é permitido número no campo*/
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
                         "Erro", JOptionPane.ERROR_MESSAGE);
                 txtMarca.setText("");
             }
+            
         } else {
-            //caso seja maior, estoura o limite de caracteres
+            
+            /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 20", "Erro", JOptionPane.ERROR_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_txtMarcaKeyTyped
-
+    
+    /**Método que valida o tipo de dado no campo de MODELO*/
     private void txtModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModeloKeyTyped
-        // VALIDAÇÃO MODELO
         if (txtModelo.getText().length() < 15) {
-            //verifica se foi digitado número
+            
+            /**verifica se foi digitado número*/
             if (txtModelo.getText().matches("^[0-9].*")) {
                 evt.consume();
-                //caso tenha sido número, retorna que não é permitido número no campo
+                
+                /**caso tenha sido número, retorna que não é permitido número no campo*/
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
                         "Erro", JOptionPane.ERROR_MESSAGE);
                 txtModelo.setText("");
+                
             }
+            
         } else {
-            //caso seja maior, estoura o limite de caracteres
+            
+            /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 15", "Erro", JOptionPane.ERROR_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_txtModeloKeyTyped
-
+    
+    /**Método que valida o tipo de dado no campo de QUANTIDADE*/
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
-
-        //////////////////////////////////////////////// VALIDAÇÃO QUANTIDADE
         if (txtQuantidade.getText().length() < 5) {
 
             String caracteres = "0987654321";
@@ -494,19 +505,18 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
             }
 
         } else {
-            //caso seja maior, estoura o limite de caracteres
+            
+            /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 5", "Erro", JOptionPane.ERROR_MESSAGE);
             txtQuantidade.setText("");
 
         }
 
-
     }//GEN-LAST:event_txtQuantidadeKeyTyped
-
+    
+    /**Método que valida o tipo de dado no campo de VALOR*/
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
-
-        ///////////////////////////////////////////////// VALIDAÇÃO VALOR
         if (txtValor.getText().length() < 7) {
 
             String caracteres = "0987654321,";
@@ -517,7 +527,7 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
             }
 
         } else {
-            //caso seja maior, estoura o limite de caracteres
+            /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 7", "Erro", JOptionPane.ERROR_MESSAGE);
             txtValor.setText("");
@@ -526,30 +536,38 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtValorKeyTyped
 
+    /**Método que valida o tipo de dado no campo de DESCRIÇÃO*/
     private void txtDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyTyped
-        // VALIDAÇÃO DESCRIÇÃO
         if (txtDescricao.getText().length() < 250) {
+            
         } else {
-            //caso seja maior, estoura o limite de caracteres
+            
+            /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 250", "Erro", JOptionPane.ERROR_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_txtDescricaoKeyTyped
-
+    
+    /**Método que minimiza a tela*/
     private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(1);
     }//GEN-LAST:event_lblMinimizarMouseClicked
-
+    
+    
+    /**Método que faz a conversão do campo QUANTIDADE de String para Inteiro*/
     private void txtQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQuantidadeFocusLost
-
-        //validação do campo Quantidade do cadastro de produto
         try {
+            
             if (!this.txtQuantidade.getText().equalsIgnoreCase("")) {
-                Integer.parseInt(txtQuantidade.getText()); //efetua a conversão para inteiro
+                
+                /**efetua a conversão para inteiro*/
+                Integer.parseInt(txtQuantidade.getText());
 
             }
 
-            //caso não consiga, exibe mensagem de erro de conversão 
+        /**caso não consiga, exibe mensagem de erro de conversão */ 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Quantidade", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
             txtQuantidade.setText("");
@@ -559,19 +577,19 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
 
         }
 
-
     }//GEN-LAST:event_txtQuantidadeFocusLost
-
+    
+    /**Método que faz a conversão do campo VALOR de String para Double*/
     private void txtValorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFocusLost
-
-        //validação do campo Valor do cadastro de produto
         try {
             if (!this.txtValor.getText().equalsIgnoreCase("")) {
-                Double.parseDouble(txtValor.getText().replace(",", ".")); //efetua a conversão para double e converte a vírgula em ponto
+                
+                /**efetua a conversão para double e converte a vírgula em ponto*/
+                Double.parseDouble(txtValor.getText().replace(",", "."));
 
             }
 
-            //caso não consiga, exibe mensagem de erro de conversão 
+        /**caso não consiga, exibe mensagem de erro de conversão */
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Valor", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
             txtValor.setText("");
@@ -582,19 +600,12 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_txtValorFocusLost
-
-    private void btnConcluir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluir1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConcluir1MouseClicked
-
-    private void btnConcluir1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluir1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConcluir1MouseEntered
-
-    private void btnConcluir1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluir1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConcluir1MouseExited
     
+    /*
+    * @param prodBean - Objeto do tipo Produto
+    *
+    * Método que preenche todos os campos da tela com os dados do produto que irá ser editado
+    */
     public void preencheCampos(Produto prodBean) {
         
         ArrayList<Produto> listaProduto = produto.consultarController(prodBean);
@@ -618,7 +629,7 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
 
     }
     
-    //VALIDAÇÃO DE CAMPOS VAZIOS
+    /**Método que verifica se os campos da tela estão vazios*/
     private boolean validaCamposVazios() {
         if (this.txtNome.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencha o campo Nome!");
@@ -648,10 +659,12 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencha o campo Descrição!");
             return false;
         }
+        
         return true;
+        
     }
 
-    //LIMPA CAMPOS
+    /**Método que limpas os campos da tela*/
     private void limpaCampos() {
         txtNome.setText("");
         txtCategoria.setText("");
@@ -662,12 +675,12 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
         txtDescricao.setText("");
     }
 
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    /**Método que altera a cor de um objeto ao passar o mouse por cima*/
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
     }
 
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    /**Método que restaura para a cor original do objeto ao tirar o mouse de cima*/
     public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
@@ -710,7 +723,6 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnCancelar;
     private javax.swing.JPanel btnConcluir;
-    private javax.swing.JPanel btnConcluir1;
     private javax.swing.JPanel btnLimpar;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -722,7 +734,6 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblCodProduto;
     private javax.swing.JLabel lblConcluir;
-    private javax.swing.JLabel lblConcluir1;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblEditarProduto;
     private javax.swing.JLabel lblFechar;
