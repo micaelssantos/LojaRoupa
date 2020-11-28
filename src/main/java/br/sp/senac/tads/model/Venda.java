@@ -7,7 +7,7 @@ public class Venda {
     
     private int IdVenda;
     private int IdCliente;
-    private float valorvenda;
+    private double valorvenda;
     private String nomeCliente;
     private Date data;
 
@@ -35,11 +35,11 @@ public class Venda {
         this.data = data;
     }
 
-    public float getValorvenda() {
+    public double getValorvenda() {
         return valorvenda;
     }
 
-    public void setValorvenda(float valorvenda) {
+    public void setValorvenda(double valorvenda) {
         this.valorvenda = valorvenda;
     }
 

@@ -65,17 +65,18 @@ public class VendaDAO {
       {
             abrirConexao();
             
-            instrucaoSQL = CONEXAO.prepareStatement("INSERT INTO VENDA (ID_CLIENTE, NOME_CLIENTE, VALOR_VENDA) VALUES(?, ?, ?)");
+            instrucaoSQL = CONEXAO.prepareStatement("INSERT INTO VENDA (ID_CLIENTE, NOME_CLIENTE, VALOR_VENDA, DATA) VALUES(?, ?, ?, ?)");
             instrucaoSQL.setInt(1,vendaModel.getIdCliente());
             instrucaoSQL.setString(2,vendaModel.getNomeCliente());
-            instrucaoSQL.setFloat(3,vendaModel.getValorvenda());
+            instrucaoSQL.setDouble(3,vendaModel.getValorvenda());
+            instrucaoSQL.setDate(4,vendaModel.getData());
   
             int linhaAfetadas = instrucaoSQL.executeUpdate();
 
              if(linhaAfetadas>0)
             {
                 retorno = true;
-               JOptionPane.showMessageDialog(null,"Venda realizada com sucesso!");
+               
             }           
              else
              {
@@ -85,7 +86,7 @@ public class VendaDAO {
       catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao carregar o driver!");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao abrir a conexão!");
+                JOptionPane.showMessageDialog(null, "Erro ao abrir a conexão!" + ex.getMessage());
             }
         return retorno;
         
@@ -97,8 +98,6 @@ public class VendaDAO {
         PreparedStatement instrucaoSQL = null;
 
         try {
-
-            //Obs: A classe GerenciadorConexao jÃ¡ carrega o Driver e define os parÃ¢metros de conexÃ£o
               abrirConexao();
             
             instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM VENDA (ID_VENDA, ID_CLIENTE, NOME_CLIENTE, DATA, VALOR_VENDA) VALUES(?, ?, ?, ?, ?)");
@@ -106,7 +105,7 @@ public class VendaDAO {
             instrucaoSQL.setInt(2,vendaModel.getIdCliente());
             instrucaoSQL.setString(3,vendaModel.getNomeCliente());
             instrucaoSQL.setDate(4,vendaModel.getData());
-            instrucaoSQL.setFloat(5,vendaModel.getValorvenda());
+            instrucaoSQL.setDouble(5,vendaModel.getValorvenda());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
@@ -150,7 +149,7 @@ public class VendaDAO {
             instrucaoSQL.setInt(2,vendaModel.getIdCliente());
             instrucaoSQL.setString(3,vendaModel.getNomeCliente());
             instrucaoSQL.setDate(4,vendaModel.getData());
-            instrucaoSQL.setFloat(5,vendaModel.getValorvenda());
+            instrucaoSQL.setDouble(5,vendaModel.getValorvenda());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
@@ -196,7 +195,7 @@ public class VendaDAO {
             instrucaoSQL.setInt(2,vendaModel.getIdCliente());
             instrucaoSQL.setString(3,vendaModel.getNomeCliente());
             instrucaoSQL.setDate(4,vendaModel.getData());
-            instrucaoSQL.setFloat(5,vendaModel.getValorvenda());
+            instrucaoSQL.setDouble(5,vendaModel.getValorvenda());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
@@ -281,6 +280,7 @@ public class VendaDAO {
                 
                 Cliente model = new Cliente();
                 model.setCPF(rs.getString("CPF"));
+                model.setNomeCliente(rs.getString("NOME_CLIENTE"));
                 
                 CPFCliente = model.getCPF();
             }
@@ -292,6 +292,79 @@ public class VendaDAO {
         } 
 
         return CPFCliente;
+    }
+        
+        public static String ConsultarNomeDoClientePorCPF(String CPF) 
+       {
+        
+           String Nome = "";
+            boolean retorno = false;
+            Connection conexao = null;
+            PreparedStatement instrucaoSQL = null;
+
+        try {
+
+            
+              abrirConexao();
+
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM CLIENTE WHERE CPF LIKE ?");
+            instrucaoSQL.setString(1, CPF + "%");
+           
+            
+            ResultSet rs = instrucaoSQL.executeQuery();
+            
+            while(rs.next()){
+                
+                Cliente model = new Cliente();
+                model.setNomeCliente(rs.getString("NOME_CLIENTE"));
+                
+                Nome = model.getNomeCliente();
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+
+        return Nome;
+    }
+      
+        
+      public static int PegarIDClientePorCPF(String CPF) 
+       {
+        
+            int id=0;
+            boolean retorno = false;
+            Connection conexao = null;
+            PreparedStatement instrucaoSQL = null;
+
+        try {
+
+            
+              abrirConexao();
+
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM CLIENTE WHERE CPF LIKE ?");
+            instrucaoSQL.setString(1, CPF + "%");
+           
+            
+            ResultSet rs = instrucaoSQL.executeQuery();
+            
+            while(rs.next()){
+                
+                Cliente model = new Cliente();
+                model.setId(rs.getInt("ID_CLIENTE"));
+                
+                id = model.getId();
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+
+        return id;
     }
         
         public static String ConsultarProdutoPorNome(String nome) 
@@ -327,7 +400,75 @@ public class VendaDAO {
 
         return nomeProduto;
     }
-     
+        
+       public static int PegarIDProdutoPorNome(String nome) 
+       {
+        
+           int id = 0;
+            boolean retorno = false;
+            Connection conexao = null;
+            PreparedStatement instrucaoSQL = null;
+
+        try {
+              abrirConexao();
+
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM PRODUTO WHERE NOME_PRODUTO LIKE ?");
+            instrucaoSQL.setString(1, nome + "%");
+           
+            
+            ResultSet rs = instrucaoSQL.executeQuery();
+            
+            while(rs.next()){
+                
+                Produto model = new Produto();
+                model.setId(rs.getInt("ID_PRODUTO"));
+                
+                id = model.getId();
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+
+        return id;
+    }
+        
+           public static int PegarIDClientePorNome(String nome) 
+       {
+        
+            int id = 0;
+            boolean retorno = false;
+            Connection conexao = null;
+            PreparedStatement instrucaoSQL = null;
+
+        try {
+              abrirConexao();
+
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM CLIENTE WHERE NOME_CLIENTE LIKE ?");
+            instrucaoSQL.setString(1, nome + "%");
+           
+            
+            ResultSet rs = instrucaoSQL.executeQuery();
+            
+            while(rs.next()){
+                
+                Cliente model = new Cliente();
+                model.setId(rs.getInt("ID_CLIENTE"));
+                
+                id = model.getId();
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+
+        return id;
+    }
+        
          public static int ConsultarProdutoPorCodigo(int cod) 
        {
         
@@ -360,6 +501,39 @@ public class VendaDAO {
         } 
 
         return CodProduto;
+    }
+         
+       public static String ConsultarNomedoProdutoPorCodigo(int cod) 
+       {
+        
+            String NomeProduto = "";
+            boolean retorno = false;
+            Connection conexao = null;
+            PreparedStatement instrucaoSQL = null;
+
+        try {
+              abrirConexao();
+
+            instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM PRODUTO WHERE ID_PRODUTO LIKE ?");
+            instrucaoSQL.setString(1, cod + "%");
+           
+            
+            ResultSet rs = instrucaoSQL.executeQuery();
+            
+            while(rs.next()){
+                Produto model = new Produto();
+                model.setNome(rs.getString("NOME_PRODUTO"));
+                
+                NomeProduto = model.getNome();
+            }
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+
+        return NomeProduto;
     }
        
     
@@ -544,6 +718,83 @@ public class VendaDAO {
         return listaProduto;
      }
 
+      public static ArrayList<Produto> pesquisarProdutoNome(String nome) {
+        
+         boolean retorno = false;
+        ResultSet rs = null;
+        PreparedStatement instrucaoSQL = null;
+        
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>(); 
+        
+        try {
+            
+            
+            Class.forName(DRIVER);
+            
+            abrirConexao();
+            
+           instrucaoSQL = CONEXAO.prepareStatement("SELECT * FROM PRODUTO WHERE NOME_PRODUTO LIKE ?");
+            
+            instrucaoSQL.setString(1, nome + "%");
+                       
+            rs = instrucaoSQL.executeQuery();
+            
+            while (rs.next()) {
+                               
+                Produto prod = new Produto();
+                prod.setId(rs.getInt("ID_PRODUTO"));
+                prod.setNome(rs.getString("NOME_PRODUTO"));
+                prod.setCategoria(rs.getString("CATEGORIA"));
+                prod.setMarca(rs.getString("MARCA"));
+                prod.setModelo(rs.getString("MODELO"));
+                prod.setDescricao(rs.getString("DESCRICAO"));
+                prod.setQuantidade(rs.getInt("QUANTIDADE"));
+                prod.setValorUnitario(rs.getDouble("VALOR"));
+                
+                listaProduto.add(prod);
+                
+            }
+            
+            return listaProduto;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } 
+        return listaProduto;
+     }
+      
+      
+    public static int IDVenda()  
+    {
+          boolean retorno = false;
+          ResultSet rs = null;
+          PreparedStatement instrucaoSQL = null; 
+          
+          int ID = 0;
+
+           try {
+
+               Class.forName(DRIVER);
+               abrirConexao();
+
+                instrucaoSQL = CONEXAO.prepareStatement("SELECT MAX(ID_VENDA) AS ID_VENDA FROM VENDA");
+
+                rs = instrucaoSQL.executeQuery();
+
+               if (rs != null) {
+                   while (rs.next()) {
+                       ID = rs.getInt("ID_VENDA");
+                   }
+               }
+             } catch (SQLException | ClassNotFoundException ex) {
+
+               System.out.println(ex.getMessage());
+               retorno = false;
+           } 
+           return ID;
+       }
 }
 
 
