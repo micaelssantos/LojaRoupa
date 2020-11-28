@@ -1,6 +1,8 @@
 package br.sp.senac.tads.controller;
 
+import br.sp.senac.tads.dao.ItemVendaDAO;
 import br.sp.senac.tads.dao.VendaDAO;
+import br.sp.senac.tads.model.ItemVenda;
 import br.sp.senac.tads.model.Produto;
 import br.sp.senac.tads.model.Venda;
 import java.sql.Date;
@@ -10,7 +12,9 @@ import java.util.ArrayList;
 public class VendaController 
         
 { 
-    public static boolean Adicionar(float valorVenda, int idcliente, String nomeCliente, Date data) {
+    public static boolean Adicionar(int idcliente, double valorVenda, String nomeCliente, Date data, ArrayList<ItemVenda> item) {
+        
+        boolean inserido = false;
         
         Venda model = new Venda();
         
@@ -18,9 +22,20 @@ public class VendaController
         model.setIdCliente(idcliente);
         model.setData(data);
         model.setValorvenda(valorVenda);
-   
+        
+        inserido = VendaDAO.Inserir(model);
+        
+        if (inserido == true) {
+            
+            int ultimoID = VendaDAO.IDVenda();
+         
+            for (ItemVenda lista : item) {
 
-        return VendaDAO.Inserir(model);
+                ItemVendaDAO.Inserir(lista, ultimoID);
+            }
+        }
+        
+        return true;
     }
 
     public static boolean Consultar(float valorVenda, int idcliente, String nomeCliente, Date data) {
@@ -80,6 +95,23 @@ public class VendaController
         return result;
         
     }
+     public static int PegarIDClientePorNome(String nome) 
+     {
+         int idResult = 0;
+         
+         idResult = VendaDAO.PegarIDClientePorNome(nome);
+         
+         return idResult;
+     }
+     
+      public static int PegarIDClientePorCPF(String CPF) 
+     {
+         int idResult = 0;
+         
+         idResult = VendaDAO.PegarIDClientePorCPF(CPF);
+         
+         return idResult;
+     }
      
      public static String ConsultarProdutoPorNome(String nome) 
     {
@@ -117,19 +149,7 @@ public class VendaController
         
     }
 
-    public Object getIdVenda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    public Object getNome() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object getValorvenda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-    }
-  
 
     public static int ConsultarQuantidadePRPorCOD(int cod) 
     {
@@ -156,7 +176,14 @@ public class VendaController
         listaProduto = VendaDAO.pesquisarProduto(COD);
         
         return listaProduto;
+    }
+      public static ArrayList<Produto> ConsultarProdutoNome(String nome) {
         
+        ArrayList<Produto> listaProduto = new ArrayList<Produto>();
+        
+        listaProduto = VendaDAO.pesquisarProdutoNome(nome);
+        
+        return listaProduto;
     }
     
     

@@ -1,11 +1,17 @@
 package br.sp.senac.tads.views;
 
 import br.sp.senac.tads.controller.ClienteController;
+import br.sp.senac.tads.controller.ItemVendaController;
 import br.sp.senac.tads.controller.ProdutoController;
 import br.sp.senac.tads.controller.VendaController;
+import br.sp.senac.tads.dao.VendaDAO;
+import br.sp.senac.tads.model.Cliente;
 import br.sp.senac.tads.model.ItemVenda;
 import br.sp.senac.tads.model.Produto;
+import br.sp.senac.tads.model.Venda;
 import java.awt.HeadlessException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +28,7 @@ public class TelaVendas extends javax.swing.JFrame {
       
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,10 +80,10 @@ public class TelaVendas extends javax.swing.JFrame {
         lblPesquisarPor2 = new javax.swing.JLabel();
         rdoNomeProduto = new javax.swing.JRadioButton();
         rdoCodProd = new javax.swing.JRadioButton();
-        btnPesquisarProdutos1 = new javax.swing.JPanel();
-        lblPesquisar1 = new javax.swing.JLabel();
         btnPesquisarProdutosCOD = new javax.swing.JPanel();
         lblPesquisar = new javax.swing.JLabel();
+        btnPesquisarProdutos1 = new javax.swing.JPanel();
+        lblPesquisar1 = new javax.swing.JLabel();
         pnlItens = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblItens = new javax.swing.JTable();
@@ -385,29 +392,6 @@ public class TelaVendas extends javax.swing.JFrame {
         });
         pnlProdutos.add(rdoCodProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
-        btnPesquisarProdutos1.setBackground(new java.awt.Color(0, 85, 166));
-        btnPesquisarProdutos1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPesquisarProdutos1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPesquisarProdutos1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPesquisarProdutos1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPesquisarProdutos1MouseExited(evt);
-            }
-        });
-        btnPesquisarProdutos1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblPesquisar1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        lblPesquisar1.setForeground(new java.awt.Color(255, 255, 255));
-        lblPesquisar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPesquisar1.setText("Pesquisar");
-        btnPesquisarProdutos1.add(lblPesquisar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
-
-        pnlProdutos.add(btnPesquisarProdutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, 40));
-
         btnPesquisarProdutosCOD.setBackground(new java.awt.Color(0, 85, 166));
         btnPesquisarProdutosCOD.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPesquisarProdutosCOD.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -430,6 +414,23 @@ public class TelaVendas extends javax.swing.JFrame {
         btnPesquisarProdutosCOD.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
 
         pnlProdutos.add(btnPesquisarProdutosCOD, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 40));
+
+        btnPesquisarProdutos1.setBackground(new java.awt.Color(0, 85, 166));
+        btnPesquisarProdutos1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisarProdutos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesquisarProdutos1MouseClicked(evt);
+            }
+        });
+        btnPesquisarProdutos1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblPesquisar1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        lblPesquisar1.setForeground(new java.awt.Color(255, 255, 255));
+        lblPesquisar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPesquisar1.setText("Pesquisar");
+        btnPesquisarProdutos1.add(lblPesquisar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 20));
+
+        pnlProdutos.add(btnPesquisarProdutos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, 40));
 
         pnlFundo.add(pnlProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 350, 350));
 
@@ -575,6 +576,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 DefaultTableModel itens = new DefaultTableModel();
                 itens = (DefaultTableModel) tblItens.getModel();
                 itens.removeRow(linhaSelecionada);
+                
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Item!", "Erro!", JOptionPane.WARNING_MESSAGE);
@@ -589,71 +591,83 @@ public class TelaVendas extends javax.swing.JFrame {
         setColor(btnInserir);
     }//GEN-LAST:event_btnInserirMouseEntered
 
+    
+     public void loadTable(ArrayList<String[]> listaItens) {
+        
+        DefaultTableModel tmItens = new DefaultTableModel();
+        tmItens.addColumn("Produto");
+        tmItens.addColumn("Quantidade");
+        tmItens.addColumn("Valor Unt");
+        tmItens.addColumn("Total");
+        tblItens.setModel(tmItens);
+        
+        for (String[] elementosItens : listaItens) {
+
+            tmItens.addRow(elementosItens);
+        }
+
+        tblItens.getColumnModel().getColumn(0).setPreferredWidth(250); //Produto
+        tblItens.getColumnModel().getColumn(1).setPreferredWidth(250); //Quantidade
+        tblItens.getColumnModel().getColumn(2).setPreferredWidth(250); //Valor unitário
+        tblItens.getColumnModel().getColumn(3).setPreferredWidth(250); //Total
+
+    }
+    
     private void btnInserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirMouseClicked
         if (ValidarProduto() ) {
             
-            Produto modelo = new Produto();
-            ItemVenda modeloI = new ItemVenda();
-            
-            int  COD = Integer.parseInt(txtCodigoProduto.getText());
             String nome = txtNomeProduto.getText();
+            int  COD = Integer.parseInt(txtCodigoProduto.getText()); 
+            
             int qtd = Integer.parseInt(txtQtd.getText());
+            int estoque = Integer.parseInt(txtQtdEstoque.getText());
             
-            modelo.setNome(nome);
-            modelo.setId(COD);
-
-            ArrayList<Produto> lista = VendaController.ConsultarProduto(COD);
+            double totalCompra = 0;
             
-            ArrayList<ItemVenda> Item = new ArrayList<ItemVenda>();
+            Produto modeloProduto = new Produto();
+            ItemVenda modeloItem = new ItemVenda();
+            
+            ArrayList<Produto> listaProdutos = new ArrayList<>();
+            listaProdutos = RetornaListaProduto(nome, COD); 
+            
+            ArrayList<ItemVenda> listaItem = ItemVendaController.getItensList();
+            ArrayList<String []> listadeItens = new ArrayList<>();
+            
+            modeloProduto.setNome(nome);
+            modeloProduto.setId(COD);
+            
+            modeloItem.setTotal(modeloProduto.getValorUnitario() * qtd);
+            
+            Venda modelo = new Venda();
+            modeloItem.setTotal(modeloProduto.getValorUnitario() * qtd);
 
-            //Adiciono as linhas na tabela
-            if (lista.size() > 0) {
-
-                DefaultTableModel tmItem = new DefaultTableModel();
-
-                tmItem.addColumn("Nome Produto");
-                tmItem.addColumn("Quantidade");
-                tmItem.addColumn("Valor Unitário");
-                tmItem.addColumn("Total");
-                tblItens.setModel(tmItem);
-
-                tblItens.setModel(tmItem);
-
-                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
-                tmItem.setRowCount(0);
-
-                int i = 0;
-
-                for (Object obj : lista) {
-                    
-                    Produto modeloP = (Produto) obj;
-                    
-                        modeloI.setIdProduto(COD);
-                        modeloI.setNomeProduto(modeloP.getNome());
-                        modeloI.setQtd(qtd);
-                        modeloI.setVlUnit(modeloP.getValorUnitario());
-                        modeloI.setTotal(modeloP.getValorUnitario() * qtd);
-                    
-                    
-                    tmItem.addRow(new String[1]);
-                    tblItens.setValueAt(modeloI.getNomeProduto(), i, 0);
-                    tblItens.setValueAt(modeloI.getQtd(), i, 1);
-                    tblItens.setValueAt(modeloI.getVlUnit(), i, 2);
-                    tblItens.setValueAt(modeloI.getTotal(), i, 3);
-                    
-                    
-                    i++;
-
+            for (Produto elementos : listaProdutos) 
+            {
+                if (qtd < estoque) 
+                {
+                   ItemVendaController.Salvar(modelo.getIdVenda(), elementos.getId(), 
+                    qtd,elementos.getValorUnitario(), elementos.getNome(), elementos.getValorUnitario() * qtd);
+                   
+                   listadeItens = ItemVendaController.getItemLista
+                   (listaItem, listadeItens, elementos.getNome());
+                   
+                   this.loadTable(listadeItens);
                 }
-
-        }
+                else
+                {
+                   JOptionPane.showMessageDialog(this, "Quantidade do Produto não disponivel no estoque"); 
+                }
+            }
+              for (ItemVenda valor : listaItem) {
+                  
+                totalCompra += valor.getTotal();
+            }
             
-            JOptionPane.showMessageDialog(this, "Produto Adicionado a lista!");
+            lblValorTotal.setText(String.valueOf(totalCompra)); 
+            
         }
     }//GEN-LAST:event_btnInserirMouseClicked
 
-   
-    
     private void btnLimparMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseExited
         resetColor(btnLimpar);
     }//GEN-LAST:event_btnLimparMouseExited
@@ -678,6 +692,8 @@ public class TelaVendas extends javax.swing.JFrame {
         if (ValidarPesquisaProduto()) {
             
            int  COD = Integer.parseInt(txtCodigoProduto.getText());
+           
+           String nome = txtNomeProduto.getText();
             
            int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
           
@@ -687,6 +703,8 @@ public class TelaVendas extends javax.swing.JFrame {
             {
                 txtQtdEstoque.setText(Integer.toString(qtd));
                 JOptionPane.showMessageDialog(this, "Produto Localizado!");
+                
+                RetornaListaProduto(nome, COD);
             }
             else 
             {
@@ -721,8 +739,61 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
         if (ValidarCliente() && ValidarProduto()) {
+            
+           String Prnome = txtNomeProduto.getText();
+           int  COD = Integer.parseInt(txtCodigoProduto.getText()); 
+         
+           ArrayList<Produto> listaProdutos = new ArrayList<>();
+           
+           listaProdutos = RetornaListaProduto(Prnome, COD); 
+           
+          ArrayList<ItemVenda> listaitem = ItemVendaController.getItensList();
+
+        boolean validar = true, validarQuantidade = false;
+        int quantidadeTotal = 0;
+
+        for (Produto p : listaProdutos) {
+            for (ItemVenda itens : listaitem) {
+                
+                if (p.getId() == itens.getIdProduto()) {
+                    quantidadeTotal += itens.getQtd();
+                }
+            }
+        }
+        
+        String nome = txtNomeCliente.getText();
+        String CPF = txtCPF.getText();
+        
+        String nomeCliente = VendaDAO.ConsultarNomeDoClientePorCPF(CPF);
+       
+        validar = ItemVendaController.ControllerEstoque(quantidadeTotal);
+        
+        if (validar == true) {
+            
+            validarQuantidade = true;
+            
+            Date data = Date.valueOf(LocalDate.now());
+            int IDCliente = RetornaID(nome, CPF);
+            
+            ArrayList<ItemVenda> itens = ItemVendaController.getItensList();
+            
+            VendaController.Adicionar(IDCliente,
+                    Double.parseDouble(lblValorTotal.getText()),
+                    nomeCliente, data, itens);
+           
+            ItemVendaController.limparlista();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não foi efetuado nenhuma compra", "Erro de Compra", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (validarQuantidade == false) {
+            JOptionPane.showMessageDialog(this, "A soma da quantidade de produto acima do que consta disponível para compra", "Erro de Compra", JOptionPane.ERROR_MESSAGE);
+        }
             JOptionPane.showMessageDialog(this, "Venda realizada com Sucesso!");
-            this.dispose();
+          
+            new TelaMenu().setVisible(true);
+            this.dispose();  
         }
     }//GEN-LAST:event_btnConcluirMouseClicked
 
@@ -767,7 +838,6 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
         if (ValidarCliente()) {
-            
         
             JOptionPane.showMessageDialog(this, "Cliente Selecionado!");
         }
@@ -797,6 +867,7 @@ public class TelaVendas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rdoCPFMouseClicked
 
+    
     private void btnPesquisarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarClienteMouseClicked
         if (ValidarCliente()) 
         {
@@ -814,9 +885,33 @@ public class TelaVendas extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this, "Cliente Não Localizado!");
             }
+           
         }
     }//GEN-LAST:event_btnPesquisarClienteMouseClicked
 
+    
+   public static int RetornaID(String Nome, String Cpf)
+   {
+       int id ;
+       
+       String nm = VendaController.ConsultarClientePorNome(Nome);
+       String CPF = VendaController.ConsultarClientePorCPF(Cpf);
+       
+       if (nm.equals(Nome)){
+       
+           id = VendaController.PegarIDClientePorNome(nm);
+           
+           return id;
+       }
+       else if (CPF.equals(Cpf))
+       {
+              id = VendaController.PegarIDClientePorCPF(Cpf);
+              
+              return id;
+       }
+       return 0;
+   }
+    
     private void btnPesquisarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarClienteMouseEntered
         setColor(btnPesquisarCliente);
     }//GEN-LAST:event_btnPesquisarClienteMouseEntered
@@ -854,16 +949,20 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_lblValorTotalKeyTyped
 
     private void btnPesquisarProdutos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseClicked
+             
+        String nome = txtNomeProduto.getText();
+        String cod = txtCodigoProduto.getText();
 
-            String nome = txtNomeProduto.getText();
-
-            String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
+            int id =0;
+           String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
             int qtd = VendaController.ConsultarQuantidadePRPorNome(nome);
           
              if(respostaNome.equals(nome))
             {
                 txtQtdEstoque.setText(Integer.toString(qtd));
                 JOptionPane.showMessageDialog(this, "Produto Localizado!");
+                
+                RetornaListaProduto(nome,  id);
             }   
             else 
             {
@@ -873,14 +972,38 @@ public class TelaVendas extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnPesquisarProdutos1MouseClicked
 
-    private void btnPesquisarProdutos1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarProdutos1MouseEntered
-
-    private void btnPesquisarProdutos1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarProdutos1MouseExited
-
+    public static ArrayList<Produto>  RetornaListaProduto (String nome, int id)
+    {
+       int COD = id;
+       
+       ArrayList<Produto> lista = new ArrayList<Produto> ();
+       
+       String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
+       int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
+       
+       
+       
+      
+             if(respostaNome.equals(nome))
+            {
+                lista = VendaController.ConsultarProdutoNome(respostaNome);//receber
+                
+                return lista;
+            } 
+      
+          
+           int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
+          
+             if(respostaCOD == COD)
+            {
+               lista = VendaController.ConsultarProduto(COD); //receber
+               
+               return lista;
+            }
+       
+             return lista;
+    }
+    
     private void limpar() {
         this.txtNomeProduto.setText("");
         this.txtQtd.setText("");
