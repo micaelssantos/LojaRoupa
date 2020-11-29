@@ -6,7 +6,6 @@ import br.sp.senac.tads.model.ItemVenda;
 import br.sp.senac.tads.model.Produto;
 import br.sp.senac.tads.model.Venda;
 import java.sql.Date;
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class VendaController 

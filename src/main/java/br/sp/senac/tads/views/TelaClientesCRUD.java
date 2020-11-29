@@ -31,6 +31,13 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
             
         }
         
+        if (lblTitulo.getText().equals("Editar")) {
+            
+            this.btnNovoCli.setVisible(false);
+            this.lblNovoCliente.setVisible(false);
+            
+        }
+        
     }
 
     /**
@@ -454,7 +461,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         if (lblTitulo.getText().equals("Cadastrar")) {
             
             if (campoObrigatorio()) {
-            
+                
                 clienteBean.setNomeCliente(txtNome.getText());
                 clienteBean.setCPF(txtFormatCPF.getText().replaceAll("\\D", ""));
                 clienteBean.setDataNascimento(txtFormatDtNasc.getText().replaceAll("\\D", ""));
@@ -466,15 +473,15 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
                 clienteBean.setTelefone(txtFormatTelefone.getText().replaceAll("\\D", ""));
                 clienteBean.setCelular(txtFormatCelular.getText().replaceAll("\\D", ""));
                 clienteBean.setEmail(txtEmail.getText());
-
+                
                 clienteController.cadastrarController(clienteBean);
-
+                
                 limparCampos();
                 desativar();
                 this.btnNovoCli.setEnabled(true);
-            
+                
             } else {
-
+                
             }
             
         }
@@ -482,7 +489,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         if (lblTitulo.getText().equals("Editar")) {
             
             if (campoObrigatorio()) {
-            
+                
                 clienteBean.setNomeCliente(txtNome.getText());
                 clienteBean.setCPF(txtFormatCPF.getText().replaceAll("\\D", ""));
                 clienteBean.setDataNascimento(txtFormatDtNasc.getText().replaceAll("\\D", ""));
@@ -495,20 +502,20 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
                 clienteBean.setCelular(txtFormatCelular.getText().replaceAll("\\D", ""));
                 clienteBean.setEmail(txtEmail.getText());
                 clienteBean.setId(Integer.parseInt(lblCodCliente.getText()));
-
+                
                 clienteController.alterarContrller(clienteBean);
-
+                
                 limparCampos();
                 desativar();
-                this.btnNovoCli.setEnabled(true);
-            
+                new TelaClientes(usuario_sessao).setVisible(true);
+                this.dispose();
+                
             } else {
-
+                
             }
             
-            
         }
-        
+
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void btnLimparMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseEntered
@@ -565,7 +572,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     private void txtLogradouroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLogradouroKeyTyped
         // TODO add your handling code here:
         if (txtLogradouro.getText().length() < 30) {
-
+            
         } else {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -595,7 +602,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         ArrayList<Cliente> listaCLiente = clienteController.consultarController(beanCliente);
         
         int i = 0;
-
+        
         for (Object obj : listaCLiente) {
             Cliente cliente = (Cliente) obj;
             
@@ -615,9 +622,9 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
             System.out.println(clienteBean.getDataNascimento());
             
             i++;
-
+            
         }
-
+        
     }
     
     public void setIcon(JFrame frm) {
@@ -625,7 +632,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
         
     }
-    
+
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
@@ -635,7 +642,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
-
+    
     private void limparCampos() {
         txtEmail.setText("");
         txtLogradouro.setText("");
@@ -653,7 +660,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         cmbSexo.setSelectedItem(null);
         
     }
-
+    
     private void desativar() {
         txtEmail.setEnabled(false);
         txtFormatCPF.setEnabled(false);
@@ -669,7 +676,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         cmbEstadoCivil.setEnabled(false);
         cmbSexo.setEnabled(false);
     }
-
+    
     private void habilitar() {
         txtEmail.setEnabled(true);
         txtFormatCPF.setEnabled(true);
@@ -685,7 +692,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         cmbEstadoCivil.setEnabled(true);
         cmbSexo.setEnabled(true);
     }
-
+    
     private boolean campoObrigatorio() {
         if (this.txtNome.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Campo \"Nome\" é obrigatório!");
@@ -711,7 +718,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campo \"E-mail\" é obrigatório!");
             return false;
         }
-
+        
         return true;
     }
 
