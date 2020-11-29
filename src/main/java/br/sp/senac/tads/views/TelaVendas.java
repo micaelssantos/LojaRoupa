@@ -988,7 +988,7 @@ public class TelaVendas extends javax.swing.JFrame {
         
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
         
-
+    }
     public static ArrayList<Produto>  RetornaListaProduto (String nome, int id)
     {
        int COD = id;
@@ -997,27 +997,19 @@ public class TelaVendas extends javax.swing.JFrame {
        
        String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
        int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
-       
-       
-       
       
              if(respostaNome.equals(nome))
             {
                 lista = VendaController.ConsultarProdutoNome(respostaNome);//receber
-                
                 return lista;
             } 
       
-          
            int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
-          
              if(respostaCOD == COD)
             {
                lista = VendaController.ConsultarProduto(COD); //receber
-               
                return lista;
             }
-       
              return lista;
     }
     
@@ -1074,8 +1066,6 @@ public class TelaVendas extends javax.swing.JFrame {
             btnPesquisarProdutos1.setEnabled(false);
             btnPesquisarProdutos1.setVisible(false);
             btnPesquisarProdutosCOD.setVisible(true);
-            
-            
         }
     }
 
