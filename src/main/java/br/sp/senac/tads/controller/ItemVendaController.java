@@ -9,18 +9,7 @@ import java.util.ArrayList;
 public class ItemVendaController 
 {
     
-//    public static boolean Adicionar(int idVenda, int idProduto, double valorItem,int qtd, String nome_produto) {
-//        
-//        ItemVenda model = new ItemVenda();
-//        
-//        model.setIdVenda(idVenda);
-//        model.setIdProduto(idProduto);
-//        model.setVlUnit(valorItem);
-//        model.setQtd(qtd);
-//        model.setNomeProduto(nome_produto);
-//        
-//        return  ItemVendaDAO.Inserir(model);
-//    }
+        //salva os itens 
         public static boolean Salvar(int idVenda, int idProduto, int qtd, double valorItem, String nome_produto, double Total) {
 
         ItemVenda model = new ItemVenda();
@@ -44,7 +33,9 @@ public class ItemVendaController
         ArrayList<Produto> produtos = ItemVendaDAO.getProdutos();
         return produtos;
     }
-        public static boolean ControllerEstoque(int quantidadeTotal) {
+    
+    //calculo para calcular o estoque
+    public static boolean ControllerEstoque(int quantidadeTotal) {
 
         ArrayList<Produto> produto = ItemVendaController.getProdutoList();
         ArrayList<ItemVenda> item = ItemVendaDAO.getItens();
@@ -108,8 +99,10 @@ public class ItemVendaController
         return  ItemVendaDAO.Remover(model);
     }
     
-        public static ArrayList<String[]> getItemLista(ArrayList<ItemVenda> listaItem,
-            ArrayList<String[]> listaVazia, String nomeProduto) {
+    //pega alista de itens     
+    public static ArrayList<String[]> getItemLista(ArrayList<ItemVenda> listaItem, 
+            ArrayList<String[]> listaVazia, String nomeProduto) 
+    {
 
         for (ItemVenda item : listaItem) {
             listaVazia.add(new String[]{
@@ -120,7 +113,8 @@ public class ItemVendaController
         }
         return listaVazia;
     }
-       public static void limparlista() {
+       
+    public static void limparlista() {
         ItemVendaDAO.Excluiritem();
     }
    
