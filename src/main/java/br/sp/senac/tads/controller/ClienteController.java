@@ -8,31 +8,29 @@ public class ClienteController {
 
     ClienteDAO cliente = new ClienteDAO();
 
-    public void cadastrarController(Cliente cliBean) {
-
-        cliente.adicionar(cliBean);
-
-    }
-
-    public void alterarController(Cliente cliBean) {
-
-        cliente.alterar(cliBean);
+    public void cadastrarController(Cliente clienteBean) {
+        
+        cliente.cadastrarCliente(clienteBean);
         
     }
-
-    public void removerController(Cliente cliBean) {
-
-        cliente.remover(cliBean);
-
+    
+    public void alterarContrller(Cliente clienteBean) {
+        
+        cliente.alterarCliente(clienteBean);
+        
     }
     
+    public void removerController(Cliente clienteBean) {
+        
+        cliente.removerCliente(clienteBean);
+        
+    }
     
-    
-     public ArrayList consultarController(Cliente cliBean) {
+    public ArrayList consultarController(Cliente clienteBean) {
         
         ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
         
-        listaCliente = cliente.consultarCliente(cliBean);
+        listaCliente = cliente.consultarCliente(clienteBean);
         
         return listaCliente;
         
@@ -48,90 +46,24 @@ public class ClienteController {
         
     }
     
-    public ArrayList pesquisarController(Cliente cliBean) {
+    public ArrayList pesquisarNomeController(Cliente clienteBean) {
         
         ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
         
-        listaCliente= cliente.pesquisarCliente(cliBean);
+        listaCliente = cliente.pesquisarClienteNome(clienteBean);
         
         return listaCliente;
         
     }
     
-    
-    
-    
-    
-
-    public static boolean Adicionar(String nome, String CPF, String dataNascimento, String estadoCivil, String sexo, String CEP,
-            String logradouro, String numero, String telefone, String celular, String email) {
-        Cliente obj = new Cliente();
-        obj.setNomeCliente(nome);
-        obj.setCPF(CPF);
-        obj.setDataNascimento(dataNascimento);
-        obj.setEstadoCivil(estadoCivil);
-        obj.setSexo(sexo);
-        obj.setCEP(CEP);
-        obj.setLogradouro(logradouro);
-        obj.setNumero(numero);
-        obj.setTelefone(telefone);
-        obj.setCelular(celular);
-        obj.setEmail(email);
-
-        return ClienteDAO.adicionar(obj);
+    public ArrayList pesquisarCpfController(Cliente clienteBean) {
+        
+        ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+        
+        listaCliente = cliente.pesquisarClienteCpf(clienteBean);
+        
+        return listaCliente;
+        
     }
-
-    public static boolean Consultar(String nome, String CPF, String dataNascimento, String estadoCivil, String sexo, String CEP,
-            String logradouro, String numero, String telefone, String celular, String email) {
-        Cliente obj = new Cliente();
-        obj.setNomeCliente(nome);
-        obj.setCPF(CPF);
-        obj.setDataNascimento(dataNascimento);
-        obj.setEstadoCivil(estadoCivil);
-        obj.setSexo(sexo);
-        obj.setCEP(CEP);
-        obj.setLogradouro(logradouro);
-        obj.setNumero(numero);
-        obj.setTelefone(telefone);
-        obj.setCelular(celular);
-        obj.setEmail(email);
-
-        return ClienteDAO.consultar(obj);
-    }
-
-    public static boolean alterar(String nome, String CPF, String dataNascimento, String estadoCivil, String sexo, String CEP,
-            String logradouro, String numero, String telefone, String celular, String email) {
-        Cliente obj = new Cliente();
-        obj.setNomeCliente(nome);
-        obj.setCPF(CPF);
-        obj.setDataNascimento(dataNascimento);
-        obj.setEstadoCivil(estadoCivil);
-        obj.setSexo(sexo);
-        obj.setCEP(CEP);
-        obj.setLogradouro(logradouro);
-        obj.setNumero(numero);
-        obj.setTelefone(telefone);
-        obj.setCelular(celular);
-        obj.setEmail(email);
-
-        return ClienteDAO.alterar(obj);
-    }
-
-    public static boolean Remover(String nome, String CPF, String dataNascimento, String estadoCivil, String sexo, String CEP,
-            String logradouro, String numero, String telefone, String celular, String email) {
-        Cliente obj = new Cliente();
-        obj.setNomeCliente(nome);
-        obj.setCPF(CPF);
-        obj.setDataNascimento(dataNascimento);
-        obj.setEstadoCivil(estadoCivil);
-        obj.setSexo(sexo);
-        obj.setCEP(CEP);
-        obj.setLogradouro(logradouro);
-        obj.setNumero(numero);
-        obj.setTelefone(telefone);
-        obj.setCelular(celular);
-        obj.setEmail(email);
-
-        return ClienteDAO.remover(obj);
-    }
+    
 }

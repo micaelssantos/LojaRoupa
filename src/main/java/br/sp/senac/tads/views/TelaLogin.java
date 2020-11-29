@@ -1,12 +1,31 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.controller.LoginController;
+import br.sp.senac.tads.model.Login;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
+/**
+*
+* @author joliveira
+* @see br.sp.senac.tads.controller.LoginController
+* @see br.sp.senac.tads.model.Login
+* 
+*/
 
 public class TelaLogin extends javax.swing.JFrame {
-
+    
+    LoginController logController = new LoginController();
+    Login logBean = new Login();
+    
     public TelaLogin() {
         initComponents();
+        listarTabelaLogin();
+        setIcon(this);
     }
 
     /**
@@ -21,17 +40,18 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlFundo = new javax.swing.JPanel();
         pnlBarraTitulo = new javax.swing.JPanel();
         lblBemVindo = new javax.swing.JLabel();
+        lblMinimizar = new javax.swing.JLabel();
         lblFechar = new javax.swing.JLabel();
         btnSair = new javax.swing.JPanel();
         lblSair = new javax.swing.JLabel();
-        btnAcessar = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
-        lblSenha = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        txtSenha = new javax.swing.JPasswordField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblLogin = new javax.swing.JTable();
+        btnCadastrar = new javax.swing.JPanel();
+        lblCadastrar = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JPanel();
+        lblEditar = new javax.swing.JLabel();
+        btnRemover = new javax.swing.JPanel();
+        lblRemover = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -43,11 +63,22 @@ public class TelaLogin extends javax.swing.JFrame {
         pnlBarraTitulo.setBackground(new java.awt.Color(0, 85, 166));
         pnlBarraTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblBemVindo.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblBemVindo.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
         lblBemVindo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBemVindo.setText("Bem vindo");
+        lblBemVindo.setText("Usuários");
         pnlBarraTitulo.add(lblBemVindo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 40));
+
+        lblMinimizar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
+        lblMinimizar.setForeground(new java.awt.Color(255, 255, 255));
+        lblMinimizar.setText("_");
+        lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizarMouseClicked(evt);
+            }
+        });
+        pnlBarraTitulo.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, -1, 40));
 
         lblFechar.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 36)); // NOI18N
         lblFechar.setForeground(new java.awt.Color(255, 255, 255));
@@ -58,9 +89,9 @@ public class TelaLogin extends javax.swing.JFrame {
                 lblFecharMouseClicked(evt);
             }
         });
-        pnlBarraTitulo.add(lblFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, -1, -1));
+        pnlBarraTitulo.add(lblFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, -1, 50));
 
-        pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 40));
+        pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 50));
 
         btnSair.setBackground(new java.awt.Color(0, 85, 166));
         btnSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -80,53 +111,109 @@ public class TelaLogin extends javax.swing.JFrame {
         lblSair.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
         lblSair.setForeground(new java.awt.Color(255, 255, 255));
         lblSair.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSair.setText("Sair");
+        lblSair.setText("Voltar");
         btnSair.add(lblSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, 20));
 
-        pnlFundo.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 80, 40));
+        pnlFundo.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 80, 40));
 
-        btnAcessar.setBackground(new java.awt.Color(0, 85, 166));
-        btnAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAcessar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAcessarMouseClicked(evt);
+        tblLogin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID Login", "Login", "Senha"
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAcessarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAcessarMouseExited(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        btnAcessar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jScrollPane1.setViewportView(tblLogin);
+        if (tblLogin.getColumnModel().getColumnCount() > 0) {
+            tblLogin.getColumnModel().getColumn(0).setResizable(false);
+            tblLogin.getColumnModel().getColumn(1).setResizable(false);
+            tblLogin.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        jLabel13.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Acessar");
-        btnAcessar.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, 20));
+        pnlFundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 340, 260));
 
-        pnlFundo.add(btnAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 80, 40));
+        btnCadastrar.setBackground(new java.awt.Color(0, 85, 166));
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCadastrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCadastrarMouseExited(evt);
+            }
+        });
+        btnCadastrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        lblUsuario.setText("Usuário");
-        pnlFundo.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+        lblCadastrar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCadastrar.setText("Cadastrar");
+        btnCadastrar.add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
 
-        lblSenha.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        lblSenha.setText("Senha");
-        pnlFundo.add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        pnlFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, 40));
 
-        txtUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        txtUsuario.setBorder(null);
-        pnlFundo.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 240, -1));
-        pnlFundo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 240, 10));
-        pnlFundo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 240, 10));
+        btnEditar.setBackground(new java.awt.Color(0, 85, 166));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEditarMouseExited(evt);
+            }
+        });
+        btnEditar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtSenha.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        txtSenha.setBorder(null);
-        pnlFundo.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 240, -1));
+        lblEditar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblEditar.setForeground(new java.awt.Color(255, 255, 255));
+        lblEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEditar.setText("Editar");
+        btnEditar.add(lblEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
 
-        getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 290));
+        pnlFundo.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, 40));
+
+        btnRemover.setBackground(new java.awt.Color(0, 85, 166));
+        btnRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRemover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRemoverMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRemoverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRemoverMouseExited(evt);
+            }
+        });
+        btnRemover.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblRemover.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        lblRemover.setForeground(new java.awt.Color(255, 255, 255));
+        lblRemover.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRemover.setText("Remover");
+        btnRemover.add(lblRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
+
+        pnlFundo.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, -1, 40));
+
+        getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 350));
 
         pack();
         setLocationRelativeTo(null);
@@ -141,32 +228,143 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairMouseExited
 
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
-        //Encerra aplicação
-        System.exit(0);
+        TelaMenu tm = new TelaMenu();
+        tm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSairMouseClicked
 
-    private void btnAcessarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcessarMouseClicked
-        if (validaCamposVazios()) {
-            limpaCampos();
-            //ACESSA O MENU PRINCIPAL
-            new TelaMenu().setVisible(true);
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnAcessarMouseClicked
-
-    private void btnAcessarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcessarMouseEntered
-        setColor(btnAcessar);
-    }//GEN-LAST:event_btnAcessarMouseEntered
-
-    private void btnAcessarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcessarMouseExited
-        resetColor(btnAcessar);
-    }//GEN-LAST:event_btnAcessarMouseExited
+    private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
+        this.setState(1);
+    }//GEN-LAST:event_lblMinimizarMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
-        //Encerra aplicação
-        System.exit(0);        
+        TelaMenu tm = new TelaMenu();
+        tm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
+    private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
+        TelaLoginCRUD tlc = new TelaLoginCRUD("Cadastrar");
+        tlc.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnCadastrarMouseClicked
+
+    private void btnCadastrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseEntered
+        setColor(btnCadastrar);
+    }//GEN-LAST:event_btnCadastrarMouseEntered
+
+    private void btnCadastrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseExited
+        resetColor(btnCadastrar);
+    }//GEN-LAST:event_btnCadastrarMouseExited
+
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
+        
+        int linhaSelecionada = tblLogin.getSelectedRow();
+        
+        if (linhaSelecionada >= 0) {
+            
+            int codLogin = Integer.parseInt(tblLogin.getValueAt(tblLogin.getSelectedRow(), 0).toString());
+                       
+            logBean.setId(codLogin);
+            
+            TelaLoginCRUD tlc = new TelaLoginCRUD("Editar");
+            tlc.preencheCampos(logBean);
+            tlc.setVisible(true);
+            this.dispose();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um item", "Erro!", JOptionPane.WARNING_MESSAGE);
+            
+        }
+        
+    }//GEN-LAST:event_btnEditarMouseClicked
+
+    private void btnEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseEntered
+        setColor(btnEditar);
+    }//GEN-LAST:event_btnEditarMouseEntered
+
+    private void btnEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseExited
+        resetColor(btnEditar);
+    }//GEN-LAST:event_btnEditarMouseExited
+
+    private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
+        
+        int linhaSelecionada = tblLogin.getSelectedRow();
+        
+        if (linhaSelecionada >= 0) {
+        
+            int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o item selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
+            
+            if (result == JOptionPane.YES_OPTION) {
+                
+                int codLogin = Integer.parseInt(tblLogin.getValueAt(tblLogin.getSelectedRow(), 0).toString());
+                       
+                logBean.setId(codLogin);
+               
+                logController.removerController(logBean);
+                
+                DefaultTableModel tmLogin = new DefaultTableModel();
+                tmLogin = (DefaultTableModel) tblLogin.getModel();
+                listarTabelaLogin();
+                
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um item!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnRemoverMouseClicked
+
+    private void btnRemoverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseEntered
+        setColor(btnRemover);
+    }//GEN-LAST:event_btnRemoverMouseEntered
+
+    private void btnRemoverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseExited
+        resetColor(btnRemover);
+    }//GEN-LAST:event_btnRemoverMouseExited
+    
+    /**Método que preenche as linhaas e colunas da tabela na tela*/
+    public void listarTabelaLogin() {
+            
+        ArrayList<LoginController> listaProduto = logController.pesquisarController();
+
+        if (listaProduto.size() > 0) {
+
+            DefaultTableModel tmLogin = new DefaultTableModel();
+
+            tmLogin.addColumn("ID");
+            tmLogin.addColumn("Login");
+            tmLogin.addColumn("Senha");
+
+            tblLogin.setModel(tmLogin);
+
+            tmLogin.setRowCount(0);
+
+            int i = 0;
+
+            for (Object obj : this.logController.pesquisarController()) {
+
+                Login bean = (Login) obj;
+
+                tmLogin.addRow(new String[1]);
+                tblLogin.setValueAt(bean.getId(), i, 0);
+                tblLogin.setValueAt(bean.getLogin(), i, 1);
+                tblLogin.setValueAt(bean.getSenha(), i, 2);
+
+                i++;
+
+            }
+
+        }
+    }
+    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
+    }
+    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel){
         panel.setBackground(new java.awt.Color(40, 40, 40));
@@ -177,24 +375,7 @@ public class TelaLogin extends javax.swing.JFrame {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
 
-    private boolean validaCamposVazios() {
-        String senha = String.valueOf(txtSenha.getPassword());
-        
-        if (this.txtUsuario.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
-            return false;
-        }
-        if (senha.equals("")) {
-            JOptionPane.showMessageDialog(this, "Preencha o campo de Senha!");
-            return false;
-        }
-        return true;
-    }
     
-    private void limpaCampos() {
-        txtUsuario.setText("");
-        txtSenha.setText("");
-    }
 
     /**
      * @param args the command line arguments
@@ -231,19 +412,20 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnAcessar;
+    private javax.swing.JPanel btnCadastrar;
+    private javax.swing.JPanel btnEditar;
+    private javax.swing.JPanel btnRemover;
     private javax.swing.JPanel btnSair;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBemVindo;
+    private javax.swing.JLabel lblCadastrar;
+    private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lblFechar;
+    private javax.swing.JLabel lblMinimizar;
+    private javax.swing.JLabel lblRemover;
     private javax.swing.JLabel lblSair;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlBarraTitulo;
     private javax.swing.JPanel pnlFundo;
-    private javax.swing.JPasswordField txtSenha;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTable tblLogin;
     // End of variables declaration//GEN-END:variables
 }
