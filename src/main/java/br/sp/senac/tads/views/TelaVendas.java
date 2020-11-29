@@ -10,12 +10,14 @@ import br.sp.senac.tads.model.ItemVenda;
 import br.sp.senac.tads.model.Produto;
 import br.sp.senac.tads.model.Venda;
 import java.awt.HeadlessException;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Toolkit;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class TelaVendas extends javax.swing.JFrame {
 
@@ -23,8 +25,9 @@ public class TelaVendas extends javax.swing.JFrame {
         initComponents();
         this.txtQtdEstoque.setEditable(false);
         desabilitado();
-            btnPesquisarProdutos1.setVisible(false);
-            btnPesquisarProdutosCOD.setVisible(false);
+        btnPesquisarProdutos1.setVisible(false);
+        btnPesquisarProdutosCOD.setVisible(false);
+        setIcon(this);
       
     }
 
@@ -971,6 +974,20 @@ public class TelaVendas extends javax.swing.JFrame {
              
             
     }//GEN-LAST:event_btnPesquisarProdutos1MouseClicked
+
+
+    private void btnPesquisarProdutos1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarProdutos1MouseEntered
+
+    private void btnPesquisarProdutos1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarProdutos1MouseExited
+    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
 
     public static ArrayList<Produto>  RetornaListaProduto (String nome, int id)
     {

@@ -1,12 +1,28 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.model.Login;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TelaMenu extends javax.swing.JFrame {
-
+    
+    String usuario_sessao;
+    
     public TelaMenu() {
         initComponents();
+                
     }
+    
+    public TelaMenu(String sessao) {
+        initComponents();
+        this.usuario_sessao = sessao;
+        lblSessao.setText("Bem vindo, " + sessao + "!");
+        setIcon(this);
+        
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -22,7 +38,7 @@ public class TelaMenu extends javax.swing.JFrame {
         lblFechar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
         lblIconeUsuario = new javax.swing.JLabel();
-        lblBemVindo = new javax.swing.JLabel();
+        lblSessao = new javax.swing.JLabel();
         lblLogout = new javax.swing.JLabel();
         btnVendas = new javax.swing.JPanel();
         lblVendas = new javax.swing.JLabel();
@@ -34,10 +50,13 @@ public class TelaMenu extends javax.swing.JFrame {
         lblClientes = new javax.swing.JLabel();
         lblIconeClientes = new javax.swing.JLabel();
         btnRelatorios = new javax.swing.JPanel();
-        lblRelatorios = new javax.swing.JLabel();
         lblIconeRelatorios = new javax.swing.JLabel();
+        lblRelatorios1 = new javax.swing.JLabel();
         btnSair = new javax.swing.JPanel();
         lblSair = new javax.swing.JLabel();
+        btnUsuarios = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblRelatorios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -75,11 +94,11 @@ public class TelaMenu extends javax.swing.JFrame {
         lblIconeUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/user.png"))); // NOI18N
         pnlBarraTitulo.add(lblIconeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 40, 40));
 
-        lblBemVindo.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        lblBemVindo.setForeground(new java.awt.Color(255, 255, 255));
-        lblBemVindo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBemVindo.setText("Bem vindo, ADMIN");
-        pnlBarraTitulo.add(lblBemVindo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, -1, 40));
+        lblSessao.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblSessao.setForeground(new java.awt.Color(255, 255, 255));
+        lblSessao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSessao.setText("NULL");
+        pnlBarraTitulo.add(lblSessao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, 210, 40));
 
         lblLogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/logout.png"))); // NOI18N
@@ -186,14 +205,14 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         btnRelatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblRelatorios.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        lblRelatorios.setForeground(new java.awt.Color(255, 255, 255));
-        lblRelatorios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRelatorios.setText("Relatórios");
-        btnRelatorios.add(lblRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 150, -1));
-
         lblIconeRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/relatorios.png"))); // NOI18N
         btnRelatorios.add(lblIconeRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        lblRelatorios1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblRelatorios1.setForeground(new java.awt.Color(255, 255, 255));
+        lblRelatorios1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRelatorios1.setText("Relatórios");
+        btnRelatorios.add(lblRelatorios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 150, -1));
 
         pnlFundo.add(btnRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 170, 180));
 
@@ -219,6 +238,32 @@ public class TelaMenu extends javax.swing.JFrame {
         btnSair.add(lblSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
 
         pnlFundo.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+
+        btnUsuarios.setBackground(new java.awt.Color(0, 85, 166));
+        btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseExited(evt);
+            }
+        });
+        btnUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/usuarios.png"))); // NOI18N
+        btnUsuarios.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        lblRelatorios.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblRelatorios.setForeground(new java.awt.Color(255, 255, 255));
+        lblRelatorios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRelatorios.setText("Usuários");
+        btnUsuarios.add(lblRelatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 150, -1));
+
+        pnlFundo.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 170, 180));
 
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
@@ -278,20 +323,22 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
         //VOLTAR PARA A TELA DE LOGIN
-        new TelaLogin().setVisible(true);
+        new TelaLoginInicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblLogoutMouseClicked
 
     private void btnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutosMouseClicked
         //ACESSA A TELA DE PRODUTOS
-        new TelaProdutos().setVisible(true);
+        TelaProdutos tp = new TelaProdutos(usuario_sessao);
+        tp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProdutosMouseClicked
 
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
-        //ACESSA A TELA DE CLIENTES
-        new TelaClientes().setVisible(true);
+        TelaClientes tc = new TelaClientes(usuario_sessao);
+        tc.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnClientesMouseClicked
 
     private void btnVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasMouseClicked
@@ -310,6 +357,28 @@ public class TelaMenu extends javax.swing.JFrame {
         this.setState(1);
     }//GEN-LAST:event_lblMinimizarMouseClicked
 
+    private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
+        setColor(btnUsuarios);
+    }//GEN-LAST:event_btnUsuariosMouseEntered
+
+    private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
+        resetColor(btnUsuarios);
+
+    }//GEN-LAST:event_btnUsuariosMouseExited
+
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
+        TelaLogin tl = new TelaLogin();
+        tl.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btnUsuariosMouseClicked
+    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
+    }
+    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
@@ -360,8 +429,9 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JPanel btnProdutos;
     private javax.swing.JPanel btnRelatorios;
     private javax.swing.JPanel btnSair;
+    private javax.swing.JPanel btnUsuarios;
     private javax.swing.JPanel btnVendas;
-    private javax.swing.JLabel lblBemVindo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblFechar;
     private javax.swing.JLabel lblIconeClientes;
@@ -373,7 +443,9 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblProdutos;
     private javax.swing.JLabel lblRelatorios;
+    private javax.swing.JLabel lblRelatorios1;
     private javax.swing.JLabel lblSair;
+    private javax.swing.JLabel lblSessao;
     private javax.swing.JLabel lblVendas;
     private javax.swing.JPanel pnlBarraTitulo;
     private javax.swing.JPanel pnlFundo;

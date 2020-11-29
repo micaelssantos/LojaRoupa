@@ -1,8 +1,11 @@
 package br.sp.senac.tads.views;
 
 import br.sp.senac.tads.controller.ProdutoController;
+import br.sp.senac.tads.model.Login;
 import br.sp.senac.tads.model.Produto;
+import java.awt.Toolkit;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -19,11 +22,20 @@ public class TelaProdutos extends javax.swing.JFrame {
     
     Produto produtoBean = new Produto();
     ProdutoController produto = new ProdutoController();
+    String usuario_sessao;
     
     public TelaProdutos() {
         initComponents();
         listarTabelaProduto();
+        setIcon(this);
         
+    }
+    
+    public TelaProdutos(String sessao) {
+        initComponents();
+        listarTabelaProduto();
+        this.usuario_sessao = sessao;
+        lblUsuario.setText(usuario_sessao);
     }
 
     /**
@@ -85,9 +97,9 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         lblUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsuario.setText("ADMIN");
-        pnlBarraLateral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, -1, 40));
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsuario.setText("null");
+        pnlBarraLateral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, 150, 40));
 
         lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/logout.png"))); // NOI18N
         lblLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -386,19 +398,19 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         /**Acessa a tela de menu principal*/
-        new TelaMenu().setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void btnFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharMouseClicked
         /**Acessa a tela de menu principal*/
-        new TelaMenu().setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnFecharMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
         /**Acessa a tela de login*/
-        new TelaLogin().setVisible(true);
+        new TelaLoginInicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblLogoutMouseClicked
 
@@ -465,8 +477,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                        
             produtoBean.setId(codProduto);
             
-            //ACESSAR A TELA DE EDIÇÃO DE PRODUTO
-            TelaProdutosEditar telaEditar = new TelaProdutosEditar();
+            TelaProdutosCRUD telaEditar = new TelaProdutosCRUD("Editar", usuario_sessao);
             telaEditar.setVisible(true);
             telaEditar.preencheCampos(produtoBean);
             this.dispose();
@@ -531,21 +542,23 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     /**Método que acessa a tela de cadastro de produto*/
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-        new TelaProdutosCadastro().setVisible(true);
+        TelaProdutosCRUD tpc = new TelaProdutosCRUD("Cadastrar", usuario_sessao);
+        tpc.setVisible(true);
         this.dispose();
+        
         
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     /**Método que acessa a tela de clientes*/
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
-        new TelaClientes().setVisible(true);
+        new TelaClientes(usuario_sessao).setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_btnClientesMouseClicked
     
     /**Método que acessa a tela de relatórios*/
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
-        new TelaRelatorios().setVisible(true);
+        new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_btnRelatoriosMouseClicked
@@ -561,39 +574,45 @@ public class TelaProdutos extends javax.swing.JFrame {
     
     /**Método que preenche as linhaas e colunas da tabela na tela*/
     public void listarTabelaProduto() {
-            
-            ArrayList<ProdutoController> listaProduto = produto.listarTabelaController();
-            
-            if(listaProduto.size() > 0){
-        
-                DefaultTableModel tmProduto = new DefaultTableModel();
-                
-                tmProduto.addColumn("ID");
-                tmProduto.addColumn("Nome");
-                tmProduto.addColumn("Categoria");
-                tmProduto.addColumn("Marca");
-                tmProduto.addColumn("Quantidade");
-                tmProduto.addColumn("Valor");
-                tblProdutos.setModel(tmProduto);
-                               
-                tmProduto.setRowCount(0);
-               
-                int i = 0;
-                
-                for(Object obj: this.produto.listarTabelaController()){
-                    Produto bean = (Produto) obj;
-                    tmProduto.addRow(new String[1]);
-                    tblProdutos.setValueAt(bean.getId(), i, 0);
-                    tblProdutos.setValueAt(bean.getNome(), i, 1);
-                    tblProdutos.setValueAt(bean.getCategoria(), i, 2);
-                    tblProdutos.setValueAt(bean.getMarca(), i, 3);
-                    tblProdutos.setValueAt(bean.getQuantidade(), i, 4);
-                    tblProdutos.setValueAt(bean.getValorUnitario(), i, 5);
-                    i++;
-                    
-                }
-                                
+
+        ArrayList<ProdutoController> listaProduto = produto.listarTabelaController();
+
+        if (listaProduto.size() > 0) {
+
+            DefaultTableModel tmProduto = new DefaultTableModel();
+
+            tmProduto.addColumn("ID");
+            tmProduto.addColumn("Nome");
+            tmProduto.addColumn("Categoria");
+            tmProduto.addColumn("Marca");
+            tmProduto.addColumn("Quantidade");
+            tmProduto.addColumn("Valor");
+            tblProdutos.setModel(tmProduto);
+
+            tmProduto.setRowCount(0);
+
+            int i = 0;
+
+            for (Object obj : this.produto.listarTabelaController()) {
+                Produto bean = (Produto) obj;
+                tmProduto.addRow(new String[1]);
+                tblProdutos.setValueAt(bean.getId(), i, 0);
+                tblProdutos.setValueAt(bean.getNome(), i, 1);
+                tblProdutos.setValueAt(bean.getCategoria(), i, 2);
+                tblProdutos.setValueAt(bean.getMarca(), i, 3);
+                tblProdutos.setValueAt(bean.getQuantidade(), i, 4);
+                tblProdutos.setValueAt(bean.getValorUnitario(), i, 5);
+                i++;
+
             }
+
+        }
+    }
+    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
     }
     
     /**Método que altera a cor de um objeto ao passar o mouse por cima*/

@@ -1,15 +1,37 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.controller.ClienteController;
+import br.sp.senac.tads.model.Cliente;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaClientes extends javax.swing.JFrame {
-
+    
+    ClienteController clienteController = new ClienteController();
+    Cliente clienteBean = new Cliente();
+    String usuario_sessao;
+    
     public TelaClientes() {
         initComponents();
         desabilitado();
+        listarTabelaCliente();
+        setIcon(this);
     }
+    
+    public TelaClientes(String sessao) {
+        initComponents();
+        desabilitado();
+        listarTabelaCliente();
+        setIcon(this);
+        this.usuario_sessao = sessao;
+        lblUsuario.setText(usuario_sessao);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,7 +73,7 @@ public class TelaClientes extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblConsulta = new javax.swing.JTable();
+        tblClientes = new javax.swing.JTable();
         btnCadastrar = new javax.swing.JPanel();
         lblIconeCadastrar = new javax.swing.JLabel();
         lblCadastrar = new javax.swing.JLabel();
@@ -61,9 +83,6 @@ public class TelaClientes extends javax.swing.JFrame {
         btnRemover = new javax.swing.JPanel();
         lblIconeRemover = new javax.swing.JLabel();
         lblRemover = new javax.swing.JLabel();
-        btnPesquisar = new javax.swing.JPanel();
-        lblIconePesquisar = new javax.swing.JLabel();
-        lblPesquisar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -82,9 +101,9 @@ public class TelaClientes extends javax.swing.JFrame {
 
         lblUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsuario.setText("ADMIN");
-        pnlBarraLateral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, -1, 40));
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsuario.setText("null");
+        pnlBarraLateral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, 160, 40));
 
         lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/logout.png"))); // NOI18N
         lblLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -292,30 +311,35 @@ public class TelaClientes extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCPF.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCPFKeyTyped(evt);
+            }
+        });
         pnlFundo.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 190, -1));
         pnlFundo.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 280, 10));
         pnlFundo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 190, 10));
 
-        tblConsulta.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        tblConsulta.setModel(new javax.swing.table.DefaultTableModel(
+        tblClientes.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
+        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "Sexo"
+                "ID Cliente", "Nome", "CPF", "Sexo"
             }
         ));
-        tblConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        tblConsulta.setGridColor(new java.awt.Color(40, 40, 40));
-        tblConsulta.setSelectionBackground(new java.awt.Color(0, 85, 166));
-        jScrollPane1.setViewportView(tblConsulta);
-        if (tblConsulta.getColumnModel().getColumnCount() > 0) {
-            tblConsulta.getColumnModel().getColumn(0).setResizable(false);
-            tblConsulta.getColumnModel().getColumn(1).setResizable(false);
-            tblConsulta.getColumnModel().getColumn(2).setResizable(false);
+        tblClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tblClientes.setGridColor(new java.awt.Color(40, 40, 40));
+        tblClientes.setSelectionBackground(new java.awt.Color(0, 85, 166));
+        jScrollPane1.setViewportView(tblClientes);
+        if (tblClientes.getColumnModel().getColumnCount() > 0) {
+            tblClientes.getColumnModel().getColumn(1).setResizable(false);
+            tblClientes.getColumnModel().getColumn(2).setResizable(false);
+            tblClientes.getColumnModel().getColumn(3).setResizable(false);
         }
 
         pnlFundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 500, 250));
@@ -345,7 +369,7 @@ public class TelaClientes extends javax.swing.JFrame {
         lblCadastrar.setText("Cadastrar");
         btnCadastrar.add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
 
-        pnlFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 80, 70));
+        pnlFundo.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 80, 70));
 
         btnEditar.setBackground(new java.awt.Color(0, 85, 166));
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -372,7 +396,7 @@ public class TelaClientes extends javax.swing.JFrame {
         lblEditar.setText("Editar");
         btnEditar.add(lblEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
 
-        pnlFundo.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 80, 70));
+        pnlFundo.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 80, 70));
 
         btnRemover.setBackground(new java.awt.Color(0, 85, 166));
         btnRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -399,34 +423,7 @@ public class TelaClientes extends javax.swing.JFrame {
         lblRemover.setText("Remover");
         btnRemover.add(lblRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
 
-        pnlFundo.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 80, 70));
-
-        btnPesquisar.setBackground(new java.awt.Color(0, 85, 166));
-        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPesquisarMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPesquisarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPesquisarMouseExited(evt);
-            }
-        });
-        btnPesquisar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblIconePesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIconePesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/lupa.png"))); // NOI18N
-        btnPesquisar.add(lblIconePesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
-
-        lblPesquisar.setFont(new java.awt.Font("Berlin Sans FB", 0, 14)); // NOI18N
-        lblPesquisar.setForeground(new java.awt.Color(255, 255, 255));
-        lblPesquisar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPesquisar.setText("Pesquisar");
-        btnPesquisar.add(lblPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 50, 70, -1));
-
-        pnlFundo.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 80, 70));
+        pnlFundo.add(btnRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 80, 70));
 
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
@@ -464,19 +461,19 @@ public class TelaClientes extends javax.swing.JFrame {
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        new TelaMenu().setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        new TelaMenu().setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
         //VOLTAR PARA A TELA DE LOGIN
-        new TelaLogin().setVisible(true);
+        new TelaLoginInicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblLogoutMouseClicked
 
@@ -504,28 +501,33 @@ public class TelaClientes extends javax.swing.JFrame {
         resetColor(btnRemover);
     }//GEN-LAST:event_btnRemoverMouseExited
 
-    private void btnPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseEntered
-        setColor(btnPesquisar);
-    }//GEN-LAST:event_btnPesquisarMouseEntered
-
-    private void btnPesquisarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseExited
-        resetColor(btnPesquisar);
-    }//GEN-LAST:event_btnPesquisarMouseExited
-
     private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
-        // TODO add your handling code here:
-        //resgata o indice da linha selecionada
-        int linhaSelecionada = tblConsulta.getSelectedRow();
+        
+        int linhaSelecionada = tblClientes.getSelectedRow();
+        
         if (linhaSelecionada >= 0) {
-            int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o cliente selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
+        
+            int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o item selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
+            
             if (result == JOptionPane.YES_OPTION) {
-                DefaultTableModel clientes = new DefaultTableModel();
-                clientes = (DefaultTableModel) tblConsulta.getModel();
-                clientes.removeRow(linhaSelecionada);
+                
+                int codCliente = Integer.parseInt(tblClientes.getValueAt(tblClientes.getSelectedRow(), 0).toString());
+                       
+                clienteBean.setId(codCliente);
+               
+                clienteController.removerController(clienteBean);
+                
+                DefaultTableModel tmClientes = new DefaultTableModel();
+                tmClientes = (DefaultTableModel) tblClientes.getModel();
+                listarTabelaCliente();
+                
             }
+            
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um cliente!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um item!", "Erro!", JOptionPane.WARNING_MESSAGE);
+            
         }
+        
     }//GEN-LAST:event_btnRemoverMouseClicked
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
@@ -541,14 +543,22 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparMouseExited
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
-        int linhaSelecionada = tblConsulta.getSelectedRow();
+        int linhaSelecionada = tblClientes.getSelectedRow();
 
         if (linhaSelecionada >= 0) {
-            //ACESSA A TELA DE EDITAR CLIENTE
-            new TelaClientesEditar().setVisible(true);
+            
+            int codCLiente = Integer.parseInt(tblClientes.getValueAt(tblClientes.getSelectedRow(), 0).toString());
+                       
+            clienteBean.setId(codCLiente);
+
+            TelaClientesCRUD tcc = new TelaClientesCRUD("Editar", usuario_sessao);
+            tcc.preencheCampos(clienteBean);
+            tcc.setVisible(true);
             this.dispose();
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Cliente", "Erro!", JOptionPane.WARNING_MESSAGE);
+            
         }
     }//GEN-LAST:event_btnEditarMouseClicked
     private void rdoNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoNomeMouseClicked
@@ -556,11 +566,6 @@ public class TelaClientes extends javax.swing.JFrame {
             habilitado();
         }
     }//GEN-LAST:event_rdoNomeMouseClicked
-    private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
-        if (validarFormulario()) {
-
-        }
-    }//GEN-LAST:event_btnPesquisarMouseClicked
 
     private void rdoCPFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdoCPFMouseClicked
         if (rdoCPF.isSelected()) {
@@ -569,39 +574,180 @@ public class TelaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_rdoCPFMouseClicked
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
-        // TODO add your handling code here:
-        if (txtNome.getText().length() < 30) {
-            if (txtNome.getText().matches("^[0-9].*")) {
-                evt.consume();
-                JOptionPane.showMessageDialog(this, "Permitido somente letras no campo \"Nome\"!");
-            }
-        } else {
+        /**Validação de busca por nome*/
+        if (txtNome.getText().matches("^[0-9].*")) {
             evt.consume();
-            JOptionPane.showMessageDialog(this, "Limite de até 30 caracteres.");
+            
+            /**caso tenha sido número, retorna que não é permitido número no campo*/
+            JOptionPane.showMessageDialog(this, "Não é permitido números neste campo", "Erro", JOptionPane.ERROR_MESSAGE);
+            txtNome.setText("");
+            
+        } else {
+            
+            clienteBean.setNomeCliente(txtNome.getText());
+
+            ArrayList<ClienteController> lista = clienteController.pesquisarNomeController(clienteBean);
+
+            if (lista.size() > 0) {
+
+                DefaultTableModel tmCliente = new DefaultTableModel();
+
+                tmCliente.addColumn("ID");
+                tmCliente.addColumn("Nome");
+                tmCliente.addColumn("CPF");
+                tmCliente.addColumn("Sexo");
+                
+                tblClientes.setModel(tmCliente);
+
+                tmCliente.setRowCount(0);
+
+                int i = 0;
+
+                for (Object obj : lista) {
+                    
+                    Cliente bean = (Cliente) obj;
+                    
+                    tmCliente.addRow(new String[1]);
+                    
+                    tblClientes.setValueAt(bean.getId(), i, 0);
+                    tblClientes.setValueAt(bean.getNomeCliente(), i, 1);
+                    tblClientes.setValueAt(bean.getCPF(), i, 2);
+                    tblClientes.setValueAt(bean.getSexo(), i, 3);
+                    
+                    i++;
+
+                }
+
+            }
+            
         }
+
     }//GEN-LAST:event_txtNomeKeyTyped
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-        //ACESSA A TELA DE CADASTRO DE CLIENTES
-        new TelaClientesCadastro().setVisible(true);
+
+        TelaClientesCRUD tcl = new TelaClientesCRUD("Cadastrar", usuario_sessao);
+        tcl.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void btnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutosMouseClicked
-        //ACESSA A TELA PRODUTOS
-        new TelaProdutos().setVisible(true);
+        new TelaProdutos(usuario_sessao).setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnProdutosMouseClicked
 
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
-        //ACESSA A TELA DE RELATÓRIOS
-        new TelaRelatorios().setVisible(true);
+        new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btnRelatoriosMouseClicked
 
     private void rdoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNomeActionPerformed
 
     }//GEN-LAST:event_rdoNomeActionPerformed
 
+    private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
+        if (txtCPF.getText().length() < 15) {
+            
+            String caracteres="0987654321";
+            
+            if(!caracteres.contains(evt.getKeyChar() + "")){
+                evt.consume();
+                
+            }
+            
+            clienteBean.setCPF(txtCPF.getText().replaceAll("\\D", ""));
+
+            ArrayList<ClienteController> lista = clienteController.pesquisarCpfController(clienteBean);
+
+            if (lista.size() > 0) {
+
+                DefaultTableModel tmCliente = new DefaultTableModel();
+
+                tmCliente.addColumn("ID");
+                tmCliente.addColumn("Nome");
+                tmCliente.addColumn("CPF");
+                tmCliente.addColumn("Sexo");
+
+                tblClientes.setModel(tmCliente);
+
+                tmCliente.setRowCount(0);
+
+                int i = 0;
+
+                for (Object obj : lista) {
+
+                    Cliente bean = (Cliente) obj;
+
+                    tmCliente.addRow(new String[1]);
+
+                    tblClientes.setValueAt(bean.getId(), i, 0);
+                    tblClientes.setValueAt(bean.getNomeCliente(), i, 1);
+                    tblClientes.setValueAt(bean.getCPF(), i, 2);
+                    tblClientes.setValueAt(bean.getSexo(), i, 3);
+
+                    i++;
+                 
+                }
+            
+            }
+            
+        } else {
+            
+            /**caso seja maior, estoura o limite de caracteres*/
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Limite de caractere em 11", "Erro", JOptionPane.ERROR_MESSAGE);
+            txtCPF.setText("");
+            
+        }
+
+    }//GEN-LAST:event_txtCPFKeyTyped
+    
+    /**Método que preenche as linhaas e colunas da tabela na tela*/
+    public void listarTabelaCliente() {
+            
+        ArrayList<ClienteController> listaProduto = clienteController.listarTabelaController();
+
+        if (listaProduto.size() > 0) {
+
+            DefaultTableModel tmCliente = new DefaultTableModel();
+
+            tmCliente.addColumn("ID");
+            tmCliente.addColumn("Nome");
+            tmCliente.addColumn("CPf");
+            tmCliente.addColumn("Sexo");
+
+            tblClientes.setModel(tmCliente);
+
+            tmCliente.setRowCount(0);
+
+            int i = 0;
+
+            for (Object obj : this.clienteController.listarTabelaController()) {
+                
+                Cliente bean = (Cliente) obj;
+                
+                tmCliente.addRow(new String[1]);
+                
+                tblClientes.setValueAt(bean.getId(), i, 0);
+                tblClientes.setValueAt(bean.getNomeCliente(), i, 1);
+                tblClientes.setValueAt(bean.getCPF(), i, 2);
+                tblClientes.setValueAt(bean.getSexo(), i, 3);
+
+                i++;
+
+            }
+
+        }
+    }
+    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
+    }
+    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
@@ -618,7 +764,6 @@ public class TelaClientes extends javax.swing.JFrame {
         txtNome.setEnabled(false);
         btnEditar.setEnabled(false);
         btnRemover.setEnabled(false);
-        btnPesquisar.setEnabled(false);
         btnLimpar.setEnabled(false);
         return false;
     }
@@ -629,14 +774,12 @@ public class TelaClientes extends javax.swing.JFrame {
             txtNome.setEnabled(true);
             btnEditar.setEnabled(true);
             btnRemover.setEnabled(true);
-            btnPesquisar.setEnabled(true);
             btnLimpar.setEnabled(true);
         } else if (rdoCPF.isSelected()) {
             txtNome.setEnabled(false);
             txtCPF.setEnabled(true);
             btnEditar.setEnabled(true);
             btnRemover.setEnabled(true);
-            btnPesquisar.setEnabled(true);
             btnLimpar.setEnabled(true);
         }
     }
@@ -704,7 +847,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JPanel btnClientes;
     private javax.swing.JPanel btnEditar;
     private javax.swing.JPanel btnLimpar;
-    private javax.swing.JPanel btnPesquisar;
     private javax.swing.JPanel btnProdutos;
     private javax.swing.JPanel btnRelatorios;
     private javax.swing.JPanel btnRemover;
@@ -720,7 +862,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconeCadastrar;
     private javax.swing.JLabel lblIconeClientes;
     private javax.swing.JLabel lblIconeEditar;
-    private javax.swing.JLabel lblIconePesquisar;
     private javax.swing.JLabel lblIconeProdutos;
     private javax.swing.JLabel lblIconeRelatorios;
     private javax.swing.JLabel lblIconeRemover;
@@ -729,7 +870,6 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogout;
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblPesquisar;
     private javax.swing.JLabel lblPesquisarPor;
     private javax.swing.JLabel lblProdutos;
     private javax.swing.JLabel lblRelatorios;
@@ -741,7 +881,7 @@ public class TelaClientes extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoCPF;
     private javax.swing.ButtonGroup rdoGrupoPesquisa;
     private javax.swing.JRadioButton rdoNome;
-    private javax.swing.JTable tblConsulta;
+    private javax.swing.JTable tblClientes;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables

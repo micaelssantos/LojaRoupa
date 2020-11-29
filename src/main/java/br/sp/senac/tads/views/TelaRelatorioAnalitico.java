@@ -1,11 +1,14 @@
 package br.sp.senac.tads.views;
 
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
     public TelaRelatorioAnalitico() {
         initComponents();
+        setIcon(this);
     }
 
     /**
@@ -134,7 +137,13 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
     private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(1);
     }//GEN-LAST:event_lblMinimizarMouseClicked
-
+    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
+    }
+    
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));

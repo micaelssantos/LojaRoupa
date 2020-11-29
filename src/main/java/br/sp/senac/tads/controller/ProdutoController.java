@@ -15,7 +15,7 @@ public class ProdutoController {
     
     ProdutoDAO produto = new ProdutoDAO();
     
-    /*
+    /**
     * @param prodBean - Objeto do tipo Produto
     * Método que que faz a chamada do método de cadastro de produto na classe ProdutoDAO
     */
@@ -25,7 +25,7 @@ public class ProdutoController {
         
     }
     
-    /*
+    /**
     * @param prodBean - Objeto do tipo Produto
     * Método que que faz a chamada do método de edição de produto na classe ProdutoDAO
     */
@@ -35,7 +35,7 @@ public class ProdutoController {
         
     }
     
-    /*
+    /**
     * @param prodBean - Objeto do tipo Produto
     * Método que que faz a chamada do método de remoção de produto na classe ProdutoDAO
     */
@@ -45,7 +45,7 @@ public class ProdutoController {
         
     }
     
-    /*
+    /**
     * @param prodBean - Objeto do tipo Produto
     * @return ArrayList - Com todos os dados da tabela PRODUTO no banco de dados
     * Método que que faz a chamada do método de consulta de produtos na classe ProdutoDAO
@@ -60,7 +60,7 @@ public class ProdutoController {
         
     }
     
-    /*
+    /**
     * @return ArrayList - Com apenas os dados dos campos da tabela da tela de Produtos
     * Método que que faz a chamada do método de consulta de produtos na classe ProdutoDAO
     */
@@ -74,7 +74,7 @@ public class ProdutoController {
         
     }
     
-    /*
+    /**
     * @param prodBean - Objeto do tipo Produto
     * @return ArrayList - Com todos os dados de um único produto da tabela PRODUTO no banco de dados
     * Método que que faz a chamada do método de consulta de produto na classe ProdutoDAO

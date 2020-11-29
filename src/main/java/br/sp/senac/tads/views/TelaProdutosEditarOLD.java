@@ -15,12 +15,12 @@ import javax.swing.JPanel;
 * 
 */
 
-public class TelaProdutosEditar extends javax.swing.JFrame {
+public class TelaProdutosEditarOLD extends javax.swing.JFrame {
     
     ProdutoController produto = new ProdutoController();
     Produto produtoBean = new Produto();
 
-    public TelaProdutosEditar() {
+    public TelaProdutosEditarOLD() {
         initComponents();
 
     }
@@ -601,10 +601,11 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtValorFocusLost
     
-    /*
+    /**
+    * 
     * @param prodBean - Objeto do tipo Produto
-    *
     * Método que preenche todos os campos da tela com os dados do produto que irá ser editado
+    * 
     */
     public void preencheCampos(Produto prodBean) {
         
@@ -702,20 +703,21 @@ public class TelaProdutosEditar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosEditarOLD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosEditarOLD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosEditarOLD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosEditarOLD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaProdutosEditar().setVisible(true);
+                new TelaProdutosEditarOLD().setVisible(true);
             }
         });
     }

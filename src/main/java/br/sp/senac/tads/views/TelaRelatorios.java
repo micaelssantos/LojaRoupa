@@ -3,21 +3,33 @@ package br.sp.senac.tads.views;
 import br.sp.senac.tads.controller.RelatoriosController;
 import br.sp.senac.tads.dao.RelatoriosDAO;
 import br.sp.senac.tads.model.Relatorios;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JPanel;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class TelaRelatorios extends javax.swing.JFrame {
 
     Relatorios venda = new Relatorios();
+    String usuario_sessao;
     
     public TelaRelatorios() {
         initComponents();
+        
+    }
+    
+    public TelaRelatorios(String sessao) {
+        initComponents();
         vendaRelatorio();
+        setIcon(this);
+        this.usuario_sessao = sessao;
+        lblUsuario.setText(usuario_sessao);
+        
     }
 
     /**
@@ -78,9 +90,9 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
         lblUsuario.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsuario.setText("ADMIN");
-        pnlBarraLateral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, -1, 40));
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsuario.setText("null");
+        pnlBarraLateral.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, 150, 40));
 
         lblLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/utilitarios/logout.png"))); // NOI18N
         lblLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -353,19 +365,19 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        new TelaMenu().setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
-        new TelaMenu().setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
         //VOLTAR PARA A TELA DE LOGIN
-        new TelaLogin().setVisible(true);
+        new TelaLoginInicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblLogoutMouseClicked
 
@@ -385,13 +397,13 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
         //ACESSA A TELA CLIENTES
-        new TelaClientes().setVisible(true);
+        new TelaClientes(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClientesMouseClicked
 
     private void btnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutosMouseClicked
         //ACESSA A TELA PRODUTOS
-        new TelaProdutos().setVisible(true);
+        new TelaProdutos(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProdutosMouseClicked
 
@@ -435,39 +447,37 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private void btnPesquisarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseExited
         resetColor(btnPesquisar);
     }//GEN-LAST:event_btnPesquisarMouseExited
-
+        
     public void CarregarRelatorioSintetico() {
 
         //Pedir à classe DAO para consultar as vendas
         ArrayList<Relatorios> listavenda = RelatoriosDAO.consultarRelatorios(jdtDE.getDate(), jdtAte.getDate());
-        
+
         DefaultTableModel tmRelatorios = new DefaultTableModel();
-        
+
         for (Relatorios Relatorios : listavenda) {
-            
+
         }
-        
-                    //Adiciono as linhas na tabela
-            if(listavenda.size() > 0){
-        
-                
-                tmRelatorios.addColumn("IdVenda");
-                tmRelatorios.addColumn("nomeCliente");
-                tmRelatorios.addColumn("valorvenda");
-                tmRelatorios.addColumn("data");
-           
-                //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
-                tmRelatorios.setRowCount(0);
-               
-                int i = 0;
-            }
+
+        //Adiciono as linhas na tabela
+        if (listavenda.size() > 0) {
+
+            tmRelatorios.addColumn("IdVenda");
+            tmRelatorios.addColumn("nomeCliente");
+            tmRelatorios.addColumn("valorvenda");
+            tmRelatorios.addColumn("data");
+
+            //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
+            tmRelatorios.setRowCount(0);
+
+            int i = 0;
+        }
 
         //Defina sua estrutura com a estrutura tmRelatorios;
         tblSintetico.setModel(tmRelatorios);
 
         //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
         tmRelatorios.setRowCount(0);
-
 
         for (Relatorios c : listavenda) {
             tmRelatorios.addRow(new Object[]{c.getIdVenda(), c.getNomeCliente(), c.getValorTotalvenda(), c.getData()});
@@ -481,7 +491,11 @@ public class TelaRelatorios extends javax.swing.JFrame {
     }
 
     
-    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
+    }
     
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {

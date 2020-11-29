@@ -3,6 +3,9 @@ package br.sp.senac.tads.views;
 import br.sp.senac.tads.controller.ProdutoController;
 import br.sp.senac.tads.model.Produto;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -14,14 +17,25 @@ import javax.swing.JPanel;
 * 
 */
 
-public class TelaProdutosCadastro extends javax.swing.JFrame {
+public class TelaProdutosCRUD extends javax.swing.JFrame {
     
     ProdutoController produto = new ProdutoController();
-    Produto prodBean = new Produto();
-    
-    public TelaProdutosCadastro() {
+    Produto produtoBean = new Produto();
+    String usuario_sessao;
+
+    public TelaProdutosCRUD() {
         initComponents();
+
     }
+    
+    public TelaProdutosCRUD(String tipo, String sessao) {
+        initComponents();
+        lblTitulo.setText(tipo);
+        this.usuario_sessao = sessao;
+        setIcon(this);
+        
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,14 +50,14 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         pnlBarraTitulo = new javax.swing.JPanel();
         lblFechar = new javax.swing.JLabel();
         lblMinimizar = new javax.swing.JLabel();
-        lblCadastroProduto = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JPanel();
         lblLimpar = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JPanel();
         lblCancelar = new javax.swing.JLabel();
         btnConcluir = new javax.swing.JPanel();
         lblConcluir = new javax.swing.JLabel();
-        lblNome = new javax.swing.JLabel();
+        lblCodProduto = new javax.swing.JLabel();
         lblCategoria = new javax.swing.JLabel();
         lblMarca = new javax.swing.JLabel();
         lblModelo = new javax.swing.JLabel();
@@ -64,6 +78,8 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
+        lblProduto = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -97,11 +113,11 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         });
         pnlBarraTitulo.add(lblMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, -1, -1));
 
-        lblCadastroProduto.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
-        lblCadastroProduto.setForeground(new java.awt.Color(255, 255, 255));
-        lblCadastroProduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCadastroProduto.setText("Cadastro de produto");
-        pnlBarraTitulo.add(lblCadastroProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
+        lblTitulo.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTitulo.setText("lblTitulo");
+        pnlBarraTitulo.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
 
         pnlFundo.add(pnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
 
@@ -174,10 +190,10 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
 
         pnlFundo.add(btnConcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
-        lblNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        lblNome.setForeground(new java.awt.Color(40, 40, 40));
-        lblNome.setText("* Nome");
-        pnlFundo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+        lblCodProduto.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblCodProduto.setForeground(new java.awt.Color(40, 40, 40));
+        lblCodProduto.setText("---");
+        pnlFundo.add(lblCodProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, -1, -1));
 
         lblCategoria.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         lblCategoria.setForeground(new java.awt.Color(40, 40, 40));
@@ -300,6 +316,16 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         pnlFundo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 180, 10));
         pnlFundo.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 140, 10));
 
+        lblProduto.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblProduto.setForeground(new java.awt.Color(40, 40, 40));
+        lblProduto.setText("Cod. Produto:");
+        pnlFundo.add(lblProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
+
+        lblNome.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(40, 40, 40));
+        lblNome.setText("* Nome");
+        pnlFundo.add(lblNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         pack();
@@ -313,11 +339,12 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     private void btnConcluirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseExited
         resetColor(btnConcluir);
     }//GEN-LAST:event_btnConcluirMouseExited
-
+    
     /**Método que acessa a tela de produtos*/
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
-        new TelaProdutos().setVisible(true);
+        new TelaProdutos(usuario_sessao).setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void btnCancelarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseEntered
@@ -328,23 +355,58 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         resetColor(btnCancelar);
     }//GEN-LAST:event_btnCancelarMouseExited
 
-    /**Método conclui o processo de cadastro do produto*/
+    /**Método conclui o processo de edição do produto*/
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
-        if (validaCamposVazios()) {
-                       
-            prodBean.setNome(txtNome.getText());
-            prodBean.setCategoria(txtCategoria.getText());
-            prodBean.setMarca(txtMarca.getText());
-            prodBean.setModelo(txtModelo.getText());
-            prodBean.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
-            prodBean.setDescricao(txtDescricao.getText());
-                       
-            produto.cadastrarController(prodBean);
+        
+        if (lblTitulo.getText().equals("Cadastrar")) {
+        
+            if (validaCamposVazios()) {
+
+                produtoBean.setNome(txtNome.getText());
+                produtoBean.setCategoria(txtCategoria.getText());
+                produtoBean.setMarca(txtMarca.getText());
+                produtoBean.setModelo(txtModelo.getText());
+                produtoBean.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+                produtoBean.setValorUnitario(Double.parseDouble(txtValor.getText().replaceAll(",", ".")));
+                produtoBean.setDescricao(txtDescricao.getText());
+
+                produto.cadastrarController(produtoBean);
+
+                limpaCampos();
+
+                new TelaProdutos(usuario_sessao).setVisible(true);
+                this.dispose();
+
+            }
             
-            limpaCampos();
+        }
+        
+        if (lblTitulo.getText().equals("Editar")) {
+
+            if (validaCamposVazios()) {
+
+                produtoBean.setId(Integer.parseInt(lblCodProduto.getText()));
+                produtoBean.setNome(txtNome.getText());
+                produtoBean.setCategoria(txtCategoria.getText());
+                produtoBean.setMarca(txtMarca.getText());
+                produtoBean.setModelo(txtModelo.getText());
+                produtoBean.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+                produtoBean.setValorUnitario(Double.parseDouble(txtValor.getText().replaceAll(",", ".")));
+                produtoBean.setDescricao(txtDescricao.getText());
+
+                int resultado = JOptionPane.showConfirmDialog(this, "Deseja mesmo alterar o produto?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                if (resultado == JOptionPane.YES_OPTION) {
+                    produto.alterarController(produtoBean);
+
+                    limpaCampos();
+
+                    new TelaProdutos(usuario_sessao).setVisible(true);
+                    this.dispose();
+
+                }
             
-            new TelaProdutos().setVisible(true);
-            this.dispose();
+            }
             
         }
         
@@ -360,11 +422,12 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
 
     private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
         limpaCampos();
+        
     }//GEN-LAST:event_btnLimparMouseClicked
     
     /**Método que acessa a tela de produtos*/
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        new TelaProdutos().setVisible(true);
+        new TelaProdutos(usuario_sessao).setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_btnCancelarMouseClicked
@@ -381,6 +444,7 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
                         "Erro", JOptionPane.ERROR_MESSAGE);
                 txtNome.setText("");
+                
             }
             
         } else {
@@ -388,7 +452,6 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
             /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 30", "Erro", JOptionPane.ERROR_MESSAGE);
-            txtNome.setText("");
             
         }
         
@@ -406,7 +469,6 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
                         "Erro", JOptionPane.ERROR_MESSAGE);
                 txtCategoria.setText("");
-                
             }
             
         } else {
@@ -450,7 +512,7 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
             /**verifica se foi digitado número*/
             if (txtModelo.getText().matches("^[0-9].*")) {
                 evt.consume();
-            
+                
                 /**caso tenha sido número, retorna que não é permitido número no campo*/
                 JOptionPane.showMessageDialog(this, "Não é permitido números neste campo",
                         "Erro", JOptionPane.ERROR_MESSAGE);
@@ -467,54 +529,52 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtModeloKeyTyped
-
+    
     /**Método que valida o tipo de dado no campo de QUANTIDADE*/
     private void txtQuantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantidadeKeyTyped
         if (txtQuantidade.getText().length() < 5) {
-            
-            String caracteres="0987654321";
-            
-            if(!caracteres.contains(evt.getKeyChar()+"")){
+
+            String caracteres = "0987654321";
+
+            if (!caracteres.contains(evt.getKeyChar() + "")) {
                 evt.consume();
-                
+
             }
-            
+
         } else {
             
             /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 5", "Erro", JOptionPane.ERROR_MESSAGE);
             txtQuantidade.setText("");
-            
+
         }
-        
+
     }//GEN-LAST:event_txtQuantidadeKeyTyped
     
     /**Método que valida o tipo de dado no campo de VALOR*/
     private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
         if (txtValor.getText().length() < 7) {
-            
-            String caracteres="0987654321,";
-            
-            if(!caracteres.contains(evt.getKeyChar()+"")){
-                evt.consume();
-                
-            }
-            
-        } else {
 
+            String caracteres = "0987654321,";
+
+            if (!caracteres.contains(evt.getKeyChar() + "")) {
+                evt.consume();
+
+            }
+
+        } else {
             /**caso seja maior, estoura o limite de caracteres*/
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 7", "Erro", JOptionPane.ERROR_MESSAGE);
             txtValor.setText("");
-            
+
         }
-        
+
     }//GEN-LAST:event_txtValorKeyTyped
-    
+
     /**Método que valida o tipo de dado no campo de DESCRIÇÃO*/
     private void txtDescricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyTyped
-        
         if (txtDescricao.getText().length() < 250) {
             
         } else {
@@ -532,60 +592,79 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         this.setState(1);
     }//GEN-LAST:event_lblMinimizarMouseClicked
     
-    /**Método que faz a conversão do campo VALOR de String para Double*/
-    private void txtValorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFocusLost
-        try {
-            
-            if (!this.txtValor.getText().equalsIgnoreCase("")) {
-                String valor = formataValor(txtValor.getText());
-                
-                /**efetua a conversão para double e converte a vírgula em ponto*/
-                prodBean.setValorUnitario(Double.parseDouble(valor));
-                
-            }
-        
-        /**caso não consiga, exibe mensagem de erro de conversão */
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Valor", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
-            txtValor.setText("");
-        
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
     
-        }
-               
-    }//GEN-LAST:event_txtValorFocusLost
-
     /**Método que faz a conversão do campo QUANTIDADE de String para Inteiro*/
     private void txtQuantidadeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQuantidadeFocusLost
-        
         try {
             
             if (!this.txtQuantidade.getText().equalsIgnoreCase("")) {
                 
                 /**efetua a conversão para inteiro*/
                 Integer.parseInt(txtQuantidade.getText());
-                
+
             }
-        
-        /**caso não consiga, exibe mensagem de erro de conversão */
+
+        /**caso não consiga, exibe mensagem de erro de conversão */ 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Quantidade", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
             txtQuantidade.setText("");
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-    
+
         }
-        
+
     }//GEN-LAST:event_txtQuantidadeFocusLost
     
-    /**Método que faz a troca de vírgula por ponto(tratamento para a inserção do dado no banco de dados)*/
-    public String formataValor(String valor) {
-        
-        valor = valor.replaceAll(",", ".");
+    /**Método que faz a conversão do campo VALOR de String para Double*/
+    private void txtValorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorFocusLost
+        try {
+            if (!this.txtValor.getText().equalsIgnoreCase("")) {
                 
-        return valor;
+                /**efetua a conversão para double e converte a vírgula em ponto*/
+                Double.parseDouble(txtValor.getText().replace(",", "."));
+
+            }
+
+        /**caso não consiga, exibe mensagem de erro de conversão */
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro na conversão dos dados no campo Valor", "Erro de Conversão", JOptionPane.ERROR_MESSAGE);
+            txtValor.setText("");
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        }
+
+    }//GEN-LAST:event_txtValorFocusLost
+    
+    /**
+    * 
+    * @param prodBean - Objeto do tipo Produto
+    * Método que preenche todos os campos da tela com os dados do produto que irá ser editado
+    * 
+    */
+    public void preencheCampos(Produto prodBean) {
+        
+        ArrayList<Produto> listaProduto = produto.consultarController(prodBean);
+        
+        int i = 0;
+
+        for (Object obj : listaProduto) {
+            Produto produto = (Produto) obj;
+            
+            lblCodProduto.setText(Integer.toString(produto.getId()));
+            txtNome.setText(produto.getNome());
+            txtCategoria.setText(produto.getCategoria());
+            txtMarca.setText(produto.getMarca());
+            txtModelo.setText(produto.getModelo());
+            txtQuantidade.setText(Integer.toString(produto.getQuantidade()));
+            txtValor.setText(Double.toString(produto.getValorUnitario()));
+            txtDescricao.setText(produto.getDescricao());
+            i++;
+
+        }
+
     }
     
     /**Método que verifica se os campos da tela estão vazios*/
@@ -633,6 +712,12 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
         txtValor.setText("");
         txtDescricao.setText("");
     }
+    
+    public void setIcon(JFrame frm) {
+        
+        frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
+        
+    }
 
     /**Método que altera a cor de um objeto ao passar o mouse por cima*/
     public void setColor(JPanel panel) {
@@ -661,20 +746,21 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaProdutosCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaProdutosCadastro().setVisible(true);
+                new TelaProdutosCRUD().setVisible(true);
             }
         });
     }
@@ -689,9 +775,9 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JLabel lblCadastroProduto;
     private javax.swing.JLabel lblCancelar;
     private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblCodProduto;
     private javax.swing.JLabel lblConcluir;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblFechar;
@@ -700,7 +786,9 @@ public class TelaProdutosCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lblMinimizar;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblProduto;
     private javax.swing.JLabel lblQuantidade;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblValor;
     private javax.swing.JPanel pnlBarraTitulo;
     private javax.swing.JPanel pnlFundo;

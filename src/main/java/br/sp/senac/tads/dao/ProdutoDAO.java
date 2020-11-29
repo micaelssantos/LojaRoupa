@@ -20,16 +20,16 @@ import javax.swing.JOptionPane;
 public class ProdutoDAO {
     
     Connection conexao;
-
-    public ProdutoDAO() {
-        
-    }
     
     /**Driver do MySQL a partir da versão 8.0*/
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     
+    public ProdutoDAO() {
+        
+    }
     
-    /*
+    
+    /**
     * @param prodBean - Objeto de Produto
     * Método que insere os dados do produto no banco de dados
     */
@@ -73,7 +73,7 @@ public class ProdutoDAO {
 
     }
     
-    /*
+    /**
     * @param prodBean - Objeto de Produto
     * Método que altera os dados de um produto no banco de dados
     */
@@ -117,7 +117,7 @@ public class ProdutoDAO {
         
     }
     
-    /*
+    /**
     * @param prodBean - Objeto de Produto
     * Método que remove um produto no banco de dados
     */
@@ -153,7 +153,7 @@ public class ProdutoDAO {
         
     }
     
-    /*
+    /**
     * @param prodBean - Objeto de Produto
     * @return ArrayList - Lista com produtos
     * Método que lista todos os registros da tabela PRODUTO no banco de dados
@@ -220,8 +220,8 @@ public class ProdutoDAO {
         
     }
     
-    /*
-    * @param prodBean - Objeto de Produto
+    /**
+    * 
     * @return ArrayList - Lista com produtos
     * Método que Lista apenas os registros da tabela PRODUTO do banco de dados que estão presentes na tabela na tela de produtos
     */
@@ -287,7 +287,7 @@ public class ProdutoDAO {
         
     }
     
-    /*
+    /**
     * @param prodBean - Objeto de Produto
     * @return ArrayList - Lista com produtos
     * Método que lista registros pelo nome na tabela PRODUTO do banco de dados
