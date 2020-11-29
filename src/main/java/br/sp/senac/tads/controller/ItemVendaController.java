@@ -2,13 +2,27 @@ package br.sp.senac.tads.controller;
 
 import br.sp.senac.tads.dao.ItemVendaDAO;
 import br.sp.senac.tads.model.ItemVenda;
+import br.sp.senac.tads.model.Produto;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class ItemVendaController 
 {
     
-    public static boolean Adicionar(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
-        
+//    public static boolean Adicionar(int idVenda, int idProduto, double valorItem,int qtd, String nome_produto) {
+//        
+//        ItemVenda model = new ItemVenda();
+//        
+//        model.setIdVenda(idVenda);
+//        model.setIdProduto(idProduto);
+//        model.setVlUnit(valorItem);
+//        model.setQtd(qtd);
+//        model.setNomeProduto(nome_produto);
+//        
+//        return  ItemVendaDAO.Inserir(model);
+//    }
+        public static boolean Salvar(int idVenda, int idProduto, int qtd, double valorItem, String nome_produto, double Total) {
+
         ItemVenda model = new ItemVenda();
         
         model.setIdVenda(idVenda);
@@ -16,8 +30,40 @@ public class ItemVendaController
         model.setVlUnit(valorItem);
         model.setQtd(qtd);
         model.setNomeProduto(nome_produto);
+        model.setTotal(Total);
+
+        return ItemVendaDAO.daoSalvarItem(model);
+    }
         
-        return  ItemVendaDAO.Inserir(model);
+    public static ArrayList<ItemVenda> getItensList() {
+        ArrayList<ItemVenda> item = ItemVendaDAO.getItens();
+        return item;
+    }
+    
+    public static ArrayList<Produto> getProdutoList() {
+        ArrayList<Produto> produtos = ItemVendaDAO.getProdutos();
+        return produtos;
+    }
+        public static boolean ControllerEstoque(int quantidadeTotal) {
+
+        ArrayList<Produto> produto = ItemVendaController.getProdutoList();
+        ArrayList<ItemVenda> item = ItemVendaDAO.getItens();
+        boolean validar = false;
+
+        for (Produto p : produto) {
+
+            for (ItemVenda listaItem : item) {
+
+                if (listaItem.getIdProduto() == p.getId() && p.getQuantidade()> -1 && quantidadeTotal <= p.getQuantidade()) {
+                    int calc = p.getQuantidade();
+                    calc = calc - listaItem.getQtd();
+                    ItemVendaDAO.atualizarEstoque(calc, p.getId()); 
+                    validar = true;
+                }
+            }
+        }
+
+        return validar;
     }
 
     public static boolean Consultar(int idVenda, int idProduto, float valorItem,int qtd, String nome_produto) {
@@ -62,5 +108,21 @@ public class ItemVendaController
         return  ItemVendaDAO.Remover(model);
     }
     
-    
+        public static ArrayList<String[]> getItemLista(ArrayList<ItemVenda> listaItem,
+            ArrayList<String[]> listaVazia, String nomeProduto) {
+
+        for (ItemVenda item : listaItem) {
+            listaVazia.add(new String[]{
+                String.valueOf(item.getNomeProduto()),
+                String.valueOf(item.getQtd()),
+                String.valueOf(item.getVlUnit()),
+                String.valueOf(item.getTotal())});
+        }
+        return listaVazia;
+    }
+       public static void limparlista() {
+        ItemVendaDAO.Excluiritem();
+    }
+   
+
 }
