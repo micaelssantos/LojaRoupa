@@ -594,7 +594,7 @@ public class TelaVendas extends javax.swing.JFrame {
         setColor(btnInserir);
     }//GEN-LAST:event_btnInserirMouseEntered
 
-    
+    //Recebe Array para mostrar no Jtable
      public void loadTable(ArrayList<String[]> listaItens) {
         
         DefaultTableModel tmItens = new DefaultTableModel();
@@ -612,17 +612,18 @@ public class TelaVendas extends javax.swing.JFrame {
         tblItens.getColumnModel().getColumn(0).setPreferredWidth(250); //Produto
         tblItens.getColumnModel().getColumn(1).setPreferredWidth(250); //Quantidade
         tblItens.getColumnModel().getColumn(2).setPreferredWidth(250); //Valor unitário
-        tblItens.getColumnModel().getColumn(3).setPreferredWidth(250); //Total
+        tblItens.getColumnModel().getColumn(3).setPreferredWidth(250); //Valor Total
 
     }
     
+     //Inserindo Produto nos Arrays
     private void btnInserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirMouseClicked
         if (ValidarProduto() ) {
             
-            String nome = txtNomeProduto.getText();
-            int  COD = Integer.parseInt(txtCodigoProduto.getText()); 
+            String nome = txtNomeProduto.getText(); // Recebe nome do Produto para passar pra função "RetornaListaProduto" 
+            int  COD = Integer.parseInt(txtCodigoProduto.getText()); // Recebe Codigo do Produto para passar pra função "RetornaListaProduto" 
             
-            int qtd = Integer.parseInt(txtQtd.getText());
+            int qtd = Integer.parseInt(txtQtd.getText()); 
             int estoque = Integer.parseInt(txtQtdEstoque.getText());
             
             double totalCompra = 0;
@@ -631,9 +632,9 @@ public class TelaVendas extends javax.swing.JFrame {
             ItemVenda modeloItem = new ItemVenda();
             
             ArrayList<Produto> listaProdutos = new ArrayList<>();
-            listaProdutos = RetornaListaProduto(nome, COD); 
+            listaProdutos = RetornaListaProduto(nome, COD);  // retorna a lista de Produtos de acordo com o Nome ou Cod inserido
             
-            ArrayList<ItemVenda> listaItem = ItemVendaController.getItensList();
+            ArrayList<ItemVenda> listaItem = ItemVendaController.getItensList(); 
             ArrayList<String []> listadeItens = new ArrayList<>();
             
             modeloProduto.setNome(nome);
@@ -644,16 +645,19 @@ public class TelaVendas extends javax.swing.JFrame {
             Venda modelo = new Venda();
             modeloItem.setTotal(modeloProduto.getValorUnitario() * qtd);
 
-            for (Produto elementos : listaProdutos) 
+            for (Produto elementos : listaProdutos)  //pega os elementos da Lista de Produtos 
             {
-                if (qtd < estoque) 
+                if (qtd < estoque) //verifica se a quantidade existe em Estoque 
                 {
-                   ItemVendaController.Salvar(modelo.getIdVenda(), elementos.getId(), 
-                    qtd,elementos.getValorUnitario(), elementos.getNome(), elementos.getValorUnitario() * qtd);
-                   
+                    //salva as informações para depois resgatar e inserir no Banco
+                    ItemVendaController.Salvar(modelo.getIdVenda(), elementos.getId(), 
+                    qtd,elementos.getValorUnitario(), elementos.getNome(), elementos.getValorUnitario() * qtd); 
+                    
+                   //carrega a lista de itens com os itens q foram salvos
                    listadeItens = ItemVendaController.getItemLista
                    (listaItem, listadeItens, elementos.getNome());
                    
+                   //passa a lista de itens para o carregar no Jtable
                    this.loadTable(listadeItens);
                 }
                 else
@@ -661,6 +665,7 @@ public class TelaVendas extends javax.swing.JFrame {
                    JOptionPane.showMessageDialog(this, "Quantidade do Produto não disponivel no estoque"); 
                 }
             }
+            //faz a soma no total
               for (ItemVenda valor : listaItem) {
                   
                 totalCompra += valor.getTotal();
@@ -691,6 +696,8 @@ public class TelaVendas extends javax.swing.JFrame {
         setColor(btnPesquisarProdutosCOD);
     }//GEN-LAST:event_btnPesquisarProdutosCODMouseEntered
 
+    //Pesquisar Produto
+    
     private void btnPesquisarProdutosCODMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosCODMouseClicked
         if (ValidarPesquisaProduto()) {
             
@@ -716,6 +723,8 @@ public class TelaVendas extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnPesquisarProdutosCODMouseClicked
 
+    //limite de caracteres 
+    
     private void txtQtdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtdKeyTyped
         // VALIDAÇÃO QUANTIDADE
      
@@ -740,24 +749,30 @@ public class TelaVendas extends javax.swing.JFrame {
         setColor(btnConcluir);
     }//GEN-LAST:event_btnConcluirMouseEntered
 
+    //Concluir venda
+    
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
         if (ValidarCliente() && ValidarProduto()) {
             
-           String Prnome = txtNomeProduto.getText();
-           int  COD = Integer.parseInt(txtCodigoProduto.getText()); 
+           String Prnome = txtNomeProduto.getText(); //Pega o nome para passar pra função "RetornaListaProduto"
+           int  COD = Integer.parseInt(txtCodigoProduto.getText()); // Recebe Codigo do Produto para passar pra função "RetornaListaProduto" 
          
            ArrayList<Produto> listaProdutos = new ArrayList<>();
            
-           listaProdutos = RetornaListaProduto(Prnome, COD); 
+           listaProdutos = RetornaListaProduto(Prnome, COD); // retorna a lista de Produtos de acordo com o Nome ou Cod inserido
            
           ArrayList<ItemVenda> listaitem = ItemVendaController.getItensList();
 
         boolean validar = true, validarQuantidade = false;
         int quantidadeTotal = 0;
+        
+        //pega os elementos da Lista de Produtos 
 
         for (Produto p : listaProdutos) {
+          
+            //pega os elementos da lista salva
             for (ItemVenda itens : listaitem) {
-                
+                // caso os ID's forem iguais, soma a quantidade salva com a total
                 if (p.getId() == itens.getIdProduto()) {
                     quantidadeTotal += itens.getQtd();
                 }
@@ -771,15 +786,20 @@ public class TelaVendas extends javax.swing.JFrame {
        
         validar = ItemVendaController.ControllerEstoque(quantidadeTotal);
         
+        
+        //se a quantidade total de itens for menor que a em estoque...
         if (validar == true) {
             
             validarQuantidade = true;
             
-            Date data = Date.valueOf(LocalDate.now());
-            int IDCliente = RetornaID(nome, CPF);
+            Date data = Date.valueOf(LocalDate.now());//pega a data atual
+            int IDCliente = RetornaID(nome, CPF);//pega o ID do cliente para passar pra venda
             
+            
+            //pega a lista de itens salvos para poder passar para a Controller venda, dps inserir no Banco 
             ArrayList<ItemVenda> itens = ItemVendaController.getItensList();
             
+            //pega todas as informações necessarias para inserir a venda
             VendaController.Adicionar(IDCliente,
                     Double.parseDouble(lblValorTotal.getText()),
                     nomeCliente, data, itens);
@@ -892,7 +912,7 @@ public class TelaVendas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPesquisarClienteMouseClicked
 
-    
+    // retorna o ID do cliente
    public static int RetornaID(String Nome, String Cpf)
    {
        int id ;
@@ -988,8 +1008,10 @@ public class TelaVendas extends javax.swing.JFrame {
         
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
         
-
-    public static ArrayList<Produto>  RetornaListaProduto (String nome, int id)
+    }
+    
+    //Retorna o ID do produto de acordo com o ID informado ou nome
+    public static ArrayList<Produto> RetornaListaProduto(String nome, int id)
     {
        int COD = id;
        
@@ -998,8 +1020,6 @@ public class TelaVendas extends javax.swing.JFrame {
        String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
        int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
        
-       
-       
       
              if(respostaNome.equals(nome))
             {
@@ -1007,9 +1027,6 @@ public class TelaVendas extends javax.swing.JFrame {
                 
                 return lista;
             } 
-      
-          
-           int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
           
              if(respostaCOD == COD)
             {
