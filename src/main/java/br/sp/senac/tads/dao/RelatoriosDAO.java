@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author renea
@@ -30,15 +31,14 @@ public class RelatoriosDAO {
      */
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
+
+    public static ArrayList<Relatorios> consultarRelatorios(String inicio, String fim) {
     /**
-     * 
      * @param inicioObjeto do Relatório Sintético que pesquisa no Banco de dados as vendas relaizadas
      * num determinad período para inserir os dados no Relatório Sintético
      * @param fim
      * @return ArrayList - Apresenta todas as vendas realizadas num determinda período dos registros em Banco de Dados
      */
-    public static ArrayList<Relatorios> consultarRelatorios(String inicio, String fim) {
-
         ResultSet rs = null;
         PreparedStatement instrucaoSQL = null;
 
@@ -94,15 +94,14 @@ public class RelatoriosDAO {
         }
     }
 
+
+    public static ArrayList<Relatorios> consultarRelatorioAnalitico(int id) {
     /**
-     * 
      * @param inicioObjeto do Relatório Análitico que pesquisa no Banco de dados as vendas relaizadas
      * com base em uma venda especifica de um cliente, para inserir os dados detalhados da compra no Relatório Sintético
      * @param fim
      * @return ArrayList - Apresenta todos os itens incluido na venda, de um determinado cliente
      */
-    public static ArrayList<Relatorios> consultarRelatorioAnalitico(int id) {
-
         ResultSet rs = null;
         PreparedStatement instrucaoSQL = null;
 

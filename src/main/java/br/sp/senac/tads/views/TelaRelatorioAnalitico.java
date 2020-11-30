@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
+
 /**
 * @author Rene.Silva
 * @see br.sp.senac.tads.controller.RelatoriosController
@@ -160,18 +161,21 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
     }
 
-    /**Altera a cor do objeto ao passar o mouse */
+    
     public void setColor(JPanel panel) {
+        /**Altera a cor do objeto ao passar o mouse */
         panel.setBackground(new java.awt.Color(40, 40, 40));
     }
 
-    /**Volta para a cor padrão do objeto ao tirar o mouse de cima */
+    
     public void resetColor(JPanel panel) {
+        /**Volta para a cor padrão do objeto ao tirar o mouse de cima */
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
 
-    /**Método que carrega as linhas da tabela do Relatório Análitico*/
+    
     public void CarregarRelatorioAnalitico(int id) {
+        /**Método que carrega as linhas da tabela do Relatório Análitico*/
 
         ArrayList<RelatoriosController> listaProdutos = relatorio.listarRelatorioAnaliticoController(id);
 
