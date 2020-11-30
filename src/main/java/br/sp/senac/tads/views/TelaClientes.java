@@ -695,7 +695,7 @@ public class TelaClientes extends javax.swing.JFrame {
 
             tmCliente.addColumn("ID");
             tmCliente.addColumn("Nome");
-            tmCliente.addColumn("CPf");
+            tmCliente.addColumn("CPF");
             tmCliente.addColumn("Sexo");
 
             tblClientes.setModel(tmCliente);

@@ -143,7 +143,7 @@ public class ClienteDAO {
             conexao.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Não é poss");
+            JOptionPane.showMessageDialog(null, "Não é possível remover Cliente com Histórico de Vendas!");
 
         }
 

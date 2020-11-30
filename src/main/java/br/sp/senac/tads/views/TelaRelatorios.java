@@ -418,26 +418,30 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
 
-        if (jdtDE.getDate() != null && jdtAte.getDate() != null) {
-            Long diff = jdtAte.getDate().getTime() - jdtDE.getDate().getTime();
-            Long diffDias = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-            //Validação do limite de 30 dias no qual o relatório pode ser gerado
-            if (diffDias <= 30 && diffDias >= 0) {
-                JOptionPane.showMessageDialog(this, "Pesquisa realizada!");
+        if (jdtDE.getDate().before(jdtAte.getDate())) {
+            if (jdtDE.getDate() != null && jdtAte.getDate() != null) {
+                Long diff = jdtAte.getDate().getTime() - jdtDE.getDate().getTime();
+                Long diffDias = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+                //Validação do limite de 30 dias no qual o relatório pode ser gerado
+                if (diffDias <= 30 && diffDias >= 0) {
+                    JOptionPane.showMessageDialog(this, "Pesquisa realizada!");
 
-                String d1 = sp.format(jdtDE.getDate());
-                String d2 = sp.format(jdtAte.getDate());
+                    String d1 = sp.format(jdtDE.getDate());
+                    String d2 = sp.format(jdtAte.getDate());
 
-                //Carrega a tabela com os itens dentro das condições impostas
-                CarregarRelatorioSintetico(d1, d2);
+                    //Carrega a tabela com os itens dentro das condições impostas
+                    CarregarRelatorioSintetico(d1, d2);
 
+                } else {
+                    JOptionPane.showMessageDialog(this, "Diferença deve ser no máximo de 30 dias",
+                            "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Diferença deve ser do máximo 30 dias",
+                JOptionPane.showMessageDialog(this, "Informe um período para Pesquisar!",
                         "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Informe um período para Pesquisar!",
-                    "ERRO", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "A data de término dever ser maior que a data de início!");
         }
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
