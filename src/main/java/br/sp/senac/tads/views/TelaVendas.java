@@ -578,8 +578,9 @@ public class TelaVendas extends javax.swing.JFrame {
             if (result == JOptionPane.YES_OPTION) {
                 DefaultTableModel itens = new DefaultTableModel();
                 itens = (DefaultTableModel) tblItens.getModel();
+           
                 itens.removeRow(linhaSelecionada);
-                
+
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Item!", "Erro!", JOptionPane.WARNING_MESSAGE);
@@ -782,7 +783,7 @@ public class TelaVendas extends javax.swing.JFrame {
         String nome = txtNomeCliente.getText();
         String CPF = txtCPF.getText();
         
-        String nomeCliente = VendaDAO.ConsultarNomeDoClientePorCPF(CPF);
+        String nomeCliente = RetornaNomeCliente (nome, CPF) ;
        
         validar = ItemVendaController.ControllerEstoque(quantidadeTotal);
         
@@ -820,6 +821,30 @@ public class TelaVendas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConcluirMouseClicked
 
+    public static String RetornaNomeCliente(String nome, String Cpf)
+    {
+          String cliente ;
+       
+       String nm = VendaController.ConsultarClientePorNome(nome);
+       String nomecpf = VendaDAO.ConsultarNomeDoClientePorCPF(Cpf);
+       
+       if (nm.equals(nome)){
+       
+           cliente = nm;
+           
+           return cliente;
+       }
+       else if (nomecpf != "")
+       {
+              cliente = nomecpf;
+              
+              return cliente;
+       }
+       return "";
+    
+    }
+    
+    
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
         resetColor(btnCancelar);
     }//GEN-LAST:event_btnCancelarMouseExited
