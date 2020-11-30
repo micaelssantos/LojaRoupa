@@ -1,22 +1,29 @@
 package br.sp.senac.tads.views;
 
+import br.sp.senac.tads.controller.RelatoriosController;
+import br.sp.senac.tads.model.Relatorios;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
+    Relatorios relatorioBean = new Relatorios();
+    RelatoriosController relatorio = new RelatoriosController();
     private String usuario_sessao;
-    
+
     public TelaRelatorioAnalitico() {
         initComponents();
         setIcon(this);
     }
 
-    public TelaRelatorioAnalitico(String sessao) {
+    public TelaRelatorioAnalitico(String sessao, int id) {
         initComponents();
         setIcon(this);
         this.usuario_sessao = sessao;
+        CarregarRelatorioAnalitico(id);
     }
 
     /**
@@ -103,10 +110,7 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
         tblAnalitico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID Produto", "Produto", "Quantidade", "Valor Unitário", "Valor Total"
@@ -138,7 +142,6 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA A TELA DE RELATÓRIOS
-        new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
@@ -158,6 +161,46 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
     public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
+    }
+
+    public void CarregarRelatorioAnalitico(int id) {
+
+        ArrayList<RelatoriosController> listaProdutos = relatorio.listarRelatorioAnaliticoController(id);
+
+        if (listaProdutos.size() > 0) {
+
+            DefaultTableModel tmAnalitico = new DefaultTableModel();
+
+            tmAnalitico.addColumn("ID Produto");
+            tmAnalitico.addColumn("Produto");
+            tmAnalitico.addColumn("Quantidade");
+            tmAnalitico.addColumn("Valor Unitário");
+            tmAnalitico.addColumn("Valor Total");
+
+            tblAnalitico.setModel(tmAnalitico);
+
+            tmAnalitico.setRowCount(0);
+
+            int i = 0;
+
+            for (Object obj : listaProdutos) {
+                Relatorios bean = (Relatorios) obj;
+                tmAnalitico.addRow(new String[1]);
+                tblAnalitico.setValueAt(bean.getIdProduto(), i, 0);
+                tblAnalitico.setValueAt(bean.getNomeProduto(), i, 1);
+                tblAnalitico.setValueAt(bean.getQuantidade(), i, 2);
+                tblAnalitico.setValueAt(bean.getValorItem(), i, 3);
+                tblAnalitico.setValueAt(bean.getValorTotalItem(), i, 4);
+
+                i++;
+            }
+
+            tblAnalitico.getColumnModel().getColumn(0).setPreferredWidth(120); //ID PRODUTO
+            tblAnalitico.getColumnModel().getColumn(1).setPreferredWidth(300); //PRODUTO
+            tblAnalitico.getColumnModel().getColumn(2).setPreferredWidth(150); //QUANTIDADE  
+            tblAnalitico.getColumnModel().getColumn(3).setPreferredWidth(200); //VALOR UNITARIO
+            tblAnalitico.getColumnModel().getColumn(4).setPreferredWidth(200); //VALOR TOTAL
+        }
     }
 
     /**

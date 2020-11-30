@@ -4,17 +4,51 @@ package br.sp.senac.tads.model;
  *
  * @author renea
  */
-
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class Relatorios {
-    
-private int IdVenda;
+
+    private int IdVenda;
+    private int IdProduto;
+    private String nomeProduto;
+    private float valorTotalItem;
     private String nomeCliente;
-    private float valorvenda;
+    private float valorItem;
     private float valorTotalvenda;
     private Date data;
+    private int quantidade;
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public int getIdProduto() {
+        return IdProduto;
+    }
+
+    public void setIdProduto(int IdProduto) {
+        this.IdProduto = IdProduto;
+    }
+
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public float getValorTotalItem() {
+        return valorTotalItem;
+    }
+
+    public void setValorTotalItem(float valorTotalItem) {
+        this.valorTotalItem = valorTotalItem;
+    }
 
     public Relatorios() {
     }
@@ -35,12 +69,12 @@ private int IdVenda;
         this.nomeCliente = nomeCliente;
     }
 
-    public float getValorvenda() {
-        return valorvenda;
+    public float getValorItem() {
+        return valorItem;
     }
 
-    public void setValorvenda(float valorvenda) {
-        this.valorvenda = valorvenda;
+    public void setValorItem(float valorItem) {
+        this.valorItem = valorItem;
     }
 
     public float getValorTotalvenda() {

@@ -513,8 +513,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 tmProduto.addColumn("Marca");
                 tmProduto.addColumn("Quantidade");
                 tmProduto.addColumn("Valor");
-                tblProdutos.setModel(tmProduto);
-
+                
                 tblProdutos.setModel(tmProduto);
 
                 tmProduto.setRowCount(0);
@@ -603,9 +602,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 tblProdutos.setValueAt(bean.getQuantidade(), i, 4);
                 tblProdutos.setValueAt(bean.getValorUnitario(), i, 5);
                 i++;
-
             }
-
         }
     }
     

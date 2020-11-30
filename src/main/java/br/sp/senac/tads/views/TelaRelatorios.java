@@ -1,21 +1,20 @@
 package br.sp.senac.tads.views;
 
 import br.sp.senac.tads.controller.RelatoriosController;
-import br.sp.senac.tads.dao.RelatoriosDAO;
 import br.sp.senac.tads.model.Relatorios;
 import java.awt.Toolkit;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class TelaRelatorios extends javax.swing.JFrame {
 
-    Relatorios venda = new Relatorios();
+    Relatorios relatorioBean = new Relatorios();
+    RelatoriosController relatorio = new RelatoriosController();
     String usuario_sessao;
 
     public TelaRelatorios() {
@@ -27,7 +26,6 @@ public class TelaRelatorios extends javax.swing.JFrame {
         setIcon(this);
         this.usuario_sessao = sessao;
         lblUsuario.setText(usuario_sessao);
-
     }
 
     /**
@@ -253,15 +251,13 @@ public class TelaRelatorios extends javax.swing.JFrame {
         tblSintetico.setForeground(new java.awt.Color(40, 40, 40));
         tblSintetico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID Venda", "Nome Cliente", "Valor Total", "Data Venda"
             }
         ));
+        tblSintetico.setToolTipText("");
         tblSintetico.setGridColor(new java.awt.Color(40, 40, 40));
         tblSintetico.setSelectionBackground(new java.awt.Color(0, 85, 166));
         jScrollPane1.setViewportView(tblSintetico);
@@ -320,7 +316,11 @@ public class TelaRelatorios extends javax.swing.JFrame {
         lblValorPeriodo.setForeground(new java.awt.Color(40, 40, 40));
         lblValorPeriodo.setText("R$ 0,00");
         pnlFundo.add(lblValorPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, 130, 30));
+
+        jdtAte.setDateFormatString("yyyy-MM-dd");
         pnlFundo.add(jdtAte, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 140, -1));
+
+        jdtDE.setDateFormatString("yyyy-MM-dd");
         pnlFundo.add(jdtDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 140, -1));
 
         getContentPane().add(pnlFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
@@ -380,9 +380,18 @@ public class TelaRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_lblLogoutMouseClicked
 
     private void btnDetalharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalharMouseClicked
-        //ACESSA A TELA DE RELATÓRIO ANALÍTICO
-        new TelaRelatorioAnalitico(usuario_sessao).setVisible(true);
-        this.dispose();
+
+        int linhaSelecionada = tblSintetico.getSelectedRow();
+
+        if (linhaSelecionada >= 0) {
+
+            int idVenda = Integer.parseInt(tblSintetico.getValueAt(tblSintetico.getSelectedRow(), 0).toString());
+
+            new TelaRelatorioAnalitico(usuario_sessao, idVenda).setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma Venda!", "Erro!", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnDetalharMouseClicked
 
     private void btnDetalharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalharMouseEntered
@@ -407,6 +416,29 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
 
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (jdtDE.getDate() != null && jdtAte.getDate() != null) {
+            Long diff = jdtAte.getDate().getTime() - jdtDE.getDate().getTime();
+            Long diffDias = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            //Validação do limite de 30 dias no qual o relatório pode ser gerado
+            if (diffDias <= 30 && diffDias >= 0) {
+                JOptionPane.showMessageDialog(this, "Pesquisa realizada!");
+
+                String d1 = sp.format(jdtDE.getDate());
+                String d2 = sp.format(jdtAte.getDate());
+
+                //Carrega a tabela com os itens dentro das condições impostas
+                CarregarRelatorioSintetico(d1, d2);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Diferença deve ser do máximo 30 dias",
+                        "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Informe um período para Pesquisar!",
+                    "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
     private void btnPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseEntered
@@ -417,8 +449,45 @@ public class TelaRelatorios extends javax.swing.JFrame {
         resetColor(btnPesquisar);
     }//GEN-LAST:event_btnPesquisarMouseExited
 
-    public void CarregarRelatorioSintetico() {
+    public void CarregarRelatorioSintetico(String d1, String d2) {
 
+        double valor = 0;
+
+        ArrayList<RelatoriosController> listaVendas = relatorio.listarRelatorioController(d1, d2);
+
+        if (listaVendas.size() > 0) {
+
+            DefaultTableModel tmSintetico = new DefaultTableModel();
+
+            tmSintetico.addColumn("ID Venda");
+            tmSintetico.addColumn("Nome Cliente");
+            tmSintetico.addColumn("Valor Total");
+            tmSintetico.addColumn("Data Venda");
+
+            tblSintetico.setModel(tmSintetico);
+
+            tmSintetico.setRowCount(0);
+
+            int i = 0;
+
+            for (Object obj : listaVendas) {
+                Relatorios bean = (Relatorios) obj;
+                tmSintetico.addRow(new String[1]);
+                tblSintetico.setValueAt(bean.getIdVenda(), i, 0);
+                tblSintetico.setValueAt(bean.getNomeCliente(), i, 1);
+                tblSintetico.setValueAt(bean.getValorTotalvenda(), i, 2);
+                tblSintetico.setValueAt(bean.getData(), i, 3);
+
+                valor = Double.parseDouble(String.valueOf(tblSintetico.getModel().getValueAt(i, 2))) + valor;
+                i++;
+            }
+
+            tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(120); //ID VENDA
+            tblSintetico.getColumnModel().getColumn(1).setPreferredWidth(300); //CLIENTE
+            tblSintetico.getColumnModel().getColumn(2).setPreferredWidth(150); //VALOR TOTAL  
+            tblSintetico.getColumnModel().getColumn(3).setPreferredWidth(200); //DATA
+            this.lblValorPeriodo.setText(String.valueOf(valor));
+        }
     }
 
     public void setIcon(JFrame frm) {

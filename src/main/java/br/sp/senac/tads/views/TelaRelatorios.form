@@ -446,13 +446,14 @@
                   <Color blue="28" green="28" red="28" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
+                  <Table columnCount="4" rowCount="0">
                     <Column editable="true" title="ID Venda" type="java.lang.Object"/>
                     <Column editable="true" title="Nome Cliente" type="java.lang.Object"/>
                     <Column editable="true" title="Valor Total" type="java.lang.Object"/>
                     <Column editable="true" title="Data Venda" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
@@ -614,6 +615,9 @@
           </Constraints>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdtAte">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="470" y="100" width="140" height="-1"/>
@@ -621,6 +625,9 @@
           </Constraints>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdtDE">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="280" y="100" width="140" height="-1"/>
