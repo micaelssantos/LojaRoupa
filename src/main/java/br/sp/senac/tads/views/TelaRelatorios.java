@@ -415,11 +415,10 @@ public class TelaRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutosMouseClicked
 
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
-
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
+        if (jdtDE.getDate() != null && jdtAte.getDate() != null) {
+            if (jdtDE.getDate().before(jdtAte.getDate())) {
 
-        if (jdtDE.getDate().before(jdtAte.getDate())) {
-            if (jdtDE.getDate() != null && jdtAte.getDate() != null) {
                 Long diff = jdtAte.getDate().getTime() - jdtDE.getDate().getTime();
                 Long diffDias = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
                 //Validação do limite de 30 dias no qual o relatório pode ser gerado
@@ -437,11 +436,12 @@ public class TelaRelatorios extends javax.swing.JFrame {
                             "ERRO", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Informe um período para Pesquisar!",
+                JOptionPane.showMessageDialog(this, "A data de término dever ser maior que a data de início!",
                         "ERRO", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "A data de término dever ser maior que a data de início!");
+            JOptionPane.showMessageDialog(this, "Informe um período para Pesquisar!",
+                    "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
