@@ -2,7 +2,6 @@ package br.sp.senac.tads.controller;
 
 import br.sp.senac.tads.model.Relatorios;
 import br.sp.senac.tads.dao.RelatoriosDAO;
-import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +18,8 @@ public class RelatoriosController {
      *
      * Objeto do Relatório Sintético
      *
+     * @param inicio
+     * @param fim
      * @return ArrayList - Apresenta as vendas realizadas num determinda período
      * Método que apresenta a consulta das vendas por período
      */
