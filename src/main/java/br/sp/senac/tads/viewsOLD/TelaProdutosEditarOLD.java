@@ -1,7 +1,8 @@
-package br.sp.senac.tads.views;
+package br.sp.senac.tads.viewsOLD;
 
 import br.sp.senac.tads.controller.ProdutoController;
 import br.sp.senac.tads.model.Produto;
+import br.sp.senac.tads.views.TelaProdutos;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

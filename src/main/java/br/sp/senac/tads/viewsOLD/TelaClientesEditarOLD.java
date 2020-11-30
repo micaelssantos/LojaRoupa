@@ -1,5 +1,6 @@
-package br.sp.senac.tads.views;
+package br.sp.senac.tads.viewsOLD;
 
+import br.sp.senac.tads.views.TelaClientes;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
