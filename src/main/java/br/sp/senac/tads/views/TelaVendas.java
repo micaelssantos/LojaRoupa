@@ -21,6 +21,8 @@ import java.time.LocalDate;
 
 public class TelaVendas extends javax.swing.JFrame {
 
+    private String usuario_sessao;
+
     public TelaVendas() {
         initComponents();
         this.txtQtdEstoque.setEditable(false);
@@ -28,10 +30,19 @@ public class TelaVendas extends javax.swing.JFrame {
         btnPesquisarProdutos1.setVisible(false);
         btnPesquisarProdutosCOD.setVisible(false);
         setIcon(this);
-      
+
     }
 
-    
+    public TelaVendas(String sessao) {
+        initComponents();
+        setIcon(this);
+        this.txtQtdEstoque.setEditable(false);
+        btnPesquisarProdutos1.setVisible(false);
+        btnPesquisarProdutosCOD.setVisible(false);
+        this.usuario_sessao = sessao;
+        lblNovaVenda.setText("Nova Venda, " + usuario_sessao);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -579,7 +590,7 @@ public class TelaVendas extends javax.swing.JFrame {
                 DefaultTableModel itens = new DefaultTableModel();
                 itens = (DefaultTableModel) tblItens.getModel();
                 itens.removeRow(linhaSelecionada);
-                
+
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um Item!", "Erro!", JOptionPane.WARNING_MESSAGE);
@@ -595,15 +606,15 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirMouseEntered
 
     //Recebe Array para mostrar no Jtable
-     public void loadTable(ArrayList<String[]> listaItens) {
-        
+    public void loadTable(ArrayList<String[]> listaItens) {
+
         DefaultTableModel tmItens = new DefaultTableModel();
         tmItens.addColumn("Produto");
         tmItens.addColumn("Quantidade");
         tmItens.addColumn("Valor Unt");
         tmItens.addColumn("Total");
         tblItens.setModel(tmItens);
-        
+
         for (String[] elementosItens : listaItens) {
 
             tmItens.addRow(elementosItens);
@@ -615,64 +626,61 @@ public class TelaVendas extends javax.swing.JFrame {
         tblItens.getColumnModel().getColumn(3).setPreferredWidth(250); //Valor Total
 
     }
-    
-     //Inserindo Produto nos Arrays
+
+    //Inserindo Produto nos Arrays
     private void btnInserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirMouseClicked
-        if (ValidarProduto() ) {
-            
+        if (ValidarProduto()) {
+
             String nome = txtNomeProduto.getText(); // Recebe nome do Produto para passar pra função "RetornaListaProduto" 
-            int  COD = Integer.parseInt(txtCodigoProduto.getText()); // Recebe Codigo do Produto para passar pra função "RetornaListaProduto" 
-            
-            int qtd = Integer.parseInt(txtQtd.getText()); 
+            int COD = Integer.parseInt(txtCodigoProduto.getText()); // Recebe Codigo do Produto para passar pra função "RetornaListaProduto" 
+
+            int qtd = Integer.parseInt(txtQtd.getText());
             int estoque = Integer.parseInt(txtQtdEstoque.getText());
-            
+
             double totalCompra = 0;
-            
+
             Produto modeloProduto = new Produto();
             ItemVenda modeloItem = new ItemVenda();
-            
+
             ArrayList<Produto> listaProdutos = new ArrayList<>();
             listaProdutos = RetornaListaProduto(nome, COD);  // retorna a lista de Produtos de acordo com o Nome ou Cod inserido
-            
-            ArrayList<ItemVenda> listaItem = ItemVendaController.getItensList(); 
-            ArrayList<String []> listadeItens = new ArrayList<>();
-            
+
+            ArrayList<ItemVenda> listaItem = ItemVendaController.getItensList();
+            ArrayList<String[]> listadeItens = new ArrayList<>();
+
             modeloProduto.setNome(nome);
             modeloProduto.setId(COD);
-            
+
             modeloItem.setTotal(modeloProduto.getValorUnitario() * qtd);
-            
+
             Venda modelo = new Venda();
             modeloItem.setTotal(modeloProduto.getValorUnitario() * qtd);
 
-            for (Produto elementos : listaProdutos)  //pega os elementos da Lista de Produtos 
+            for (Produto elementos : listaProdutos) //pega os elementos da Lista de Produtos 
             {
                 if (qtd < estoque) //verifica se a quantidade existe em Estoque 
                 {
                     //salva as informações para depois resgatar e inserir no Banco
-                    ItemVendaController.Salvar(modelo.getIdVenda(), elementos.getId(), 
-                    qtd,elementos.getValorUnitario(), elementos.getNome(), elementos.getValorUnitario() * qtd); 
-                    
-                   //carrega a lista de itens com os itens q foram salvos
-                   listadeItens = ItemVendaController.getItemLista
-                   (listaItem, listadeItens, elementos.getNome());
-                   
-                   //passa a lista de itens para o carregar no Jtable
-                   this.loadTable(listadeItens);
-                }
-                else
-                {
-                   JOptionPane.showMessageDialog(this, "Quantidade do Produto não disponivel no estoque"); 
+                    ItemVendaController.Salvar(modelo.getIdVenda(), elementos.getId(),
+                            qtd, elementos.getValorUnitario(), elementos.getNome(), elementos.getValorUnitario() * qtd);
+
+                    //carrega a lista de itens com os itens q foram salvos
+                    listadeItens = ItemVendaController.getItemLista(listaItem, listadeItens, elementos.getNome());
+
+                    //passa a lista de itens para o carregar no Jtable
+                    this.loadTable(listadeItens);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Quantidade do Produto não disponivel no estoque");
                 }
             }
             //faz a soma no total
-              for (ItemVenda valor : listaItem) {
-                  
+            for (ItemVenda valor : listaItem) {
+
                 totalCompra += valor.getTotal();
             }
-            
-            lblValorTotal.setText(String.valueOf(totalCompra)); 
-            
+
+            lblValorTotal.setText(String.valueOf(totalCompra));
+
         }
     }//GEN-LAST:event_btnInserirMouseClicked
 
@@ -697,37 +705,32 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarProdutosCODMouseEntered
 
     //Pesquisar Produto
-    
     private void btnPesquisarProdutosCODMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutosCODMouseClicked
         if (ValidarPesquisaProduto()) {
-            
-           int  COD = Integer.parseInt(txtCodigoProduto.getText());
-           
-           String nome = txtNomeProduto.getText();
-            
-           int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
-          
-           int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
-          
-             if(respostaCOD == COD)
-            {
+
+            int COD = Integer.parseInt(txtCodigoProduto.getText());
+
+            String nome = txtNomeProduto.getText();
+
+            int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
+
+            int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
+
+            if (respostaCOD == COD) {
                 txtQtdEstoque.setText(Integer.toString(qtd));
                 JOptionPane.showMessageDialog(this, "Produto Localizado!");
-                
+
                 RetornaListaProduto(nome, COD);
-            }
-            else 
-            {
+            } else {
                 JOptionPane.showMessageDialog(this, "Produto Não Localizado!");
             }
-        } 
+        }
     }//GEN-LAST:event_btnPesquisarProdutosCODMouseClicked
 
     //limite de caracteres 
-    
     private void txtQtdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtdKeyTyped
         // VALIDAÇÃO QUANTIDADE
-     
+
         if (txtQtd.getText().length() < 5) {
             String caracteres = "0987654321";
             if (!caracteres.contains(evt.getKeyChar() + "")) {
@@ -750,73 +753,69 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConcluirMouseEntered
 
     //Concluir venda
-    
     private void btnConcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseClicked
         if (ValidarCliente() && ValidarProduto()) {
-            
-           String Prnome = txtNomeProduto.getText(); //Pega o nome para passar pra função "RetornaListaProduto"
-           int  COD = Integer.parseInt(txtCodigoProduto.getText()); // Recebe Codigo do Produto para passar pra função "RetornaListaProduto" 
-         
-           ArrayList<Produto> listaProdutos = new ArrayList<>();
-           
-           listaProdutos = RetornaListaProduto(Prnome, COD); // retorna a lista de Produtos de acordo com o Nome ou Cod inserido
-           
-          ArrayList<ItemVenda> listaitem = ItemVendaController.getItensList();
 
-        boolean validar = true, validarQuantidade = false;
-        int quantidadeTotal = 0;
-        
-        //pega os elementos da Lista de Produtos 
+            String Prnome = txtNomeProduto.getText(); //Pega o nome para passar pra função "RetornaListaProduto"
+            int COD = Integer.parseInt(txtCodigoProduto.getText()); // Recebe Codigo do Produto para passar pra função "RetornaListaProduto" 
 
-        for (Produto p : listaProdutos) {
-          
-            //pega os elementos da lista salva
-            for (ItemVenda itens : listaitem) {
-                // caso os ID's forem iguais, soma a quantidade salva com a total
-                if (p.getId() == itens.getIdProduto()) {
-                    quantidadeTotal += itens.getQtd();
+            ArrayList<Produto> listaProdutos = new ArrayList<>();
+
+            listaProdutos = RetornaListaProduto(Prnome, COD); // retorna a lista de Produtos de acordo com o Nome ou Cod inserido
+
+            ArrayList<ItemVenda> listaitem = ItemVendaController.getItensList();
+
+            boolean validar = true, validarQuantidade = false;
+            int quantidadeTotal = 0;
+
+            //pega os elementos da Lista de Produtos 
+            for (Produto p : listaProdutos) {
+
+                //pega os elementos da lista salva
+                for (ItemVenda itens : listaitem) {
+                    // caso os ID's forem iguais, soma a quantidade salva com a total
+                    if (p.getId() == itens.getIdProduto()) {
+                        quantidadeTotal += itens.getQtd();
+                    }
                 }
             }
-        }
-        
-        String nome = txtNomeCliente.getText();
-        String CPF = txtCPF.getText();
-        
-        String nomeCliente = VendaDAO.ConsultarNomeDoClientePorCPF(CPF);
-       
-        validar = ItemVendaController.ControllerEstoque(quantidadeTotal);
-        
-        
-        //se a quantidade total de itens for menor que a em estoque...
-        if (validar == true) {
-            
-            validarQuantidade = true;
-            
-            Date data = Date.valueOf(LocalDate.now());//pega a data atual
-            int IDCliente = RetornaID(nome, CPF);//pega o ID do cliente para passar pra venda
-            
-            
-            //pega a lista de itens salvos para poder passar para a Controller venda, dps inserir no Banco 
-            ArrayList<ItemVenda> itens = ItemVendaController.getItensList();
-            
-            //pega todas as informações necessarias para inserir a venda
-            VendaController.Adicionar(IDCliente,
-                    Double.parseDouble(lblValorTotal.getText()),
-                    nomeCliente, data, itens);
-           
-            ItemVendaController.limparlista();
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Não foi efetuado nenhuma compra", "Erro de Compra", JOptionPane.ERROR_MESSAGE);
-        }
+            String nome = txtNomeCliente.getText();
+            String CPF = txtCPF.getText();
 
-        if (validarQuantidade == false) {
-            JOptionPane.showMessageDialog(this, "A soma da quantidade de produto acima do que consta disponível para compra", "Erro de Compra", JOptionPane.ERROR_MESSAGE);
-        }
+            String nomeCliente = VendaDAO.ConsultarNomeDoClientePorCPF(CPF);
+
+            validar = ItemVendaController.ControllerEstoque(quantidadeTotal);
+
+            //se a quantidade total de itens for menor que a em estoque...
+            if (validar == true) {
+
+                validarQuantidade = true;
+
+                Date data = Date.valueOf(LocalDate.now());//pega a data atual
+                int IDCliente = RetornaID(nome, CPF);//pega o ID do cliente para passar pra venda
+
+                //pega a lista de itens salvos para poder passar para a Controller venda, dps inserir no Banco 
+                ArrayList<ItemVenda> itens = ItemVendaController.getItensList();
+
+                //pega todas as informações necessarias para inserir a venda
+                VendaController.Adicionar(IDCliente,
+                        Double.parseDouble(lblValorTotal.getText()),
+                        nomeCliente, data, itens);
+
+                ItemVendaController.limparlista();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi efetuado nenhuma compra", "Erro de Compra", JOptionPane.ERROR_MESSAGE);
+            }
+
+            if (validarQuantidade == false) {
+                JOptionPane.showMessageDialog(this, "A soma da quantidade de produto acima do que consta disponível para compra", "Erro de Compra", JOptionPane.ERROR_MESSAGE);
+            }
             JOptionPane.showMessageDialog(this, "Venda realizada com Sucesso!");
-          
-            new TelaMenu().setVisible(true);
-            this.dispose();  
+
+            new TelaMenu(usuario_sessao).setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnConcluirMouseClicked
 
@@ -831,7 +830,7 @@ public class TelaVendas extends javax.swing.JFrame {
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         //VOLTAR PARA O MENU PRINCIPAL
         limpar();
-        new TelaMenu().setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
@@ -861,7 +860,7 @@ public class TelaVendas extends javax.swing.JFrame {
 
     private void btnConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseClicked
         if (ValidarCliente()) {
-        
+
             JOptionPane.showMessageDialog(this, "Cliente Selecionado!");
         }
     }//GEN-LAST:event_btnConfirmarMouseClicked
@@ -890,51 +889,44 @@ public class TelaVendas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rdoCPFMouseClicked
 
-    
+
     private void btnPesquisarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarClienteMouseClicked
-        if (ValidarCliente()) 
-        {
+        if (ValidarCliente()) {
             String nome = txtNomeCliente.getText();
             String CPF = txtCPF.getText();
-            
+
             String respostaNome = VendaController.ConsultarClientePorNome(nome);
             String respostaCPF = VendaController.ConsultarClientePorCPF(CPF);
-            
-            if (respostaNome.equals(nome) || respostaCPF.equals(CPF)) 
-            {
+
+            if (respostaNome.equals(nome) || respostaCPF.equals(CPF)) {
                 JOptionPane.showMessageDialog(this, "Cliente Localizado!");
-            }
-            else 
-            {
+            } else {
                 JOptionPane.showMessageDialog(this, "Cliente Não Localizado!");
             }
-           
+
         }
     }//GEN-LAST:event_btnPesquisarClienteMouseClicked
 
     // retorna o ID do cliente
-   public static int RetornaID(String Nome, String Cpf)
-   {
-       int id ;
-       
-       String nm = VendaController.ConsultarClientePorNome(Nome);
-       String CPF = VendaController.ConsultarClientePorCPF(Cpf);
-       
-       if (nm.equals(Nome)){
-       
-           id = VendaController.PegarIDClientePorNome(nm);
-           
-           return id;
-       }
-       else if (CPF.equals(Cpf))
-       {
-              id = VendaController.PegarIDClientePorCPF(Cpf);
-              
-              return id;
-       }
-       return 0;
-   }
-    
+    public static int RetornaID(String Nome, String Cpf) {
+        int id;
+
+        String nm = VendaController.ConsultarClientePorNome(Nome);
+        String CPF = VendaController.ConsultarClientePorCPF(Cpf);
+
+        if (nm.equals(Nome)) {
+
+            id = VendaController.PegarIDClientePorNome(nm);
+
+            return id;
+        } else if (CPF.equals(Cpf)) {
+            id = VendaController.PegarIDClientePorCPF(Cpf);
+
+            return id;
+        }
+        return 0;
+    }
+
     private void btnPesquisarClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarClienteMouseEntered
         setColor(btnPesquisarCliente);
     }//GEN-LAST:event_btnPesquisarClienteMouseEntered
@@ -972,27 +964,22 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_lblValorTotalKeyTyped
 
     private void btnPesquisarProdutos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseClicked
-             
+
         String nome = txtNomeProduto.getText();
         String cod = txtCodigoProduto.getText();
 
-            int id =0;
-           String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
-            int qtd = VendaController.ConsultarQuantidadePRPorNome(nome);
-          
-             if(respostaNome.equals(nome))
-            {
-                txtQtdEstoque.setText(Integer.toString(qtd));
-                JOptionPane.showMessageDialog(this, "Produto Localizado!");
-                
-                RetornaListaProduto(nome,  id);
-            }   
-            else 
-            {
-                 JOptionPane.showMessageDialog(this, "Produto Não Localizado!");
-            }
-             
-            
+        int id = 0;
+        String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
+        int qtd = VendaController.ConsultarQuantidadePRPorNome(nome);
+
+        if (respostaNome.equals(nome)) {
+            txtQtdEstoque.setText(Integer.toString(qtd));
+            JOptionPane.showMessageDialog(this, "Produto Localizado!");
+
+            RetornaListaProduto(nome, id);
+        } else {
+            JOptionPane.showMessageDialog(this, "Produto Não Localizado!");
+        }
     }//GEN-LAST:event_btnPesquisarProdutos1MouseClicked
 
 
@@ -1003,39 +990,34 @@ public class TelaVendas extends javax.swing.JFrame {
     private void btnPesquisarProdutos1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarProdutos1MouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarProdutos1MouseExited
-    
+
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
-    
+
     //Retorna o ID do produto de acordo com o ID informado ou nome
-    public static ArrayList<Produto> RetornaListaProduto(String nome, int id)
-    {
-       int COD = id;
-       
-       ArrayList<Produto> lista = new ArrayList<Produto> ();
-       
-       String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
-       int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
-      
-             if(respostaNome.equals(nome))
-            {
-                lista = VendaController.ConsultarProdutoNome(respostaNome);//receber
-                return lista;
-            } 
-      
-           int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
-      
-             if(respostaCOD == COD)
-            {
-               lista = VendaController.ConsultarProduto(COD); //receber
-               return lista;
-            }
-             return lista;
+    public static ArrayList<Produto> RetornaListaProduto(String nome, int id) {
+        int COD = id;
+
+        ArrayList<Produto> lista = new ArrayList<Produto>();
+
+        String respostaNome = VendaController.ConsultarProdutoPorNome(nome);
+        int respostaCOD = VendaController.ConsultarProdutoPorCodigo(COD);
+
+        if (respostaNome.equals(nome)) {
+            lista = VendaController.ConsultarProdutoNome(respostaNome);//receber
+            return lista;
+        }
+
+        int qtd = VendaController.ConsultarQuantidadePRPorCOD(COD);
+
+        if (respostaCOD == COD) {
+            lista = VendaController.ConsultarProduto(COD); //receber
+            return lista;
+        }
+        return lista;
     }
-    
+
     private void limpar() {
         this.txtNomeProduto.setText("");
         this.txtQtd.setText("");
@@ -1076,7 +1058,7 @@ public class TelaVendas extends javax.swing.JFrame {
             btnPesquisarProdutosCOD.setEnabled(false);
             btnPesquisarProdutos1.setVisible(true);
             btnPesquisarProdutosCOD.setVisible(false);
-            
+
         } else if (rdoCodProd.isSelected()) {
             btnPesquisarProdutosCOD.setEnabled(true);
             txtNomeProduto.setEnabled(false);

@@ -70,9 +70,7 @@ public class ClienteDAO {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao carregar o driver");
-
         }
-
     }
 
     public void alterarCliente(Cliente clienteBean) {
@@ -145,7 +143,7 @@ public class ClienteDAO {
             conexao.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar o driver");
+            JOptionPane.showMessageDialog(null, "Não é poss");
 
         }
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.sp.senac.tads.util;
 
 import java.sql.Connection;
@@ -22,7 +17,7 @@ public class GerenciadorConexao {
     public static String DATABASE = "loja_roupa";        //nome do seu banco de dados
 
     public static String LOGIN = "root";                     //nome de um usuário de seu BD      
-    public static String SENHA = "admin";                         //sua senha de acesso
+    public static String SENHA = "adminadmin";                         //sua senha de acesso
 
     public static String URL = "";
 

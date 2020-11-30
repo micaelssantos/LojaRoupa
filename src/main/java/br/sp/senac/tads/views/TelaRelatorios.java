@@ -17,19 +17,17 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     Relatorios venda = new Relatorios();
     String usuario_sessao;
-    
+
     public TelaRelatorios() {
         initComponents();
-        
     }
-    
+
     public TelaRelatorios(String sessao) {
         initComponents();
-        vendaRelatorio();
         setIcon(this);
         this.usuario_sessao = sessao;
         lblUsuario.setText(usuario_sessao);
-        
+
     }
 
     /**
@@ -383,7 +381,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     private void btnDetalharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalharMouseClicked
         //ACESSA A TELA DE RELATÓRIO ANALÍTICO
-        new TelaRelatorioAnalitico().setVisible(true);
+        new TelaRelatorioAnalitico(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDetalharMouseClicked
 
@@ -409,35 +407,6 @@ public class TelaRelatorios extends javax.swing.JFrame {
 
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
 
-        ResultSet rs = null;
-        Connection conexao = null;
-        PreparedStatement instrucaoSQL = null; 
-                
-        //Armazeno as informaçoes da tabela (resultSet) em um ArrayList
-        ArrayList<Relatorios> listaVenda = RelatoriosDAO.listarRelatorioController(jdtDE.getDate(),jdtAte.getDate());
-        //ArrayList<Relatorios> listavenda = RelatoriosDAO.consultarRelatorios(                   );
-        
-        DefaultTableModel tmRelatorios = new DefaultTableModel();
-
-        tmRelatorios.addColumn("IdVenda");
-        tmRelatorios.addColumn("nomeCliente");
-        tmRelatorios.addColumn("valorvenda");
-        tmRelatorios.addColumn("data");
-        tblSintetico.setModel(tmRelatorios);
-
-        //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
-        tmRelatorios.setRowCount(0);
-        
-        //Para cada cliente resgatado do banco de dados, atualizo a tabela
-        for (Relatorios c : listaVenda) {
-            tmRelatorios.addRow(new Object[]{c.getIdVenda(),c.getNomeCliente(),c.getValorTotalvenda(),c.getData()});
-        }
-        //Defino o tamanho para cada coluna
-        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
-        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(100); // NomeCliente
-        tblSintetico.getColumnModel().getColumn(1).setPreferredWidth(10); //ValorTotal
-        tblSintetico.getColumnModel().getColumn(3).setPreferredWidth(10); //Data Venda
-
     }//GEN-LAST:event_btnPesquisarMouseClicked
 
     private void btnPesquisarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseEntered
@@ -447,56 +416,15 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private void btnPesquisarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseExited
         resetColor(btnPesquisar);
     }//GEN-LAST:event_btnPesquisarMouseExited
-        
+
     public void CarregarRelatorioSintetico() {
 
-        //Pedir à classe DAO para consultar as vendas
-        ArrayList<Relatorios> listavenda = RelatoriosDAO.consultarRelatorios(jdtDE.getDate(), jdtAte.getDate());
-
-        DefaultTableModel tmRelatorios = new DefaultTableModel();
-
-        for (Relatorios Relatorios : listavenda) {
-
-        }
-
-        //Adiciono as linhas na tabela
-        if (listavenda.size() > 0) {
-
-            tmRelatorios.addColumn("IdVenda");
-            tmRelatorios.addColumn("nomeCliente");
-            tmRelatorios.addColumn("valorvenda");
-            tmRelatorios.addColumn("data");
-
-            //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
-            tmRelatorios.setRowCount(0);
-
-            int i = 0;
-        }
-
-        //Defina sua estrutura com a estrutura tmRelatorios;
-        tblSintetico.setModel(tmRelatorios);
-
-        //Limpo a tabela, excluindo todas as linhas para depois mostrar os dados novamente
-        tmRelatorios.setRowCount(0);
-
-        for (Relatorios c : listavenda) {
-            tmRelatorios.addRow(new Object[]{c.getIdVenda(), c.getNomeCliente(), c.getValorTotalvenda(), c.getData()});
-        }
-
-        //Defino o tamanho para cada coluna
-        tblSintetico.getColumnModel().getColumn(0).setPreferredWidth(50); //ID
-        tblSintetico.getColumnModel().getColumn(1).setPreferredWidth(100); // NomeCliente
-        tblSintetico.getColumnModel().getColumn(2).setPreferredWidth(50); //ValorTotal
-        tblSintetico.getColumnModel().getColumn(3).setPreferredWidth(10); //Data Venda
     }
 
-    
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
-    
+
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
@@ -575,8 +503,4 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFundo;
     private javax.swing.JTable tblSintetico;
     // End of variables declaration//GEN-END:variables
-
-    private void vendaRelatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -22,7 +22,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     
     Produto produtoBean = new Produto();
     ProdutoController produto = new ProdutoController();
-    String usuario_sessao;
+    private String usuario_sessao;
     
     public TelaProdutos() {
         initComponents();
@@ -34,6 +34,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     public TelaProdutos(String sessao) {
         initComponents();
         listarTabelaProduto();
+        setIcon(this);
         this.usuario_sessao = sessao;
         lblUsuario.setText(usuario_sessao);
     }
@@ -560,7 +561,6 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
         new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnRelatoriosMouseClicked
 
     /**Método que faz a validação do campo de pesquisa*/
@@ -610,9 +610,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     }
     
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
     
     /**Método que altera a cor de um objeto ao passar o mouse por cima*/

@@ -20,16 +20,17 @@ public class TelaLoginCRUD extends javax.swing.JFrame {
     
     LoginController logController = new LoginController();
     Login logBean = new Login();
+    private String usuario_sessao;
     
     public TelaLoginCRUD() {
         initComponents();
     }
     
-    public TelaLoginCRUD(String tipo) {
+    public TelaLoginCRUD(String tipo, String sessao) {
         initComponents();
         lblTitulo.setText(tipo);
         setIcon(this);
-        
+        this.usuario_sessao = sessao;
     }
 
     /**
@@ -168,7 +169,7 @@ public class TelaLoginCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairMouseExited
 
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
-        new TelaLogin().setVisible(true);
+        new TelaLogin(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSairMouseClicked
 
@@ -179,24 +180,22 @@ public class TelaLoginCRUD extends javax.swing.JFrame {
             if (validaCamposVazios()) {
                 
                 logBean.setLogin(txtLogin.getText());
-                logBean.setSenha(txtSenha.getText());
+                logBean.setSenha(String.valueOf(txtSenha.getPassword()));
                        
                 logController.cadastrarController(logBean);
             
                 limpaCampos();
 
-                new TelaLogin().setVisible(true);
+                new TelaLogin(usuario_sessao).setVisible(true);
                 this.dispose();
-                
             }
-            
         }
         
         if (lblTitulo.getText().equals("Editar")) {
             
             logBean.setId(Integer.parseInt(lblCodLogin.getText()));
             logBean.setLogin(txtLogin.getText());
-            logBean.setSenha(txtSenha.getText());
+            logBean.setSenha(String.valueOf(txtSenha.getPassword()));
             
             int resultado = JOptionPane.showConfirmDialog(this, "Deseja mesmo alterar o usuário?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                
@@ -206,13 +205,10 @@ public class TelaLoginCRUD extends javax.swing.JFrame {
                 
                 limpaCampos();
 
-                new TelaLogin().setVisible(true);
+                new TelaLogin(usuario_sessao).setVisible(true);
                 this.dispose();
-                
             } 
-            
         }
-        
     }//GEN-LAST:event_btnConcluirMouseClicked
 
     private void btnConcluirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConcluirMouseEntered
@@ -229,12 +225,15 @@ public class TelaLoginCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_lblFecharMouseClicked
     /**Método que verifica se os campos da tela estão vazios*/
     private boolean validaCamposVazios() {
+        
+        String senha = String.valueOf(txtSenha.getPassword());
+        
         if (this.txtLogin.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencha o campo LOGIN!");
             return false;
         }
         
-        if (this.txtSenha.getText().equals("")) {
+        if (senha.equals("")) {
             JOptionPane.showMessageDialog(this, "Preencha o campo LOGIN!");
             return false;
         }

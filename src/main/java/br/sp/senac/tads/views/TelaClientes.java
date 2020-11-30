@@ -13,7 +13,7 @@ public class TelaClientes extends javax.swing.JFrame {
     
     ClienteController clienteController = new ClienteController();
     Cliente clienteBean = new Cliente();
-    String usuario_sessao;
+    private String usuario_sessao;
     
     public TelaClientes() {
         initComponents();
@@ -31,8 +31,6 @@ public class TelaClientes extends javax.swing.JFrame {
         lblUsuario.setText(usuario_sessao);
     }
     
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -507,7 +505,7 @@ public class TelaClientes extends javax.swing.JFrame {
         
         if (linhaSelecionada >= 0) {
         
-            int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o item selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(this, "Deseja exluir o Cliente selecionado?", "Excluir", JOptionPane.YES_NO_OPTION);
             
             if (result == JOptionPane.YES_OPTION) {
                 
@@ -520,12 +518,10 @@ public class TelaClientes extends javax.swing.JFrame {
                 DefaultTableModel tmClientes = new DefaultTableModel();
                 tmClientes = (DefaultTableModel) tblClientes.getModel();
                 listarTabelaCliente();
-                
             }
             
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um item!", "Erro!", JOptionPane.WARNING_MESSAGE);
-            
+            JOptionPane.showMessageDialog(this, "Selecione um Cliente!", "Erro!", JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_btnRemoverMouseClicked
@@ -583,15 +579,11 @@ public class TelaClientes extends javax.swing.JFrame {
             txtNome.setText("");
             
         } else {
-            
             clienteBean.setNomeCliente(txtNome.getText());
-
             ArrayList<ClienteController> lista = clienteController.pesquisarNomeController(clienteBean);
-
             if (lista.size() > 0) {
-
                 DefaultTableModel tmCliente = new DefaultTableModel();
-
+                
                 tmCliente.addColumn("ID");
                 tmCliente.addColumn("Nome");
                 tmCliente.addColumn("CPF");
@@ -615,32 +607,25 @@ public class TelaClientes extends javax.swing.JFrame {
                     tblClientes.setValueAt(bean.getSexo(), i, 3);
                     
                     i++;
-
                 }
-
             }
             
         }
-
     }//GEN-LAST:event_txtNomeKeyTyped
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-
         TelaClientesCRUD tcl = new TelaClientesCRUD("Cadastrar", usuario_sessao);
         tcl.setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void btnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutosMouseClicked
         new TelaProdutos(usuario_sessao).setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnProdutosMouseClicked
 
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
         new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnRelatoriosMouseClicked
 
     private void rdoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNomeActionPerformed
@@ -654,7 +639,6 @@ public class TelaClientes extends javax.swing.JFrame {
             
             if(!caracteres.contains(evt.getKeyChar() + "")){
                 evt.consume();
-                
             }
             
             clienteBean.setCPF(txtCPF.getText().replaceAll("\\D", ""));
@@ -688,9 +672,7 @@ public class TelaClientes extends javax.swing.JFrame {
                     tblClientes.setValueAt(bean.getSexo(), i, 3);
 
                     i++;
-                 
                 }
-            
             }
             
         } else {
@@ -699,9 +681,7 @@ public class TelaClientes extends javax.swing.JFrame {
             evt.consume();
             JOptionPane.showMessageDialog(this, "Limite de caractere em 11", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCPF.setText("");
-            
         }
-
     }//GEN-LAST:event_txtCPFKeyTyped
     
     /**Método que preenche as linhaas e colunas da tabela na tela*/
@@ -736,16 +716,12 @@ public class TelaClientes extends javax.swing.JFrame {
                 tblClientes.setValueAt(bean.getSexo(), i, 3);
 
                 i++;
-
             }
-
         }
     }
     
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
     
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE

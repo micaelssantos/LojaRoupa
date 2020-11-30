@@ -6,23 +6,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TelaMenu extends javax.swing.JFrame {
-    
-    String usuario_sessao;
-    
+
+    private String usuario_sessao;
+
     public TelaMenu() {
         initComponents();
-                
+        setIcon(this);
     }
-    
+
     public TelaMenu(String sessao) {
         initComponents();
         this.usuario_sessao = sessao;
         lblSessao.setText("Bem vindo, " + sessao + "!");
         setIcon(this);
-        
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -329,27 +327,24 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void btnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutosMouseClicked
         //ACESSA A TELA DE PRODUTOS
-        TelaProdutos tp = new TelaProdutos(usuario_sessao);
-        tp.setVisible(true);
+        new TelaProdutos(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProdutosMouseClicked
 
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
-        TelaClientes tc = new TelaClientes(usuario_sessao);
-        tc.setVisible(true);
+        new TelaClientes(usuario_sessao).setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_btnClientesMouseClicked
 
     private void btnVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasMouseClicked
         //ACESSA A TELA DE VENDAS
-        new TelaVendas().setVisible(true);
+        new TelaVendas(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVendasMouseClicked
 
     private void btnRelatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRelatoriosMouseClicked
         //ACESSA A TELA DE RELATÓRIOS
-        new TelaRelatorios().setVisible(true);
+        new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRelatoriosMouseClicked
 
@@ -367,18 +362,15 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosMouseExited
 
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
-        TelaLogin tl = new TelaLogin();
-        tl.setVisible(true);
+        new TelaLogin(usuario_sessao).setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_btnUsuariosMouseClicked
-    
+
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
-    
+
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));

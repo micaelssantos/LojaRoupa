@@ -1,11 +1,9 @@
-
 package br.sp.senac.tads.dao;
 
 /**
  *
  * @author renea
  */
-
 import br.sp.senac.tads.model.Relatorios;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,7 +33,7 @@ public static ArrayList<Relatorios> consultarRelatorios()
             //Passo 2 - DriverManager para abrir a conexão
             String URL = "jdbc:mysql://localhost:3306/loja_roupa?useTimezone=true&serverTimezone=UTC&useSSL=false";
             
-            conexao = DriverManager.getConnection(URL, "root", "");
+            conexao = DriverManager.getConnection(URL, "root", "adminadmin");
             
             //Passo 3 - Executo a instrução SQL
             instrucaoSQL = conexao.prepareStatement("SELECT * FROM venda;");
@@ -73,19 +71,6 @@ public static ArrayList<Relatorios> consultarRelatorios()
               } catch (SQLException ex) {
              }
         }
-        
         return listaVendas;
     }
-
-    public static ArrayList<Relatorios> listarRelatorioController(Date date, Date date0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static ArrayList<Relatorios> consultarRelatorios(Date date, Date date0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
 }
-

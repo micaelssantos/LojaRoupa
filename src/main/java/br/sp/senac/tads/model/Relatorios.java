@@ -1,4 +1,3 @@
-
 package br.sp.senac.tads.model;
 
 /**
@@ -59,10 +58,4 @@ private int IdVenda;
     public void setData(Date data) {
         this.data = data;
     }
-
-    public ArrayList<Relatorios> listarRelatorioController(java.util.Date date, java.util.Date date0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
- 
 }
-

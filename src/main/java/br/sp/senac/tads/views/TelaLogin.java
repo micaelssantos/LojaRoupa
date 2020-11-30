@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class TelaLogin extends javax.swing.JFrame {
     
+    private String usuario_sessao;
+    
     LoginController logController = new LoginController();
     Login logBean = new Login();
     
@@ -26,6 +28,13 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         listarTabelaLogin();
         setIcon(this);
+    }
+    
+    public TelaLogin(String sessao){
+        initComponents();
+        listarTabelaLogin();
+        setIcon(this);
+        this.usuario_sessao = sessao;
     }
 
     /**
@@ -228,8 +237,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairMouseExited
 
     private void btnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSairMouseClicked
-        TelaMenu tm = new TelaMenu();
-        tm.setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnSairMouseClicked
 
@@ -238,16 +246,13 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMinimizarMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
-        TelaMenu tm = new TelaMenu();
-        tm.setVisible(true);
+        new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-        TelaLoginCRUD tlc = new TelaLoginCRUD("Cadastrar");
-        tlc.setVisible(true);
+        new TelaLoginCRUD("Cadastrar", usuario_sessao).setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void btnCadastrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseEntered
@@ -268,7 +273,7 @@ public class TelaLogin extends javax.swing.JFrame {
                        
             logBean.setId(codLogin);
             
-            TelaLoginCRUD tlc = new TelaLoginCRUD("Editar");
+            TelaLoginCRUD tlc = new TelaLoginCRUD("Editar", usuario_sessao);
             tlc.preencheCampos(logBean);
             tlc.setVisible(true);
             this.dispose();

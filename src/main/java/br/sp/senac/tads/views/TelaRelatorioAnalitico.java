@@ -6,9 +6,17 @@ import javax.swing.JPanel;
 
 public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
+    private String usuario_sessao;
+    
     public TelaRelatorioAnalitico() {
         initComponents();
         setIcon(this);
+    }
+
+    public TelaRelatorioAnalitico(String sessao) {
+        initComponents();
+        setIcon(this);
+        this.usuario_sessao = sessao;
     }
 
     /**
@@ -116,7 +124,7 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //VOLTAR PARA A TELA DE RELATÓRIOS
-        new TelaRelatorios().setVisible(true);
+        new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
@@ -130,20 +138,18 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         //VOLTAR PARA A TELA DE RELATÓRIOS
-        new TelaRelatorios().setVisible(true);
+        new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void lblMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizarMouseClicked
         this.setState(1);
     }//GEN-LAST:event_lblMinimizarMouseClicked
-    
+
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
-    
+
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));

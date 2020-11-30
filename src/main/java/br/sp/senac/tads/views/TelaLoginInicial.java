@@ -8,25 +8,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
-*
-* @author joliveira
-* @see br.sp.senac.tads.controller.LoginController
-* @see br.sp.senac.tads.model.Login
-* 
-*/
-
+ *
+ * @author joliveira
+ * @see br.sp.senac.tads.controller.LoginController
+ * @see br.sp.senac.tads.model.Login
+ *
+ */
 public class TelaLoginInicial extends javax.swing.JFrame {
-    
+
     LoginController logController = new LoginController();
     Login logBean = new Login();
-    
+
     public TelaLoginInicial() {
         initComponents();
         setIcon(this);
 
     }
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -165,18 +162,13 @@ public class TelaLoginInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairMouseClicked
 
     private void btnAcessarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcessarMouseClicked
-
         logBean.setLogin(txtLogin.getText());
-        logBean.setSenha(txtSenha.getText());
-        
-        if (validaLogin(logBean) && validaCamposVazios()){
-            
+        logBean.setSenha(String.valueOf(txtSenha.getPassword()));
+        if (validaLogin(logBean) && validaCamposVazios()) {
             limpaCampos();
-
             TelaMenu tm = new TelaMenu(logBean.getLogin().toString());
             tm.setVisible(true);
             this.dispose();
-            
         }
     }//GEN-LAST:event_btnAcessarMouseClicked
 
@@ -190,52 +182,44 @@ public class TelaLoginInicial extends javax.swing.JFrame {
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
         //Encerra aplicação
-        System.exit(0);        
+        System.exit(0);
     }//GEN-LAST:event_lblFecharMouseClicked
-    
+
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
-    
+
     public boolean validaLogin(Login beanLog) {
-        
+
         boolean status;
-        
+
         status = logController.validaController(beanLog);
 
         if (status == true) {
-            
             status = true;
             JOptionPane.showMessageDialog(this, "Bem vindo, " + logBean.getLogin() + "!");
-            
         } else {
-            
             status = false;
             JOptionPane.showMessageDialog(this, "Usuário não autorizado", "ATENÇÃO", JOptionPane.ERROR_MESSAGE);
             limpaCampos();
-            
         }
-        
         return status;
-        
     }
-    
+
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
-    public void setColor(JPanel panel){
+    public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
     }
-    
+
     //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
-    public void resetColor(JPanel panel){
+    public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
 
     private boolean validaCamposVazios() {
         String senha = String.valueOf(txtSenha.getPassword());
-        
-        if (this.txtLogin.getText().equals("")){
+
+        if (this.txtLogin.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
             return false;
         }
@@ -245,7 +229,7 @@ public class TelaLoginInicial extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     private void limpaCampos() {
         txtLogin.setText("");
         txtSenha.setText("");
@@ -253,7 +237,7 @@ public class TelaLoginInicial extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
-     */    
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

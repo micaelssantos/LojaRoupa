@@ -16,7 +16,6 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     
     public TelaClientesCRUD() {
         initComponents();
-        
     }
     
     public TelaClientesCRUD(String tipo, String sessao) {
@@ -26,18 +25,12 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         setIcon(this);
         
         if (lblTitulo.getText().equals("Cadastrar")) {
-            
             desativar();
-            
         }
-        
         if (lblTitulo.getText().equals("Editar")) {
-            
             this.btnNovoCli.setVisible(false);
             this.lblNovoCliente.setVisible(false);
-            
         }
-        
     }
 
     /**
@@ -459,9 +452,7 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
         
         if (lblTitulo.getText().equals("Cadastrar")) {
-            
             if (campoObrigatorio()) {
-                
                 clienteBean.setNomeCliente(txtNome.getText());
                 clienteBean.setCPF(txtFormatCPF.getText().replaceAll("\\D", ""));
                 clienteBean.setDataNascimento(txtFormatDtNasc.getText().replaceAll("\\D", ""));
@@ -479,15 +470,11 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
                 limparCampos();
                 desativar();
                 this.btnNovoCli.setEnabled(true);
-                
             } else {
-                
             }
-            
         }
         
         if (lblTitulo.getText().equals("Editar")) {
-            
             if (campoObrigatorio()) {
                 
                 clienteBean.setNomeCliente(txtNome.getText());
@@ -511,11 +498,8 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
                 this.dispose();
                 
             } else {
-                
             }
-            
         }
-
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void btnLimparMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseEntered
@@ -551,7 +535,6 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoCliMouseExited
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
-        // TODO add your handling code here:
         if (txtNome.getText().length() < 30) {
             //verifica se foi digitado o numero
             if (txtNome.getText().matches("^[0-9].*")) {
@@ -570,7 +553,6 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void txtLogradouroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLogradouroKeyTyped
-        // TODO add your handling code here:
         if (txtLogradouro.getText().length() < 30) {
             
         } else {
@@ -580,7 +562,6 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLogradouroKeyTyped
 
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
-        // TODO add your handling code here:
         if (txtNumero.getText().length() < 5) {
             String caracteres = "0987654321";
             if (!caracteres.contains(evt.getKeyChar() + "")) {
@@ -598,7 +579,6 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMinimizarMouseClicked
     
     public void preencheCampos(Cliente beanCliente) {
-        
         ArrayList<Cliente> listaCLiente = clienteController.consultarController(beanCliente);
         
         int i = 0;
@@ -622,15 +602,11 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
             System.out.println(clienteBean.getDataNascimento());
             
             i++;
-            
         }
-        
     }
     
     public void setIcon(JFrame frm) {
-        
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
-        
     }
 
     //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
@@ -658,7 +634,6 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
         txtEmail.setText("");
         cmbEstadoCivil.setSelectedItem(null);
         cmbSexo.setSelectedItem(null);
-        
     }
     
     private void desativar() {
@@ -718,7 +693,6 @@ public class TelaClientesCRUD extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campo \"E-mail\" é obrigatório!");
             return false;
         }
-        
         return true;
     }
 
