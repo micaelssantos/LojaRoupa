@@ -12,22 +12,37 @@ public class GerenciadorConexao {
 
     public static String STATUS = "Não conectado";
     public static String DRIVER = "com.mysql.cj.jdbc.Driver";   //DRIVER DO MYSQL A PARTIR DA VERSÃO 8                   
-
     public static String SERVER = "localhost";                  //ENDEREÇO DO SERVIDOR DE BANCO DE DADOS
     public static String DATABASE = "loja_roupa";               //NOME DO BANCO DE DADOS
-
     public static String LOGIN = "root";                        //USUÁRIO DO BANCO DE DADOS      
     public static String SENHA = "admin";                       //SENHA DE ACESSO
-
     public static String URL = "";
-
     public static Connection CONEXAO;
 
+    /**
+     * Construtor vazio do Gerenciador de Conexões
+     */
     public GerenciadorConexao() {
     }
 
+    /**
+     * Método responsável por abrir a conexão com o Banco de Dados
+     * 
+     * @return CONEXAO - Objeto do Tipo Connection 
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static Connection abrirConexao() throws ClassNotFoundException, SQLException {
+        
+        /**
+         * Cria a URL concatenando os valores inseridos pelas variaveis da classe
+         * 
+         */
         URL = "jdbc:mysql://" + SERVER + ":3306/" + DATABASE + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
+        
+        /**
+         * Verifica se a conxão está vazia
+         */
         if (CONEXAO == null) {
             try {
                 //Carrega a classe responsável pelo driver
@@ -57,6 +72,12 @@ public class GerenciadorConexao {
         return CONEXAO;
     }
 
+    /**
+     * Método responsável por Fechar a conexão com o Banco de Dados.
+     * 
+     * @return boolean informando se a conexão está fechada ou aberta
+     * @throws SQLException 
+     */
     public static boolean fecharConexao() throws SQLException {
         boolean retorno = false;
         try {
@@ -73,6 +94,11 @@ public class GerenciadorConexao {
         return retorno;
     }
 
+    /**
+     * Método responsável por informar se está conectado ou não.
+     * 
+     * @return STATUS  
+     */
     public static String getStatusConexao() {
         return STATUS;
     }

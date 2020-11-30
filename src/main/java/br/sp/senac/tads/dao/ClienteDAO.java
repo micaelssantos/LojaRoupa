@@ -214,6 +214,7 @@ public class ClienteDAO {
 
     /**
      * Método que pesquisa um cliente na Base de Dados através do Nome.
+     * 
      * @param clienteBean Recebe como parâmetro um Objeto do Tipo Cliente.
      * @return Retorna uma lista contendo o cliente pesquisado.
      */

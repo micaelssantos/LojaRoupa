@@ -24,11 +24,8 @@ public class RelatoriosController {
      * Método que apresenta a consulta das vendas por período
      */
     public ArrayList listarRelatorioController(String inicio, String fim) {
-
         ArrayList<Relatorios> listaVendas = new ArrayList<Relatorios>();
-
         listaVendas = relatorio.consultarRelatorios(inicio, fim);
-
         return listaVendas;
     }
 
@@ -41,11 +38,8 @@ public class RelatoriosController {
      * especifica de seu cliente
      */
     public ArrayList listarRelatorioAnaliticoController(int id) {
-
         ArrayList<Relatorios> listaVendas = new ArrayList<Relatorios>();
-
         listaVendas = relatorio.consultarRelatorioAnalitico(id);
-
         return listaVendas;
     }
 }
