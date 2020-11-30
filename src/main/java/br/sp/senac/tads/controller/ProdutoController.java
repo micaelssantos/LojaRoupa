@@ -20,9 +20,7 @@ public class ProdutoController {
     * Método que que faz a chamada do método de cadastro de produto na classe ProdutoDAO
     */
     public void cadastrarController(Produto prodBean) {
-        
         produto.cadastrarProduto(prodBean);
-        
     }
     
     /**
@@ -30,9 +28,7 @@ public class ProdutoController {
     * Método que que faz a chamada do método de edição de produto na classe ProdutoDAO
     */
     public void alterarController(Produto prodBean) {
-        
         produto.alterarProduto(prodBean);
-        
     }
     
     /**
@@ -40,9 +36,7 @@ public class ProdutoController {
     * Método que que faz a chamada do método de remoção de produto na classe ProdutoDAO
     */
     public void removerController(Produto prodBean) {
-        
         produto.removerProduto(prodBean);
-        
     }
     
     /**
@@ -51,13 +45,9 @@ public class ProdutoController {
     * Método que que faz a chamada do método de consulta de produtos na classe ProdutoDAO
     */
     public ArrayList consultarController(Produto prodBean) {
-        
         ArrayList<Produto> listaProduto = new ArrayList<Produto>();
-        
         listaProduto = produto.consultarProduto(prodBean);
-        
         return listaProduto;
-        
     }
     
     /**
@@ -65,13 +55,9 @@ public class ProdutoController {
     * Método que que faz a chamada do método de consulta de produtos na classe ProdutoDAO
     */
     public ArrayList listarTabelaController() {
-        
         ArrayList<Produto> listaProduto = new ArrayList<Produto>();
-        
         listaProduto = produto.listarTabelaProduto();
-        
         return listaProduto;
-        
     }
     
     /**
@@ -80,14 +66,8 @@ public class ProdutoController {
     * Método que que faz a chamada do método de consulta de produto na classe ProdutoDAO
     */
     public ArrayList pesquisarController(Produto prodBean) {
-        
         ArrayList<Produto> listaProduto = new ArrayList<Produto>();
-        
         listaProduto = produto.pesquisarProduto(prodBean);
-        
         return listaProduto;
-        
     }
-    
-    
 }

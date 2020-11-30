@@ -6,7 +6,6 @@ package br.sp.senac.tads.controller;
  */
 import br.sp.senac.tads.model.Relatorios;
 import br.sp.senac.tads.dao.RelatoriosDAO;
-import java.sql.Date;
 import java.util.ArrayList;
 
 public class RelatoriosController {
