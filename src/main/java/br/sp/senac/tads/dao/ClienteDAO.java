@@ -11,15 +11,15 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author dlazzaro
- * @author joliveira
+ * @author Dalila Di Lazzaro
+ * @author Jeferson Davi de Oliveira
  */
 public class ClienteDAO {
 
     Connection conexao;
 
     /**
-     * Driver do MySQL a partir da versão 8.0
+     * Driver do MySQL a partir da versão 8.0.
      */
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -27,9 +27,9 @@ public class ClienteDAO {
     }
 
     /**
-     * Método para Cadastrar um novo cliente no Banco de Dados
+     * Método para Cadastrar um novo cliente no Banco de Dados.
      *
-     * @param clienteBean
+     * @param clienteBean Recebe como parâmetro um Objeto do Tipo Cliente.
      */
     public void cadastrarCliente(Cliente clienteBean) {
 
@@ -62,6 +62,11 @@ public class ClienteDAO {
         }
     }
 
+    /**
+     * Método para alterar o Cliente na Base de Dados.
+     * 
+     * @param clienteBean  Recebe como parâmetro um Objeto do Tipo Cliente.
+     */
     public void alterarCliente(Cliente clienteBean) {
         try {
             Class.forName(DRIVER);
@@ -91,7 +96,12 @@ public class ClienteDAO {
             JOptionPane.showMessageDialog(null, "Erro ao carregar o driver");
         }
     }
-
+    
+    /**
+     * Método que remove um cliente na base de dados.
+     * 
+     * @param clienteBean Recebe como parâmetro um Objeto do Tipo Cliente.
+     */
     public void removerCliente(Cliente clienteBean) {
         try {
             Class.forName(DRIVER);
@@ -110,6 +120,12 @@ public class ClienteDAO {
         }
     }
 
+    /**
+     * Método que consulta o Cliente no Banco de dados de acordo com o ID informado.
+     * 
+     * @param clienteBean Recebe como parâmetro um Objeto do Tipo Cliente.
+     * @return Retorna uma lista com o Cliente encontrado.
+     */
     public ArrayList<Cliente> consultarCliente(Cliente clienteBean) {
         ResultSet rs = null;
         PreparedStatement instrucaoSQL = null;
@@ -155,6 +171,11 @@ public class ClienteDAO {
         return listaCliente;
     }
 
+    /**
+     * Método para listar todos os cliente na Dase de Dados.
+     * 
+     * @return Retorna uma lista de Objetos do tipo Cliente.
+     */
     public ArrayList<Cliente> listarTabelaCliente() {
         ResultSet rs = null;
         PreparedStatement instrucaoSQL = null;
@@ -191,6 +212,11 @@ public class ClienteDAO {
         }
     }
 
+    /**
+     * Método que pesquisa um cliente na Base de Dados através do Nome.
+     * @param clienteBean Recebe como parâmetro um Objeto do Tipo Cliente.
+     * @return Retorna uma lista contendo o cliente pesquisado.
+     */
     public ArrayList<Cliente> pesquisarClienteNome(Cliente clienteBean) {
         ResultSet rs = null;
         PreparedStatement instrucaoSQL = null;
@@ -229,6 +255,12 @@ public class ClienteDAO {
         }
     }
 
+    /**
+     * Método que pesquisa o cliente na Base de Dados através do CPF
+     * 
+     * @param clienteBean Recebe como parâmetro um Objeto do Tipo Cliente
+     * @return retorna uma lista com o Objeto Cliente pesquisado.
+     */
     public ArrayList<Cliente> pesquisarClienteCpf(Cliente clienteBean) {
         ResultSet rs = null;
         PreparedStatement instrucaoSQL = null;

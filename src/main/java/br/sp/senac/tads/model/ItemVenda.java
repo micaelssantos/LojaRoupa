@@ -1,10 +1,14 @@
 package br.sp.senac.tads.model;
 
-public class ItemVenda 
-{
+public class ItemVenda {
+
     private int IdItem;
     private int IdProduto;
     private int IdVenda;
+    private String nomeProduto;
+    private int qtd;
+    private double vlUnit;
+    private double total;
 
     public int getIdProduto() {
         return IdProduto;
@@ -21,10 +25,6 @@ public class ItemVenda
     public void setIdVenda(int IdVenda) {
         this.IdVenda = IdVenda;
     }
-    private String nomeProduto;
-    private int qtd;
-    private double vlUnit;
-    private double total;
 
     public int getIdItem() {
         return IdItem;
@@ -65,7 +65,4 @@ public class ItemVenda
     public void setTotal(double total) {
         this.total = total;
     }
-
-    
-
 }

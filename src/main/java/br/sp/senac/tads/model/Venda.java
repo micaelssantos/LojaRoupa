@@ -1,7 +1,6 @@
 package br.sp.senac.tads.model;
 
 import java.sql.Date;
-import javax.xml.crypto.Data;
 
 public class Venda {
     
@@ -54,5 +53,4 @@ public class Venda {
     public String getNome() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

@@ -24,9 +24,15 @@ public class LoginDAO {
      */
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
+    
     public LoginDAO() {
     }
 
+    /**
+     * Método que realiza o cadastro de um Objeto do Tipo Login no Banco de Dados.
+     * 
+     * @param logBean Recebe como parâmetro um Objeto do Tipo Login.
+     */
     public void cadastrarLogin(Login logBean) {
 
         try {
@@ -56,6 +62,11 @@ public class LoginDAO {
 
     }
 
+    /**
+     * Método que realiza a alteração do Login no Banco de Dados.
+     * 
+     * @param logBean Recebe como parâmetro um Objeto do Tipo Login
+     */
     public void alterarLogin(Login logBean) {
 
         try {
@@ -90,6 +101,12 @@ public class LoginDAO {
 
     }
 
+    
+    /**
+     * Método que realiza a remoção do Login no Banco de Dados
+     * 
+     * @param logBean Recebe como parâmetro um Objeto do Tipo Login 
+     */
     public void removerLogin(Login logBean) {
 
         try {
@@ -122,6 +139,11 @@ public class LoginDAO {
 
     }
 
+    /**
+     * Método que busca todos os Logins no Banco de Dados.
+     * 
+     * @return Retorna uma lista de Objetos do Tipo Login.
+     */
     public ArrayList<Login> listarLogin() {
 
         ResultSet rs = null;
@@ -178,6 +200,12 @@ public class LoginDAO {
         }
     }
 
+    /**
+     * Metódo que busca no Banco de Dados um login através do seu ID.
+     * 
+     * @param logBean Recebe como parâmetro um Objeto do Tipo Login.
+     * @return retorna uma lista contendo o Objeto Login pesquisado.
+     */
     public ArrayList<Login> buscaLogin(Login logBean) {
         ResultSet rs = null;
         PreparedStatement instrucaoSQL = null;
@@ -237,6 +265,12 @@ public class LoginDAO {
 
     }
 
+    /**
+     * Método responsável por validar os dados de Login na Base de Dados
+     * 
+     * @param logBean Recebe como parâmetro um Objeto do Tipo Login
+     * @return 
+     */
     public boolean validaLogin(Login logBean) {
         ResultSet rs = null;
         boolean status = false;
