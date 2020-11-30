@@ -8,6 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
+/**
+* @author Rene.Silva
+* @see br.sp.senac.tads.controller.RelatoriosController
+* @see br.sp.senac.tads.model.Relatorios
+ */
+
+
 public class TelaRelatorioAnalitico extends javax.swing.JFrame {
 
     Relatorios relatorioBean = new Relatorios();
@@ -127,7 +134,7 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
-        //VOLTAR PARA A TELA DE RELATÓRIOS
+        /**Volta para a tela de relatórios */
         new TelaRelatorios(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
@@ -141,7 +148,7 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarMouseExited
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
-        //VOLTAR PARA A TELA DE RELATÓRIOS
+        /**Voltar para a tela de relatórios */
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
@@ -153,16 +160,17 @@ public class TelaRelatorioAnalitico extends javax.swing.JFrame {
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
     }
 
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    /**Altera a cor do objeto ao passar o mouse */
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
     }
 
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    /**Volta para a cor padrão do objeto ao tirar o mouse de cima */
     public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
 
+    /**Método que carrega as linhas da tabela do Relatório Análitico*/
     public void CarregarRelatorioAnalitico(int id) {
 
         ArrayList<RelatoriosController> listaProdutos = relatorio.listarRelatorioAnaliticoController(id);

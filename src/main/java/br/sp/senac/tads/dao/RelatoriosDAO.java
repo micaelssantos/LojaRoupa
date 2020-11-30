@@ -13,6 +13,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author renea
+ * @see br.sp.senac.tads.util.GerenciadorConexao
+ * @see br.sp.senac.tads.model.Relatorios
+ *
+ */
+
 public class RelatoriosDAO {
 
     private static Connection conexao;
@@ -22,6 +30,13 @@ public class RelatoriosDAO {
      */
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
+    /**
+     * 
+     * @param inicioObjeto do Relatório Sintético que pesquisa no Banco de dados as vendas relaizadas
+     * num determinad período para inserir os dados no Relatório Sintético
+     * @param fim
+     * @return ArrayList - Apresenta todas as vendas realizadas num determinda período dos registros em Banco de Dados
+     */
     public static ArrayList<Relatorios> consultarRelatorios(String inicio, String fim) {
 
         ResultSet rs = null;
@@ -79,6 +94,13 @@ public class RelatoriosDAO {
         }
     }
 
+    /**
+     * 
+     * @param inicioObjeto do Relatório Análitico que pesquisa no Banco de dados as vendas relaizadas
+     * com base em uma venda especifica de um cliente, para inserir os dados detalhados da compra no Relatório Sintético
+     * @param fim
+     * @return ArrayList - Apresenta todos os itens incluido na venda, de um determinado cliente
+     */
     public static ArrayList<Relatorios> consultarRelatorioAnalitico(int id) {
 
         ResultSet rs = null;

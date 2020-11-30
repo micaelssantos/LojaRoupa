@@ -1,13 +1,26 @@
 package br.sp.senac.tads.controller;
 
-/**
- *
- * @author renea
- */
+
+
 import br.sp.senac.tads.model.Relatorios;
 import br.sp.senac.tads.dao.RelatoriosDAO;
 import java.sql.Date;
 import java.util.ArrayList;
+
+
+/**
+ *@author renea
+ * @see br.sp.senac.tads.dao.RelatoriosDAO
+ * @see br.sp.senac.tads.model.Relatorios
+ */
+
+
+/**
+ * @author renea
+ * @param - Objeto do Relatório Sintético
+ * @return ArrayList - Apresenta as vendas realizadas num determinda período
+ * Método que apresenta a consulta das vendas por período
+ */
 
 public class RelatoriosController {
 
@@ -22,6 +35,12 @@ public class RelatoriosController {
         return listaVendas;
     }
 
+ /**
+ * @author renea
+ * @param - Objeto do Relatório Análitico
+ * @return ArrayList - Apresenta a venda detalhada, item a item, de uma venda realizada em um determinado cliente
+ * Método de consultar da venda especifica de seu cliente
+ */
     public ArrayList listarRelatorioAnaliticoController(int id) {
 
         ArrayList<Relatorios> listaVendas = new ArrayList<Relatorios>();

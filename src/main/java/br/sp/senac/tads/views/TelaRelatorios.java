@@ -11,6 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+/**
+* @author Rene.Silva
+* @see br.sp.senac.tads.controller.RelatoriosController
+* @see br.sp.senac.tads.model.Relatorios
+ */
 public class TelaRelatorios extends javax.swing.JFrame {
 
     Relatorios relatorioBean = new Relatorios();
@@ -362,23 +367,24 @@ public class TelaRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarMouseExited
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
-        //VOLTAR PARA O MENU PRINCIPAL
+        /**Volta para o Menu Principal*/
         new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarMouseClicked
 
     private void lblFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFecharMouseClicked
-        //VOLTAR PARA O MENU PRINCIPAL
+        /**Volta para o Menu Principal*/
         new TelaMenu(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblFecharMouseClicked
 
     private void lblLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogoutMouseClicked
-        //VOLTAR PARA A TELA DE LOGIN
+        /**Volta para a Tela de Login*/
         new TelaLoginInicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblLogoutMouseClicked
 
+    /**Método que pesquisa e detalha itens de uma determinada compra selecionada */
     private void btnDetalharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDetalharMouseClicked
 
         int linhaSelecionada = tblSintetico.getSelectedRow();
@@ -403,17 +409,18 @@ public class TelaRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDetalharMouseExited
 
     private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
-        //ACESSA A TELA CLIENTES
+        /** Acessa a tela de Clientes */
         new TelaClientes(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnClientesMouseClicked
 
     private void btnProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProdutosMouseClicked
-        //ACESSA A TELA PRODUTOS
+        /** Acessa a tela de Produtos */
         new TelaProdutos(usuario_sessao).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnProdutosMouseClicked
-
+    
+    /**Método que pesquisa umas venda atravéz de um período selecionado DE: ? Até: ? */
     private void btnPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseClicked
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
         if (jdtDE.getDate() != null && jdtAte.getDate() != null) {
@@ -452,7 +459,7 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private void btnPesquisarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarMouseExited
         resetColor(btnPesquisar);
     }//GEN-LAST:event_btnPesquisarMouseExited
-
+    /**Método que carrega as linhas da tabela do Relatório Sintético*/
     public void CarregarRelatorioSintetico(String d1, String d2) {
 
         double valor = 0;
@@ -498,12 +505,12 @@ public class TelaRelatorios extends javax.swing.JFrame {
         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/resources/utilitarios/roupas.png"));
     }
 
-    //ALTERAR A COR DO OBJETO AO PASSAR O MOUSE
+    /** Alterar a cor do objeto ao passar o mouse*/
     public void setColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(40, 40, 40));
     }
 
-    //VOLTAR PARA A COR PADRÃO DO OBJETO AO TIRAR O MOUSE DE CIMA
+    /**Voltar para a cor padrão do objeto ao tirar o mouse de cima */
     public void resetColor(JPanel panel) {
         panel.setBackground(new java.awt.Color(0, 85, 166));
     }
